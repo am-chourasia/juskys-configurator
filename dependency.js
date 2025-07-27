@@ -17,29 +17,48 @@
 // Kopfteil Model - Breite
 // ------------------------------------------------------------
 
+
+const image_pieces = [
+    'background',
+    'kopfteil',
+    'fussteil',
+    'boxen',
+    'fuesse',
+    'matratze',
+    'topper',
+    'beleuchtungs-farbe',
+    'beleuchtung-kopfteil',
+    'beleuchtung-box',
+]
+
+
 const image_dependencies = {
     "kopfteil": [
-        "kopfteil Model", "Breite", "Höhe des Kopfteil", "Material"
+        "headrest:model", "size:width", "headrest:height", "material:cord,feiner-stoff,samt,boucle,grober-stoff,kunstleder"
     ],
     "fussteil": [
-        "fussteil Model", "Breite", "Füßenhöhe", "Material"
+        "foot_style:default", "size:width", "feet:height", "material:cord,feiner-stoff,samt,boucle,grober-stoff,kunstleder"
     ],
     "boxen": [
-        "boxen Model", "Breite", "Füßenhöhe", "Material"
+        "storage:default", "size:width", "feet:height", "material:cord,feiner-stoff,samt,boucle,grober-stoff,kunstleder"
     ],
     "fuesse": [
-        "fuesse Model", "Breite", "Füßenhöhe"
+        "feet:type", "size:width", "feet:height"
     ],
     "matratze": [
-        "matratze Model", "Stauraum Model", "Breite"
+        "mattress:zwei-separate-matratzen,durchgaengig", "storage:default", "size:width"
     ],
     "topper": [
-        "Breite"
+        "size:width"
     ],
-    "beleuchtung": [
-        "Belechtungsposition", "Teil Model", "Breite"
+    // TODO: how to handle lighting?
+    "beleuchtung-kopfteil": [
+        "headrest:model", "size:width"
     ],
-    "usbAnschluss": [
-        "kopfteil Model", "Breite"
-    ]
+    "beleuchtung-box": [
+        "storage:default", "size:width"
+    ],
+    "beleuchtung-farbe": [
+        "foot_style:default", "size:width"
+    ],
 }
