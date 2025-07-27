@@ -1,227 +1,742 @@
 const matrix = {
     series: {
         display_name: 'Kollektion',
-        orientation: 'normal', // when no tabs need to be shown, use this orientation
-        next_button: 'Weiter zur Größe ',
+        orientation: 'normal',
+        next_button: 'Weiter zur Größe',
         tabs: {
             default: {
-                display_name: '', // no tabs will be shown
+                display_name: '',
                 type: 'single-select',
             }
         },
         products: {
             default: [
                 {
-                    product_id: '1311',
+                    product_id: 'komfort',
                     product_title: 'Komfort',
-                    product_description: 'this is a sample desc',
+                    product_description: 'Komfort Kollektion',
                     handle: 'komfort',
-                    price: '$23.00'
+                    price: '$0.00'
                 },
                 {
-                    product_id: '1312',
+                    product_id: 'deluxe',
                     product_title: 'Deluxe',
-                    product_description: 'this is a sample desc',
+                    product_description: 'Deluxe Kollektion',
                     handle: 'deluxe',
-                    price: '$23.00'
+                    price: '$0.00'
                 },
                 {
-                    product_id: '1313',
+                    product_id: 'first-class',
                     product_title: 'First Class',
-                    product_description: 'this is a sample desc',
+                    product_description: 'First Class Kollektion',
                     handle: 'first-class',
-                    price: '$23.00'
+                    price: '$0.00'
                 },
+            ]
+        }
+    },
+    size: {
+        display_name: 'Größe',
+        orientation: 'vertical',
+        next_button: 'Weiter zum Kopfteil',
+        tabs: {
+            'width': {
+                display_name: 'Breite',
+                type: 'cart-property',
+            },
+            'length': {
+                display_name: 'Länge',
+                type: 'cart-property',
+            }
+        },
+        products: {
+            'width': [
+                // Width options
+                { product_id: 'width-90', product_title: '90cm', handle: '90cm', price: '$0.00' },
+                { product_id: 'width-100', product_title: '100cm', handle: '100cm', price: '$0.00' },
+                { product_id: 'width-120', product_title: '120cm', handle: '120cm', price: '$0.00' },
+                { product_id: 'width-140', product_title: '140cm', handle: '140cm', price: '$0.00' },
+                { product_id: 'width-160', product_title: '160cm', handle: '160cm', price: '$0.00' },
+                { product_id: 'width-180', product_title: '180cm', handle: '180cm', price: '$0.00' },
+                { product_id: 'width-200', product_title: '200cm', handle: '200cm', price: '$0.00' },
+                { product_id: 'width-240', product_title: '240cm', handle: '240cm', price: '$0.00' },
+            ],
+            'length': [
+                { product_id: 'length-180', product_title: '180cm', handle: '180cm', price: '$0.00' },
+                { product_id: 'length-190', product_title: '190cm', handle: '190cm', price: '$0.00' },
+                { product_id: 'length-200', product_title: '200cm', handle: '200cm', price: '$0.00' },
+                { product_id: 'length-210', product_title: '210cm', handle: '210cm', price: '$0.00' },
+            ]
+        }
+    },
+    headrest: {
+        display_name: 'Kopfteil',
+        orientation: 'vertical',
+        next_button: 'Weiter zum Stauraum',
+        tabs: {
+            'model': {
+                display_name: 'Modell',
+                type: 'single-select',
+            },
+            'height': {
+                display_name: 'Höhe',
+                type: 'single-select',
+            }
+        },
+        products: {
+            'model': [
+                {
+                    product_id: 'versailles',
+                    product_title: 'Versailles',
+                    product_description: 'Versailles Kopfteil',
+                    handle: 'versailles',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'matisse',
+                    product_title: 'Matisse',
+                    product_description: 'Matisse Kopfteil',
+                    handle: 'matisse',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'bijou',
+                    product_title: 'Bijou',
+                    product_description: 'Bijou Kopfteil',
+                    handle: 'bijou',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'louvre',
+                    product_title: 'Louvre',
+                    product_description: 'Louvre Kopfteil',
+                    handle: 'louvre',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'belleville',
+                    product_title: 'Belleville',
+                    product_description: 'Belleville Kopfteil',
+                    handle: 'belleville',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'maison',
+                    product_title: 'Maison',
+                    product_description: 'Maison Kopfteil',
+                    handle: 'maison',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'palais',
+                    product_title: 'Palais',
+                    product_description: 'Palais Kopfteil',
+                    handle: 'palais',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'chateau',
+                    product_title: 'Château',
+                    product_description: 'Château Kopfteil',
+                    handle: 'chateau',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'monet',
+                    product_title: 'Monet',
+                    product_description: 'Monet Kopfteil',
+                    handle: 'monet',
+                    price: '$0.00'
+                }
+            ],
+            'height': [
+                {
+                    product_id: 'height-115',
+                    product_title: '115cm',
+                    product_description: '115cm Höhe',
+                    handle: '115cm',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'height-120',
+                    product_title: '120cm',
+                    product_description: '120cm Höhe',
+                    handle: '120cm',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'height-125',
+                    product_title: '125cm',
+                    product_description: '125cm Höhe',
+                    handle: '125cm',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'height-130',
+                    product_title: '130cm',
+                    product_description: '130cm Höhe',
+                    handle: '130cm',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'height-135',
+                    product_title: '135cm',
+                    product_description: '135cm Höhe',
+                    handle: '135cm',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'height-140',
+                    product_title: '140cm',
+                    product_description: '140cm Höhe',
+                    handle: '140cm',
+                    price: '$0.00'
+                }
             ]
         }
     },
     storage: {
-        display_name: 'German_name',
-        orientation: 'normal', // when no tabs need to be shown, use this orientation
-        next_button: 'Proceed to Material',
+        display_name: 'Stauraum',
+        orientation: 'normal',
+        next_button: 'Weiter zum Fußteil',
         tabs: {
             default: {
-                display_name: '', // no tabs will be shown
+                display_name: '',
                 type: 'single-select',
             }
         },
         products: {
             default: [
                 {
-                    product_id: '1312',
-                    product_title: 'None',
-                    product_description: 'this is a sample desc',
-                    handle: 'adfasdf',
-                    price: '$23.00'
+                    product_id: 'kein-stauraum',
+                    product_title: 'Kein Stauraum',
+                    product_description: 'Ohne Stauraum',
+                    handle: 'kein-stauraum',
+                    price: '$0.00'
                 },
                 {
-                    product_id: '1313',
-                    product_title: 'adfasdf',
-                    product_description: 'this is a sample desc',
-                    handle: 'adfasdf',
-                    price: '$23.00'
+                    product_id: 'durchgaengige-schubladen',
+                    product_title: 'Durchgängige Schubladen',
+                    product_description: 'Durchgängige Schubladen',
+                    handle: 'durchgaengige-schubladen',
+                    price: '$0.00'
                 },
+                {
+                    product_id: 'geteilte-schubladen',
+                    product_title: 'Geteilte Schubladen',
+                    product_description: 'Geteilte Schubladen',
+                    handle: 'geteilte-schubladen',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'hochklappbarer-bettkasten',
+                    product_title: 'Hochklappbarer Bettkasten',
+                    product_description: 'Hochklappbarer Bettkasten',
+                    handle: 'hochklappbarer-bettkasten',
+                    price: '$0.00'
+                }
+            ]
+        }
+    },
+    foot_style: {
+        display_name: 'Fußteil',
+        orientation: 'normal',
+        next_button: 'Weiter zu den Füßen',
+        tabs: {
+            default: {
+                display_name: '',
+                type: 'single-select',
+            }
+        },
+        products: {
+            default: [
+                {
+                    product_id: 'kein-fussteil',
+                    product_title: 'Kein Fußteil',
+                    product_description: 'Ohne Fußteil',
+                    handle: 'kein-fussteil',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'opera',
+                    product_title: 'Opéra',
+                    product_description: 'Opéra Fußteil',
+                    handle: 'opera',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'louvre-fussteil',
+                    product_title: 'Louvre',
+                    product_description: 'Louvre Fußteil',
+                    handle: 'louvre-fussteil',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'tv-lift-salon',
+                    product_title: 'TV Lift Salon',
+                    product_description: 'TV Lift Salon',
+                    handle: 'tv-lift-salon',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'tv-lift-versailles',
+                    product_title: 'TV Lift Versailles',
+                    product_description: 'TV Lift Versailles',
+                    handle: 'tv-lift-versailles',
+                    price: '$0.00'
+                }
+            ]
+        }
+    },
+    feet: {
+        display_name: 'Füße',
+        orientation: 'horizontal',
+        next_button: 'Weiter zum Material',
+        tabs: {
+            'type': {
+                display_name: 'Auswahl',
+                type: 'single-select',
+            },
+            'model': {
+                display_name: 'Modelle',
+                type: 'single-select',
+            },
+            'height': {
+                display_name: 'Fußhöhe',
+                type: 'single-select',
+            }
+        },
+        products: {
+            'type': [
+                {
+                    product_id: 'ohne-fuesse',
+                    product_title: 'Ohne Füße',
+                    product_description: 'Ohne Füße',
+                    handle: 'ohne-fuesse',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'mit-fuesse',
+                    product_title: 'Mit Füßen',
+                    product_description: 'Mit Füßen',
+                    handle: 'mit-fuesse',
+                    price: '$0.00'
+                }
+            ],
+            'model': [
+                {
+                    product_id: 'schwebend',
+                    product_title: 'Schwebend',
+                    product_description: 'Schwebend Modell',
+                    handle: 'schwebend',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'tbd-1',
+                    product_title: 'tbd',
+                    product_description: 'To be determined',
+                    handle: 'tbd-1',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'tbd-2',
+                    product_title: 'tbd',
+                    product_description: 'To be determined',
+                    handle: 'tbd-2',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'tbd-3',
+                    product_title: 'tbd',
+                    product_description: 'To be determined',
+                    handle: 'tbd-3',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'tbd-4',
+                    product_title: 'tbd',
+                    product_description: 'To be determined',
+                    handle: 'tbd-4',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'tbd-5',
+                    product_title: 'tbd',
+                    product_description: 'To be determined',
+                    handle: 'tbd-5',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'tbd-6',
+                    product_title: 'tbd',
+                    product_description: 'To be determined',
+                    handle: 'tbd-6',
+                    price: '$0.00'
+                }
+            ],
+            'height': [
+                {
+                    product_id: 'fusshoehe-10',
+                    product_title: '10cm',
+                    product_description: '10cm Fußhöhe',
+                    handle: '10cm',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'fusshoehe-15',
+                    product_title: '15cm',
+                    product_description: '15cm Fußhöhe',
+                    handle: '15cm',
+                    price: '$0.00'
+                }
             ]
         }
     },
     material: {
-        display_name: 'German_name',
+        display_name: 'Material',
         orientation: 'horizontal',
-        next_step: 'Choose Topper',
-        next_button: 'Proceed to Mattress',
+        next_button: 'Weiter zur Matratze',
         tabs: {
-            'cordFeiner-stoff': {
-                display_name: 'Cord Feiner Stoff',
+            'feiner-stoff': {
+                display_name: 'Feiner Stoff',
+                type: 'single-select',
+            },
+            'samt': {
+                display_name: 'Samt',
                 type: 'single-select',
             },
             'cord': {
                 display_name: 'Cord',
                 type: 'single-select',
             },
-            // ...
+            'boucle': {
+                display_name: 'Bouclé',
+                type: 'single-select',
+            },
+            'grober-stoff': {
+                display_name: 'Grober Stoff',
+                type: 'single-select',
+            },
+            'kunstleder': {
+                display_name: 'Kunstleder',
+                type: 'single-select',
+            }
         },
         products: {
-            'cordFeiner-stoff': [
+            'feiner-stoff': [
                 {
-                    product_id: '1312',
-                    product_title: 'None',
-                    product_description: 'this is a sample desc',
-                    handle: 'adfasdf',
-                    price: '$23.00'
+                    product_id: 'feiner-stoff-farbe-1',
+                    product_title: 'Farbe 1',
+                    product_description: 'Feiner Stoff Farbe 1',
+                    handle: 'feiner-stoff-farbe-1',
+                    price: '$0.00'
                 },
-                // ...
+                {
+                    product_id: 'feiner-stoff-farbe-2',
+                    product_title: 'Farbe 2',
+                    product_description: 'Feiner Stoff Farbe 2',
+                    handle: 'feiner-stoff-farbe-2',
+                    price: '$0.00'
+                }
+                // Add more colors as needed (11 total)
+            ],
+            'samt': [
+                {
+                    product_id: 'samt-farbe-1',
+                    product_title: 'Farbe 1',
+                    product_description: 'Samt Farbe 1',
+                    handle: 'samt-farbe-1',
+                    price: '$0.00'
+                }
+                // Add more colors as needed (9 total)
             ],
             'cord': [
                 {
-                    product_id: '1312',
-                    product_title: 'None',
-                    product_description: 'this is a sample desc',
-                    handle: 'adfasdf',
-                    price: '$23.00'
+                    product_id: 'cord-farbe-1',
+                    product_title: 'Farbe 1',
+                    product_description: 'Cord Farbe 1',
+                    handle: 'cord-farbe-1',
+                    price: '$0.00'
                 }
-                // ...
+                // Add more colors as needed (8 total)
             ],
-            // ...
+            'boucle': [
+                {
+                    product_id: 'boucle-farbe-1',
+                    product_title: 'Farbe 1',
+                    product_description: 'Bouclé Farbe 1',
+                    handle: 'boucle-farbe-1',
+                    price: '$0.00'
+                }
+                // Add more colors as needed (9 total)
+            ],
+            'grober-stoff': [
+                {
+                    product_id: 'grober-stoff-farbe-1',
+                    product_title: 'Farbe 1',
+                    product_description: 'Grober Stoff Farbe 1',
+                    handle: 'grober-stoff-farbe-1',
+                    price: '$0.00'
+                }
+                // Add more colors as needed (7 total)
+            ],
+            'kunstleder': [
+                {
+                    product_id: 'kunstleder-farbe-1',
+                    product_title: 'Farbe 1',
+                    product_description: 'Kunstleder Farbe 1',
+                    handle: 'kunstleder-farbe-1',
+                    price: '$0.00'
+                }
+                // Add more colors as needed (8 total)
+            ]
         }
     },
     mattress: {
-        display_name: 'German_name',
+        display_name: 'Matratze',
         orientation: 'horizontal',
-        next_button: 'Proceed to Upgrades',
+        next_button: 'Weiter zum Topper',
         tabs: {
-            '2-getrennte-matratzen': {
-                display_name: '2 getrennte Matratzen',
-                type: 'dropdown', // shown as dropdown with single select
-            },
-            '1-getrennte-matratzen': {
-                display_name: '1 getrennte Matratzen',
+            'zwei-separate-matratzen': {
+                display_name: 'Zwei separate Matratzen',
                 type: 'dropdown',
             },
+            'durchgaengig': {
+                display_name: 'Durchgängig',
+                type: 'dropdown',
+            }
         },
         products: {
-            '2-getrennte-matratzen': [
+            'zwei-separate-matratzen': [
                 {
-                    product_id: '1312',
-                }
-                // all the thicknesses will be shown here
-            ],
-            '1-getrennte-matratzen': [
+                    product_id: 'h2-zwei',
+                    product_title: 'H2',
+                    product_description: 'Härtegrad H2',
+                    handle: 'h2-zwei',
+                    price: '$0.00'
+                },
                 {
-                    product_id: '1312',
+                    product_id: 'h3-zwei',
+                    product_title: 'H3',
+                    product_description: 'Härtegrad H3',
+                    handle: 'h3-zwei',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'h4-zwei',
+                    product_title: 'H4',
+                    product_description: 'Härtegrad H4',
+                    handle: 'h4-zwei',
+                    price: '$0.00'
                 }
-                // only the thickness of first matratze will be shown here
             ],
+            'durchgaengig': [
+                {
+                    product_id: 'h2-durchgaengig',
+                    product_title: 'H2',
+                    product_description: 'Härtegrad H2',
+                    handle: 'h2-durchgaengig',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'h3-durchgaengig',
+                    product_title: 'H3',
+                    product_description: 'Härtegrad H3',
+                    handle: 'h3-durchgaengig',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'h4-durchgaengig',
+                    product_title: 'H4',
+                    product_description: 'Härtegrad H4',
+                    handle: 'h4-durchgaengig',
+                    price: '$0.00'
+                }
+            ]
         }
     },
-    upgrades: {
-        display_name: 'German_name',
+    topper: {
+        display_name: 'Topper',
+        orientation: 'normal',
+        next_button: 'Weiter zu den Extras',
+        tabs: {
+            default: {
+                display_name: '',
+                type: 'single-select',
+            }
+        },
+        products: {
+            default: [
+                {
+                    product_id: 'komfortschaum-topper',
+                    product_title: 'Komfortschaum-Topper (6 cm)',
+                    product_description: 'Komfortschaum-Topper 6cm',
+                    handle: 'komfortschaum-topper',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'kaltschaum-topper',
+                    product_title: 'Kaltschaum-Topper (8 cm)',
+                    product_description: 'Kaltschaum-Topper 8cm',
+                    handle: 'kaltschaum-topper',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'visco-schaum-topper',
+                    product_title: 'Visco-Schaum-Topper (8 cm)',
+                    product_description: 'Visco-Schaum-Topper 8cm',
+                    handle: 'visco-schaum-topper',
+                    price: '$0.00'
+                }
+            ]
+        }
+    },
+    extras: {
+        display_name: 'Extras',
         orientation: 'vertical',
-        next_button: 'Proceed to Extras',
+        next_button: 'Weiter zur Lieferung',
         tabs: {
             'beleuchtung-kopfteil': {
                 display_name: 'Beleuchtung Kopfteil',
-                type: 'multiselect-with-none', // None option behaves differently than multiselect
+                type: 'multiselect-with-none',
             },
             'beleuchtung-box': {
                 display_name: 'Beleuchtung Box',
                 type: 'multiselect-with-none',
             },
+            'rueckseite-stofffarbe': {
+                display_name: 'Rückseite mit Stofffarbe bezogen',
+                type: 'checkbox',
+            },
+            'usb-anschluesse': {
+                display_name: 'USB-Anschlüsse',
+                type: 'checkbox',
+            },
+            'beleuchtungs-farbe': {
+                display_name: 'Beleuchtungs-Farbe',
+                type: 'single-select',
+            }
         },
         products: {
             'beleuchtung-kopfteil': [
                 {
-                    product_id: '1312',
-                    product_title: 'None',
-                    product_description: 'this is a sample desc',
-                    handle: 'adfasdf',
-                    price: '$23.00'
+                    product_id: 'hinten',
+                    product_title: 'Hinten',
+                    product_description: 'Beleuchtung hinten',
+                    handle: 'hinten',
+                    price: '$0.00'
                 },
                 {
-                    product_id: '1313',
-                    product_title: 'adfasdf',
-                    product_description: 'this is a sample desc',
-                    handle: 'adfasdf',
-                    price: '$23.00'
-                },
-                // ...
+                    product_id: 'vorne',
+                    product_title: 'Vorne',
+                    product_description: 'Beleuchtung vorne',
+                    handle: 'vorne',
+                    price: '$0.00'
+                }
             ],
             'beleuchtung-box': [
                 {
-                    product_id: '1312',
-                    product_title: 'adfasdf',
-                    product_description: 'this is a sample desc',
-                    handle: 'adfasdf',
-                    price: '$23.00'
+                    product_id: 'led-front',
+                    product_title: 'LED Front',
+                    product_description: 'LED Front Beleuchtung',
+                    handle: 'led-front',
+                    price: '$0.00'
                 },
-                // ...
+                {
+                    product_id: 'led-seite',
+                    product_title: 'LED Seite',
+                    product_description: 'LED Seiten Beleuchtung',
+                    handle: 'led-seite',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'led-unterboden',
+                    product_title: 'LED Unterboden',
+                    product_description: 'LED Unterboden Beleuchtung',
+                    handle: 'led-unterboden',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'led-fussteil',
+                    product_title: 'LED Fußteil',
+                    product_description: 'LED Fußteil Beleuchtung',
+                    handle: 'led-fussteil',
+                    price: '$0.00'
+                }
+            ],
+            'rueckseite-stofffarbe': [
+                {
+                    product_id: 'rueckseite-stofffarbe',
+                    product_title: 'Rückseite mit Stofffarbe bezogen',
+                    product_description: 'Rückseite mit Stofffarbe bezogen',
+                    handle: 'rueckseite-stofffarbe',
+                    price: '$0.00'
+                }
+            ],
+            'usb-anschluesse': [
+                {
+                    product_id: 'usb-anschluesse',
+                    product_title: 'USB-Anschlüsse',
+                    product_description: 'USB-Anschlüsse',
+                    handle: 'usb-anschluesse',
+                    price: '$0.00'
+                }
+            ],
+            'beleuchtungs-farbe': [
+                {
+                    product_id: 'led-weiss',
+                    product_title: 'LED weiß',
+                    product_description: 'LED weiß Beleuchtung',
+                    handle: 'led-weiss',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'led-blau',
+                    product_title: 'LED blau',
+                    product_description: 'LED blau Beleuchtung',
+                    handle: 'led-blau',
+                    price: '$0.00'
+                },
+                {
+                    product_id: 'rgb-fernbedienung',
+                    product_title: 'RGB mit Fernbedienung',
+                    product_description: 'RGB Beleuchtung mit Fernbedienung',
+                    handle: 'rgb-fernbedienung',
+                    price: '$0.00'
+                }
             ]
         }
     },
-    extras: {
-        display_name: 'German_name',
-        orientation: 'vertical',
-        next_button: 'Complete Selection',
+    delivery: {
+        display_name: 'Lieferung',
+        orientation: 'normal',
+        next_button: 'Fertig',
         tabs: {
-            checkboxes: {
+            default: {
                 display_name: '',
-                type: 'checkbox', // displayed as checkboxes with multiselect functionality
-            },
-            lightning_color: {
-                display_name: 'Beleuchtungsfarbe',
-                type: 'single-select', // only allowed to choose one option
+                type: 'multiselect-with-none',
             }
         },
         products: {
-            checkboxes: [
+            default: [
                 {
-                    product_id: '1312',
-                    product_title: 'adfasdf',
-                    product_description: 'this is a sample desc',
-                    handle: 'adfasdf',
-                    price: '$23.00'
+                    product_id: 'mitnahme-verpackungen',
+                    product_title: 'Mitnahme der Verpackungen',
+                    product_description: 'Mitnahme der Verpackungen',
+                    handle: 'mitnahme-verpackungen',
+                    price: '$0.00'
                 },
                 {
-                    product_id: '1313',
-                    product_title: 'adfasdf',
-                    product_description: 'this is a sample desc',
-                    handle: 'adfasdf',
-                    price: '$23.00'
-                },
-            ],
-            lightning: [
-                {
-                    product_id: '1312',
-                    product_title: 'adfasdf',
-                    product_description: 'this is a sample desc',
-                    handle: 'adfasdf',
-                    price: '$23.00'
-                },
-                //...
+                    product_id: 'aufbau-service',
+                    product_title: 'Aufbau-Service',
+                    product_description: 'Aufbau-Service',
+                    handle: 'aufbau-service',
+                    price: '$0.00'
+                }
             ]
         }
-    },
-}
-
+    }
+};
 
 /*
 Types:
@@ -235,3 +750,5 @@ checkbox                -> allows to choose multiple options as checkbox
 cart-property           -> added to cart as a property (used in size)
 
 */
+
+module.exports = matrix;
