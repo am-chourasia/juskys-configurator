@@ -1,11 +1,11 @@
 const matrix = {
     series: {
-        display_name: 'Kollektion',
+        frontend_name: 'Kollektion',
         orientation: 'normal',
         next_button: 'Weiter zur Größe',
         tabs: {
             default: {
-                display_name: '',
+                frontend_name: '',
                 type: 'descriptive',
                 products: [
                     {
@@ -34,12 +34,12 @@ const matrix = {
         }
     },
     size: {
-        display_name: 'Größe',
+        frontend_name: 'Größe',
         orientation: 'vertical',
         next_button: 'Weiter zum Kopfteil',
         tabs: {
             'width': {
-                display_name: 'Breite',
+                frontend_name: 'Breite',
                 type: 'pills',
                 products: [
                     { product_id: 'width-90', product_title: '90cm', handle: '90cm', price: '$0.00' },
@@ -53,7 +53,7 @@ const matrix = {
                 ]
             },
             'length': {
-                display_name: 'Länge',
+                frontend_name: 'Länge',
                 type: 'pills',
                 products: [
                     { product_id: 'length-180', product_title: '180cm', handle: '180cm', price: '$0.00' },
@@ -65,12 +65,12 @@ const matrix = {
         }
     },
     headrest: {
-        display_name: 'Kopfteil',
+        frontend_name: 'Kopfteil',
         orientation: 'vertical',
         next_button: 'Weiter zum Stauraum',
         tabs: {
             'model': {
-                display_name: 'Modell',
+                frontend_name: 'Modell',
                 type: 'single-select',
                 products: [
                     {
@@ -139,7 +139,7 @@ const matrix = {
                 ]
             },
             'height': {
-                display_name: 'Höhe',
+                frontend_name: 'Höhe',
                 type: 'pills',
                 products: [
                     {
@@ -189,12 +189,12 @@ const matrix = {
         }
     },
     storage: {
-        display_name: 'Stauraum',
+        frontend_name: 'Stauraum',
         orientation: 'normal',
         next_button: 'Weiter zum Fußteil',
         tabs: {
             default: {
-                display_name: '',
+                frontend_name: '',
                 type: 'single-select',
                 products: [
                     {
@@ -230,12 +230,12 @@ const matrix = {
         }
     },
     foot_style: {
-        display_name: 'Fußteil',
+        frontend_name: 'Fußteil',
         orientation: 'normal',
         next_button: 'Weiter zu den Füßen',
         tabs: {
             default: {
-                display_name: '',
+                frontend_name: '',
                 type: 'single-select',
                 products: [
                     {
@@ -278,12 +278,12 @@ const matrix = {
         }
     },
     feet: {
-        display_name: 'Füße',
+        frontend_name: 'Füße',
         orientation: 'horizontal',
         next_button: 'Weiter zum Material',
         tabs: {
             'type': {
-                display_name: 'Auswahl',
+                frontend_name: 'Auswahl',
                 type: 'single-select',
                 products: [
                     {
@@ -303,7 +303,7 @@ const matrix = {
                 ]
             },
             'model': {
-                display_name: 'Modelle',
+                frontend_name: 'Modelle',
                 type: 'single-select',
                 products: [
                     {
@@ -358,7 +358,7 @@ const matrix = {
                 ]
             },
             'height': {
-                display_name: 'Fußhöhe',
+                frontend_name: 'Fußhöhe',
                 type: 'single-select',
                 products: [
                     {
@@ -380,18 +380,19 @@ const matrix = {
         }
     },
     material: {
-        display_name: 'Material',
+        frontend_name: 'Material',
         orientation: 'horizontal',
         next_button: 'Weiter zur Matratze',
         tabs: {
             'feiner-stoff': {
-                display_name: 'Feiner Stoff',
+                frontend_name: 'Feiner Stoff',
                 type: 'single-select',
                 products: [
                     {
                         product_id: 'feiner-stoff-farbe-1',
                         product_title: 'Farbe 1',
                         product_description: 'Feiner Stoff Farbe 1',
+
                         handle: 'feiner-stoff-farbe-1',
                         price: '$0.00'
                     },
@@ -406,7 +407,7 @@ const matrix = {
                 ]
             },
             'samt': {
-                display_name: 'Samt',
+                frontend_name: 'Samt',
                 type: 'single-select',
                 products: [
                     {
@@ -420,7 +421,7 @@ const matrix = {
                 ]
             },
             'cord': {
-                display_name: 'Cord',
+                frontend_name: 'Cord',
                 type: 'single-select',
                 products: [
                     {
@@ -434,7 +435,7 @@ const matrix = {
                 ]
             },
             'boucle': {
-                display_name: 'Bouclé',
+                frontend_name: 'Bouclé',
                 type: 'single-select',
                 products: [
                     {
@@ -448,7 +449,7 @@ const matrix = {
                 ]
             },
             'grober-stoff': {
-                display_name: 'Grober Stoff',
+                frontend_name: 'Grober Stoff',
                 type: 'single-select',
                 products: [
                     {
@@ -462,7 +463,7 @@ const matrix = {
                 ]
             },
             'kunstleder': {
-                display_name: 'Kunstleder',
+                frontend_name: 'Kunstleder',
                 type: 'single-select',
                 products: [
                     {
@@ -478,14 +479,14 @@ const matrix = {
         }
     },
     mattress: {
-        display_name: 'Matratze',
+        frontend_name: 'Matratze',
         orientation: 'horizontal',
         next_button: 'Weiter zum Topper',
         tabs: {
             'zwei-separate-matratzen': {
-                display_name: 'Zwei separate Matratzen',
+                frontend_name: 'Zwei separate Matratzen',
                 type: 'dropdown',
-                // OPTIONAL: 'split' property for two dropdowns on single tab
+                // TODO: OPTIONAL: 'split' property for two dropdowns on single tab
                 products: [
                     {
                         product_id: 'h2-zwei',
@@ -532,7 +533,7 @@ const matrix = {
                 ]
             },
             'durchgaengig': {
-                display_name: 'Durchgängig',
+                frontend_name: 'Durchgängig',
                 type: 'dropdown',
                 products: [
                     {
@@ -561,12 +562,12 @@ const matrix = {
         }
     },
     topper: {
-        display_name: 'Topper',
+        frontend_name: 'Topper',
         orientation: 'normal',
         next_button: 'Weiter zu den Extras',
         tabs: {
             default: {
-                display_name: '',
+                frontend_name: '',
                 type: 'single-select',
                 products: [
                     {
@@ -595,12 +596,12 @@ const matrix = {
         }
     },
     upgrades: {
-        display_name: 'Upgrades',
+        frontend_name: 'Upgrades',
         orientation: 'vertical',
         next_button: 'Weiter zu den Extras',
         tabs: {
             'beleuchtung-kopfteil': {
-                display_name: 'Beleuchtung Kopfteil',
+                frontend_name: 'Beleuchtung Kopfteil',
                 type: 'multiselect-with-none',
                 products: [
                     {
@@ -620,7 +621,7 @@ const matrix = {
                 ]
             },
             'beleuchtung-box': {
-                display_name: 'Beleuchtung Box',
+                frontend_name: 'Beleuchtung Box',
                 type: 'multiselect-with-none',
                 products: [
                     {
@@ -656,12 +657,12 @@ const matrix = {
         }
     },
     extras: {
-        display_name: 'Extras',
+        frontend_name: 'Extras',
         orientation: 'vertical',
         next_button: 'Weiter zur Lieferung',
         tabs: {
             'rueckseite-stofffarbe': {
-                display_name: 'Rückseite mit Stofffarbe bezogen',
+                frontend_name: 'Rückseite mit Stofffarbe bezogen',
                 type: 'checkbox',
                 products: [
                     {
@@ -674,7 +675,7 @@ const matrix = {
                 ]
             },
             'usb-anschluesse': {
-                display_name: 'USB-Anschlüsse',
+                frontend_name: 'USB-Anschlüsse',
                 type: 'checkbox',
                 products: [
                     {
@@ -687,7 +688,7 @@ const matrix = {
                 ]
             },
             'beleuchtungs-farbe': {
-                display_name: 'Beleuchtungs-Farbe',
+                frontend_name: 'Beleuchtungs-Farbe',
                 type: 'single-select',
                 products: [
                     {

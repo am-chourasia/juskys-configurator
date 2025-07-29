@@ -20,45 +20,49 @@
 
 const image_pieces = [
     'background',
-    'kopfteil',
-    'fussteil',
-    'boxen',
-    'fuesse',
-    'matratze',
+    'headrest',
+    'foot_style',
+    'boxes',
+    'feet',
+    'mattress',
     'topper',
-    'beleuchtungs-farbe',
-    'beleuchtung-kopfteil',
-    'beleuchtung-box',
+    'lighting-color',
+    'lighting-headboard',
+    'lighting-box',
 ]
 
 
+
+// Eg: headrest~headrest_model__matisse~size_width__120cm~material_cord__grober-stoff_natur.jpeg
+// ORDER IS VERY IMPORTANT IN DEPENDENCY LIST
+
 const image_dependencies = {
-    "kopfteil": [
+    "headrest": [
         "headrest:model", "size:width", "headrest:height", "material:cord,feiner-stoff,samt,boucle,grober-stoff,kunstleder"
     ],
-    "fussteil": [
+    "foot_style": [
         "foot_style:default", "size:width", "feet:height", "material:cord,feiner-stoff,samt,boucle,grober-stoff,kunstleder"
     ],
-    "boxen": [
+    "boxes": [
         "storage:default", "size:width", "feet:height", "material:cord,feiner-stoff,samt,boucle,grober-stoff,kunstleder"
     ],
-    "fuesse": [
+    "feet": [
         "feet:type", "size:width", "feet:height"
     ],
-    "matratze": [
+    "mattress": [
         "mattress:zwei-separate-matratzen,durchgaengig", "storage:default", "size:width"
     ],
     "topper": [
         "size:width"
     ],
     // TODO: how to handle lighting?
-    "beleuchtung-kopfteil": [
+    "lighting-headboard": [
         "headrest:model", "size:width"
     ],
-    "beleuchtung-box": [
+    "lighting-box": [
         "storage:default", "size:width"
     ],
-    "beleuchtung-farbe": [
+    "lighting-color": [
         "foot_style:default", "size:width"
     ],
 }

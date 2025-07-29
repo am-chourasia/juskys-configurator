@@ -45,10 +45,14 @@ const exclusion_matrix = {
 // exclusion_principles = {
 //     section: [
 //         {
-//             condition: { /* what triggers this rule */ },
+//             condition: {
+//                 /* what triggers this rule */
+//                 tab1: { operation: [ value1, value2 ] },
+//                 tab2: { operation: [ value1, value2 ] }
+//             },
 //             disable: {
-//                 default: [options],
-//                 tab2: [options]
+//                 tab1: [option1, option2],
+//                 tab2: [option1, option2]
 //             },
 //             reason: "Why it's disabled"
 //         }
