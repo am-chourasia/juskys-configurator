@@ -1,6 +1,17 @@
 // if a query param is present -> show a loader and initialise with the query param values
 // if not, initialise with the default values for each series.
 
+/* Uses:
+1. ATC
+2. Checkout Info Last tab
+3. Save your design -> Customer Metafield
+4. Adding products through URL
+5. Exclusion
+
+6. Default Current State for each series.
+*/
+
+
 /*
 Types:
 
@@ -12,6 +23,13 @@ placeholder -> shows the selection in the frontend, only for representation purp
 // The current state is used to add the products to the cart
 // AND
 // Show the current selection in the frontend
+
+/* Todo:
+1. current state ko banana
+2. checkout last stage UI through current state
+3. ATC -> current state
+*/
+
 
 const current_state = {
     series: {
@@ -189,17 +207,31 @@ const current_state = {
         ],
         selection: {
             // tab : product-handle
-            'rueckseite-stofffarbe': ['rueckseite-stofffarbe'],
+            'rueckseite-stofffarbe': [],
             'beleuchtungs-farbe': ['led-weiss'],
         }
     },
 }
+
+
+/*
+URL to be used in:
+- changing url with every selection in the frontend (change in current state)
+- Loading default selection from each series
+- loading predefined selections
+- saving the state somewhere (cusomter saves the design) or linking it in the website
+- passing to checkout for the team to understand the selections visually
+*/
+
+
+// MAKING URL:
 
 const exampleUrl = new URL('https://example.com/selection');
 
 Object.keys(current_state).forEach(key => {
     const selection = current_state[key].selection;
     Object.entries(selection).forEach(([tab, items]) => {
+        if (items.length === 0) return; // not adding empty selection
         const selectedItems = items.join(',');
         exampleUrl.searchParams.append(`${key}[${tab}]`, selectedItems);
     });
@@ -207,7 +239,7 @@ Object.keys(current_state).forEach(key => {
 
 console.log(exampleUrl.toString());
 
-module.exports = current_state;
+// PARSING URL:
 
 function parseUrlToState(url) {
     const urlObj = new URL(url);
@@ -216,11 +248,9 @@ function parseUrlToState(url) {
     urlObj.searchParams.forEach((value, key) => {
         const [option, tab] = key.split('[');
         const cleanTab = tab.slice(0, -1); // Remove the trailing ']'
-
         if (!newState[option]) {
             newState[option] = { selection: {} };
         }
-
         newState[option].selection[cleanTab] = value.split(',');
     });
 
