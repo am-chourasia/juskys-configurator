@@ -1,0 +1,22 @@
+## URL:
+
+Encoded:
+https://example.com?series%5Bdefault%5D=komfort&size%5Bwidth%5D=120cm&size%5Blength%5D=200cm&headrest%5Bmodel%5D=matisse&headrest%5Bheight%5D=120cm&storage%5Bdefault%5D=kein-stauraum&foot_style%5Bdefault%5D=opera&feet%5Btype%5D=mit-fuesse&feet%5Bmodel%5D=schwebend&feet%5Bheight%5D=15cm&material%5Bcord%5D=cord-farbe-1&mattress%5Bzwei-separate-matratzen%5D=h3-zwei&topper%5Bdefault%5D=komfortschaum-topper&upgrades%5Bbeleuchtung-kopfteil%5D=hinten&upgrades%5Bbeleuchtung-box%5D=led-front&extras%5Bbeleuchtungs-farbe%5D=led-weiss
+
+Decoded:
+https://example.com?series[default]=komfort&size[width]=120cm&size[length]=200cm&headrest[model]=matisse&headrest[height]=120cm&storage[default]=kein-stauraum&foot_style[default]=opera&feet[type]=mit-fuesse&feet[model]=schwebend&feet[height]=15cm&material[cord]=cord-farbe-1&mattress[zwei-separate-matratzen]=h3-zwei&topper[default]=komfortschaum-topper&upgrades[beleuchtung-kopfteil]=hinten&upgrades[beleuchtung-box]=led-front&extras[beleuchtungs-farbe]=led-weiss
+
+
+### FLOW:
+
+0. The first screen of our configurator is either the series selection OR the last checkout stage
+1. If the URL query is present, load the current state according to the query
+    - The last checkout stage is displayed in this case;
+2. If the queries are not present:
+    - we load from the default queries set in each series.
+    - The first series selection step is shown.
+3. Whenever there is a change in the current state, the URL is updated accordingly.
+
+
+## Dependency List:
+

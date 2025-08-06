@@ -1,3 +1,7 @@
+import { current_state } from "./current_selection.js";
+
+// Background
+// Background - Scene ID
 // Kopfteil
 // Kopfteil Model - Breite - Höhe des Kopfteil - Material
 // Fußteil
@@ -18,15 +22,19 @@
 // ------------------------------------------------------------
 
 
-const image_pieces = [
-    'background',
+// IMAGE NAME:
+// headrest~headrest_model__matisse~size_width__120cm~material_cord__grober-stoff_natur.jpeg
+// from the dependency list, we get the following:
+// <part>~<topic>_<tab>__<value>~<topic>_<tab>__<value>~...
+
+
+const image_parts = [
     'headrest',
     'foot_style',
     'boxes',
     'feet',
     'mattress',
     'topper',
-    'lighting-color',
     'lighting-headboard',
     'lighting-box',
 ]
@@ -55,14 +63,39 @@ const image_dependencies = {
     "topper": [
         "size:width"
     ],
-    // TODO: how to handle lighting?
     "lighting-headboard": [
-        "headrest:model", "size:width"
+        "headrest:model", "size:width", "extras:beleuchtungs-farbe"
     ],
     "lighting-box": [
-        "storage:default", "size:width"
-    ],
-    "lighting-color": [
-        "foot_style:default", "size:width"
+        "storage:default", "size:width", "extras:beleuchtungs-farbe"
     ],
 }
+
+function createImageName(currentState) {
+    const map = {};
+    image_parts.forEach(part => {
+        const dependencies = image_dependencies[part];
+        const image_name = `${part}~`;
+        const dependencyStrings = dependencies.map(dependency => {
+            const [topic, tabs] = dependency.split(':');
+            const tabList = tabs.split(',');
+            for (const tab of tabList) {
+                if (currentState[topic] && currentState[topic].selection[tab]) {
+                    // TODO: How to handle multiselect for lighting?
+                    const value = currentState[topic].selection[tab][0];
+                    if (value) {
+                        return `${topic}_${tab}__${value}`;
+                    }
+                }
+            }
+            return null;
+        }).filter(Boolean).join('~');
+        map[part] = `${image_name}${dependencyStrings}.png`;
+    });
+    return map;
+}
+
+const images = createImageName(current_state);
+image_parts.forEach(part => {
+    console.log(images[part]);
+});

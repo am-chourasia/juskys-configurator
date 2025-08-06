@@ -1,0 +1,11 @@
+{
+  "name": "juskys-configurator",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Juskys bed configurator",
+  "main": "dependency.js",
+  "scripts": {
+    "dependency": "node dependency.js",
+    "current_state": "node current_selection.js"
+  }
+}

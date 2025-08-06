@@ -24,14 +24,8 @@ placeholder -> shows the selection in the frontend, only for representation purp
 // AND
 // Show the current selection in the frontend
 
-/* Todo:
-1. current state ko banana
-2. checkout last stage UI through current state
-3. ATC -> current state
-*/
 
-
-const current_state = {
+export const current_state = {
     series: {
         products: [
             {
@@ -189,7 +183,7 @@ const current_state = {
         selection: {
             // tab : product-handle
             'beleuchtung-kopfteil': ['hinten'],
-            'beleuchtung-box': ['led-front'],
+            'beleuchtung-box': ['led-front', 'led-seite'],
         }
     },
     extras: {
@@ -213,7 +207,6 @@ const current_state = {
     },
 }
 
-
 /*
 URL to be used in:
 - changing url with every selection in the frontend (change in current state)
@@ -226,18 +219,18 @@ URL to be used in:
 
 // MAKING URL:
 
-const exampleUrl = new URL('https://example.com/selection');
-
-Object.keys(current_state).forEach(key => {
-    const selection = current_state[key].selection;
+function makeUrl(currentState) {
+    const url = new URL('https://example.com/');
+    Object.keys(currentState).forEach(key => {
+        const selection = currentState[key].selection;
     Object.entries(selection).forEach(([tab, items]) => {
-        if (items.length === 0) return; // not adding empty selection
-        const selectedItems = items.join(',');
-        exampleUrl.searchParams.append(`${key}[${tab}]`, selectedItems);
+            if (items.length === 0) return; // not adding empty selection
+            const selectedItems = items.join(',');
+            url.searchParams.append(`${key}[${tab}]`, selectedItems);
+        });
     });
-});
-
-console.log(exampleUrl.toString());
+    return url.toString();
+}
 
 // PARSING URL:
 
@@ -257,5 +250,7 @@ function parseUrlToState(url) {
     return newState;
 }
 
-console.log();
-console.log(JSON.stringify(parseUrlToState(exampleUrl.toString()), null, 2));
+
+// const url = makeUrl(current_state);
+// console.log(url);
+// console.log(JSON.stringify(parseUrlToState(url), null, 2));
