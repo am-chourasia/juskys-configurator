@@ -38,15 +38,16 @@ const image_parts = [
     'lighting-headboard',
     'lighting-box',
 ]
+// + background
 
 
 
-// Eg: headrest~headrest_model__matisse~size_width__120cm~material_cord__grober-stoff_natur.jpeg
+// Eg: headrest___size__width_120cm___headrest__model_matisse___headrest__height_120cm___material__cord_cord-farbe-1.png-farbe-1.png
 // ORDER IS VERY IMPORTANT IN DEPENDENCY LIST
 
 const image_dependencies = {
     "headrest": [
-        "headrest:model", "size:width", "headrest:height", "material:cord,feiner-stoff,samt,boucle,grober-stoff,kunstleder"
+        "size:width", "headrest:model", "headrest:height", "material:cord,feiner-stoff,samt,boucle,grober-stoff,kunstleder"
     ],
     "foot_style": [
         "foot_style:default", "size:width", "feet:height", "material:cord,feiner-stoff,samt,boucle,grober-stoff,kunstleder"
@@ -57,9 +58,10 @@ const image_dependencies = {
     "feet": [
         "feet:type", "size:width", "feet:height"
     ],
-    "mattress": [
-        "mattress:zwei-separate-matratzen,durchgaengig", "storage:default", "size:width"
-    ],
+    // TODO: What to do about mattresses?
+    // "mattress": [
+    //     "mattress:zwei-separate-matratzen,durchgaengig", "storage:default", "size:width"
+    // ],
     "topper": [
         "size:width"
     ],
@@ -75,7 +77,7 @@ function createImageName(currentState) {
     const map = {};
     image_parts.forEach(part => {
         const dependencies = image_dependencies[part];
-        const image_name = `${part}~`;
+        const image_name = `${part}___`;
         const dependencyStrings = dependencies.map(dependency => {
             const [topic, tabs] = dependency.split(':');
             const tabList = tabs.split(',');
@@ -84,12 +86,12 @@ function createImageName(currentState) {
                     // TODO: How to handle multiselect for lighting?
                     const value = currentState[topic].selection[tab][0];
                     if (value) {
-                        return `${topic}_${tab}__${value}`;
+                        return `${topic}__${tab}_${value}`;
                     }
                 }
             }
             return null;
-        }).filter(Boolean).join('~');
+        }).filter(Boolean).join('___');
         map[part] = `${image_name}${dependencyStrings}.png`;
     });
     return map;

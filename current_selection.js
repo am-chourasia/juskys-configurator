@@ -54,7 +54,7 @@ export const current_state = {
         ],
         selection: {
             // tab : selected
-            width: ['120cm'],
+            width: ['140cm'],
             length: ['200cm']
         }
     },
