@@ -1,3 +1,5 @@
+const { headrest, material } = require("./matrix");
+
 // this is updated as the selections are changed in the current state
 const exclusion_matrix = {
     headrest: {
@@ -11,7 +13,6 @@ const exclusion_matrix = {
         default: ['tv-lift-salon', 'tv-lift-versailles', 'louvre-fussteil']
     },
     feet: {
-        type: ['mit-fuesse'],
         model: ['tbd-1', 'tbd-2', 'tbd-3', 'tbd-4', 'tbd-5', 'tbd-6'],
         height: ['10cm']
     },
@@ -59,6 +60,37 @@ const exclusion_matrix = {
 //     ]
 // }
 
+// OPERATIONS: in, not_in, less_than, greater_than, empty
+
+// LOGIC:
+/*
+checkArray = ['A', 'B', 'C']
+selectionArray = ['D'];
+operation = 'in';
+
+function isIn() {
+    let found = false;
+    for (const selection of selectionArray) {
+        if (checkArray.includes(selection)) {
+            found = true;
+            break;
+        }
+    }
+    return found;
+}
+
+let result = '';
+if (operation == 'in') {
+    result = isIn();
+} 
+else if (operation == 'not_in') {
+    result = !isIn();
+}
+
+console.log(result);
+*/
+
+
 const exclusion_principles = {
     series: [
         {
@@ -74,7 +106,7 @@ const exclusion_principles = {
     storage: [
         {
             condition: {
-                series: { default: { not: 'komfort' } }
+                series: { default: { not_in: ['komfort'] } }
             },
             disable: {
                 default: ['durchgaengige-schubladen', 'geteilte-schubladen']
@@ -83,7 +115,7 @@ const exclusion_principles = {
         },
         {
             condition: {
-                feet: { type: { not: 'ohne-fuesse' } },
+                feet: { model: { empty: false } },
                 size: { width: { less_than: 120 } }
             },
             disable: {
@@ -95,19 +127,31 @@ const exclusion_principles = {
     material: [
         {
             condition: {
+                // Combine with OR operation
                 headrest: { model: { in: ['versailles', 'palais', 'chateau'] } },
                 foot_style: { default: { in: ['tv-lift-versailles', 'louvre-fussteil'] } }
             },
             disable: {
-                cord: ['*']
+                cord: ['cord-farbe-1', 'cord-farbe-2', 'cord-farbe-3', 'cord-farbe-4', 'cord-farbe-5', 'cord-farbe-6']
             },
             reason: "Nicht verfügbar mit Versailles/Palais/Chateau Kopfteil oder Versailles Lift/Louvre Fussteil"
+        }
+    ],
+    headrest: [
+        {
+            condition: {
+                material: { cord: { in: ['cord-farbe-1', 'cord-farbe-2', 'cord-farbe-3', 'cord-farbe-4', 'cord-farbe-5', 'cord-farbe-6'] } }
+            },
+            disable: {
+                model: ['versailles', 'palais', 'chateau']
+            },
+            reason: "Nicht verfügbar mit Cord"
         }
     ],
     foot_style: [
         {
             condition: {
-                feet: { type: { not: 'ohne-fuesse' } }
+                feet: { model: { empty: false } }
             },
             disable: {
                 default: ['tv-lift-salon', 'tv-lift-versailles']
@@ -121,7 +165,7 @@ const exclusion_principles = {
                 size: { width: { less_than: 120 } }
             },
             disable: {
-                'zwei-separate-matratzen': ['*']
+                'zwei-separate-matratzen': ['h2-zwei', 'h4-zwei']
             },
             reason: "Nicht verfügbar mit kleiner Breite"
         },
@@ -138,7 +182,7 @@ const exclusion_principles = {
     feet: [
         {
             condition: {
-                feet: { height: { not: '10cm' } }
+                feet: { height: { not_in: ['10cm'] } }
             },
             disable: {
                 model: ['schwebend']
@@ -158,7 +202,7 @@ const exclusion_principles = {
         },
         {
             condition: {
-                foot_style: { default: { not: 'kein-fussteil' } }
+                foot_style: { default: { not_in: ['kein-fussteil'] } }
             },
             disable: {
                 'beleuchtung-box': ['led-front']
@@ -176,7 +220,7 @@ const exclusion_principles = {
         },
         {
             condition: {
-                feet: { type: { not: 'mit-fuesse' } }
+                feet: { model: { empty: false } }
             },
             disable: {
                 'beleuchtung-box': ['led-unterboden']
@@ -185,7 +229,7 @@ const exclusion_principles = {
         },
         {
             condition: {
-                foot_style: { default: { not: 'tv-lift-salon' } }
+                foot_style: { default: { not_in: ['tv-lift-salon'] } }
             },
             disable: {
                 'beleuchtung-box': ['led-fussteil']
@@ -196,7 +240,7 @@ const exclusion_principles = {
     extras: [
         {
             condition: {
-                headrest: { model: { is: 'monet' } }
+                headrest: { model: { in: ['monet'] } }
             },
             disable: {
                 'usb-anschluesse': ['usb-anschluesse']
@@ -211,7 +255,7 @@ const exclusion_principles = {
                 }
             },
             disable: {
-                'beleuchtungs-farbe': ['*']
+                'beleuchtungs-farbe': ['led-blau', 'rgb-fernbedienung']
             },
             reason: "Nicht verfügbar mit keiner Beleuchtung"
         }

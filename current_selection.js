@@ -36,7 +36,7 @@ export const current_state = {
         ],
         selection: {
             // tab : product-handle
-            default: ['komfort'],
+            default: ['deluxe'],
         }
     },
     size: {

@@ -282,26 +282,6 @@ const matrix = {
         orientation: 'horizontal',
         next_button: 'Weiter zum Material',
         tabs: {
-            'type': {
-                frontend_name: 'Auswahl',
-                type: 'single-select',
-                products: [
-                    {
-                        product_id: 'ohne-fuesse',
-                        product_title: 'Ohne Füße',
-                        product_description: 'Ohne Füße',
-                        handle: 'ohne-fuesse',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'mit-fuesse',
-                        product_title: 'Mit Füßen',
-                        product_description: 'Mit Füßen',
-                        handle: 'mit-fuesse',
-                        price: '$0.00'
-                    }
-                ]
-            },
             'model': {
                 frontend_name: 'Modelle',
                 type: 'single-select',
