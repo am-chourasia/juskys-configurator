@@ -214,6 +214,29 @@ export const exclusion_principles = {
     ]
 }
 
+// Color helpers (declare once, top-level)
+const color = {
+    reset: "\x1b[0m",
+    cyan: "\x1b[36m",
+    yellow: "\x1b[33m",
+    green: "\x1b[32m",
+    magenta: "\x1b[35m",
+    red: "\x1b[31m",
+    blue: "\x1b[34m",
+    bold: "\x1b[1m",
+    gray: "\x1b[90m"
+};
+
+// Divider helper (declare once, top-level)
+function divider(msg = '', c = color.gray) {
+    const line = '─'.repeat(60);
+    if (msg) {
+        console.log(`${c}${line}\n${msg}\n${line}${color.reset}`);
+    } else {
+        console.log(`${c}${line}${color.reset}`);
+    }
+}
+
 /**
  * Checks all exclusion logic from current_state and generates an exclusion matrix
  * @param {Object} currentState - The current state object
@@ -221,6 +244,8 @@ export const exclusion_principles = {
  */
 export function generateExclusionMatrix(currentState) {
     const exclusionMatrix = {};
+
+    divider(`${color.bold}${color.cyan}[generateExclusionMatrix] Initializing exclusion matrix${color.reset}`);
 
     // Initialize exclusion matrix for all topics
     Object.keys(exclusion_principles).forEach(topic => {
@@ -234,13 +259,22 @@ export function generateExclusionMatrix(currentState) {
         }
     });
 
+    divider(`${color.bold}${color.magenta}[generateExclusionMatrix] Checking exclusion rules${color.reset}`);
+
     // Check each exclusion rule
     Object.keys(exclusion_principles).forEach(topic => {
         const rules = exclusion_principles[topic];
 
-        rules.forEach(rule => {
+        rules.forEach((rule, ruleIdx) => {
+            divider(`${color.bold}${color.yellow}[Rule #${ruleIdx}] Topic: '${topic}'${color.reset}`);
+            // Debug: Show which rule is being checked
+            console.log(`${color.cyan}[generateExclusionMatrix] Checking rule #${ruleIdx} for topic '${topic}':${color.reset}`, rule);
+
             // Check if the condition is met
-            if (isConditionMet(rule.condition, currentState)) {
+            const conditionMet = isConditionMet(rule.condition, currentState);
+            console.log(`${color.magenta}[generateExclusionMatrix] Condition met for rule #${ruleIdx} on topic '${topic}':${color.reset} ${color.bold}${conditionMet}${color.reset}`);
+
+            if (conditionMet) {
                 // Apply the disable rule
                 Object.keys(rule.disable).forEach(tab => {
                     if (!exclusionMatrix[topic]) {
@@ -254,12 +288,17 @@ export function generateExclusionMatrix(currentState) {
                     rule.disable[tab].forEach(option => {
                         if (!exclusionMatrix[topic][tab].includes(option)) {
                             exclusionMatrix[topic][tab].push(option);
+                            // Debug: Show what is being disabled
+                            console.log(`${color.red}[generateExclusionMatrix] Disabled option '${option}' for topic '${topic}', tab '${tab}' due to rule #${ruleIdx}${color.reset}`);
                         }
                     });
                 });
             }
         });
     });
+
+    divider(`${color.bold}${color.green}[generateExclusionMatrix] Final exclusionMatrix${color.reset}`);
+    console.log(color.green, JSON.stringify(exclusionMatrix, null, 2), color.reset);
 
     return exclusionMatrix;
 }
@@ -280,7 +319,15 @@ function isConditionMet(condition, currentState) {
                 const operationValue = tabCondition[operation];
                 const selection = currentState[topic]?.selection?.[tab] || [];
 
-                return checkOperation(operation, selection, operationValue);
+                // Debug: Show what is being checked
+                console.log(`${color.blue}[isConditionMet] Checking operation '${operation}' for topic '${topic}', tab '${tab}' with selection:${color.reset}`, selection, `${color.blue}and operationValue:${color.reset}`, operationValue);
+
+                const result = checkOperation(operation, selection, operationValue);
+
+                // Debug: Show result of operation
+                console.log(`${color.green}[isConditionMet] Result of operation '${operation}' for topic '${topic}', tab '${tab}':${color.reset} ${color.bold}${result}${color.reset}`);
+
+                return result;
             });
         });
     });
@@ -294,26 +341,49 @@ function isConditionMet(condition, currentState) {
  * @returns {boolean} - True if operation condition is met
  */
 function checkOperation(operation, selection, operationValue) {
+    // Debug: Show operation details
+    console.log(`${color.yellow}[checkOperation] Operation: '${operation}', Selection:${color.reset}`, selection, `${color.yellow}OperationValue:${color.reset}`, operationValue);
+
     switch (operation) {
         case 'in':
-            return selection.some(item => operationValue.includes(item));
+            {
+                const result = selection.some(item => operationValue.includes(item));
+                console.log(`${color.cyan}[checkOperation] 'in' result:${color.reset} ${color.bold}${result}${color.reset}`);
+                return result;
+            }
         case 'not_in':
-            return !selection.some(item => operationValue.includes(item));
+            {
+                const result = !selection.some(item => operationValue.includes(item));
+                console.log(`${color.cyan}[checkOperation] 'not_in' result:${color.reset} ${color.bold}${result}${color.reset}`);
+                return result;
+            }
         case 'isEmpty':
-            return operationValue ? selection.length === 0 : selection.length > 0;
+            {
+                const result = operationValue ? selection.length === 0 : selection.length > 0;
+                console.log(`${color.cyan}[checkOperation] 'isEmpty' result:${color.reset} ${color.bold}${result}${color.reset}`);
+                return result;
+            }
         case 'less_than':
-            // For numeric comparisons, assume the selection contains numeric values
-            // TODO: Implement this assumption
-            return selection.some(item => {
-                const numValue = parseFloat(item.replace(/[^\d.]/g, ''));
-                return !isNaN(numValue) && numValue < operationValue;
-            });
+            {
+                // For numeric comparisons, assume the selection contains numeric values
+                const result = selection.some(item => {
+                    const numValue = parseFloat(item.replace(/[^\d.]/g, ''));
+                    return !isNaN(numValue) && numValue < operationValue;
+                });
+                console.log(`${color.cyan}[checkOperation] 'less_than' result:${color.reset} ${color.bold}${result}${color.reset}`);
+                return result;
+            }
         case 'greater_than':
-            return selection.some(item => {
-                const numValue = parseFloat(item.replace(/[^\d.]/g, ''));
-                return !isNaN(numValue) && numValue > operationValue;
-            });
+            {
+                const result = selection.some(item => {
+                    const numValue = parseFloat(item.replace(/[^\d.]/g, ''));
+                    return !isNaN(numValue) && numValue > operationValue;
+                });
+                console.log(`${color.cyan}[checkOperation] 'greater_than' result:${color.reset} ${color.bold}${result}${color.reset}`);
+                return result;
+            }
         default:
+            console.log(`${color.red}[checkOperation] Unknown operation '${operation}', returning false.${color.reset}`);
             return false;
     }
 }
@@ -343,3 +413,49 @@ export function getExclusionReasons(topic, tab, currentState) {
 
     return reasons;
 }
+
+const current_state = {
+    "series": {
+      "selection": {
+        "default": [
+          "bettboutique-kollektion-komfort"
+        ]
+      }
+    },
+    "size": {
+      "selection": {
+        "width": [
+          "breite-100-cm"
+        ]
+      }
+    },
+    "foot_style": {
+      "selection": {
+        "default": [
+          "fussteil-tv-lift-versailles"
+        ]
+      }
+    },
+  "material": {
+      "selection": {
+        "boucle": [
+          "farbe-boucle-aqua"
+        ]
+      }
+    },
+    "topper": {
+      "selection": {
+        "default": [
+          "topper-komfortschaum-topper-6-cm"
+        ]
+      }
+    },
+    "feet": {
+      "selection": {
+        "type": [
+          "fusse-industrial-massivholz-schwarz"
+        ]
+      }
+    }
+};
+generateExclusionMatrix(current_state);
