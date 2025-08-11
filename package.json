@@ -6,6 +6,7 @@
   "main": "dependency.js",
   "scripts": {
     "dependency": "node dependency.js",
-    "current_state": "node current_selection.js"
+    "current_state": "node current_selection.js",
+    "dev": "node index.js"
   }
 }
