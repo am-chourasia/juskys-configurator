@@ -1,702 +1,971 @@
 const matrix = {
-    series: {
-        frontend_name: 'Kollektion',
-        orientation: 'normal',
-        next_button: 'Weiter zur Größe',
-        tabs: {
-            default: {
-                frontend_name: '',
-                type: 'descriptive',
-                products: [
+    "series": {
+        "frontend_name": "Kollektion",
+        "orientation": "normal",
+        "next_button": "Weiter zur Größe",
+        "tabs": {
+            "default": {
+                "frontend_name": null,
+                "type": "descriptive",
+                "products": [
                     {
-                        product_id: 'komfort',
-                        product_title: 'Komfort',
-                        product_description: 'Komfort Kollektion',
-                        handle: 'komfort',
-                        price: '$0.00'
+                        "product_id": 8953654575339,
+                        "product_title": "Kollektion: Komfort",
+                        "handle": "bettboutique-kollektion-komfort",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'deluxe',
-                        product_title: 'Deluxe',
-                        product_description: 'Deluxe Kollektion',
-                        handle: 'deluxe',
-                        price: '$0.00'
+                        "product_id": 8953975341291,
+                        "product_title": "Kollektion: Deluxe",
+                        "handle": "kollektion-deluxe",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'first-class',
-                        product_title: 'First Class',
-                        product_description: 'First Class Kollektion',
-                        handle: 'first-class',
-                        price: '$0.00'
-                    },
-                ]
-            }
-        }
-    },
-    size: {
-        frontend_name: 'Größe',
-        orientation: 'vertical',
-        next_button: 'Weiter zum Kopfteil',
-        tabs: {
-            'width': {
-                frontend_name: 'Breite',
-                type: 'pills',
-                products: [
-                    { product_id: 'width-90', product_title: '90cm', handle: '90cm', price: '$0.00' },
-                    { product_id: 'width-100', product_title: '100cm', handle: '100cm', price: '$0.00' },
-                    { product_id: 'width-120', product_title: '120cm', handle: '120cm', price: '$0.00' },
-                    { product_id: 'width-140', product_title: '140cm', handle: '140cm', price: '$0.00' },
-                    { product_id: 'width-160', product_title: '160cm', handle: '160cm', price: '$0.00' },
-                    { product_id: 'width-180', product_title: '180cm', handle: '180cm', price: '$0.00' },
-                    { product_id: 'width-200', product_title: '200cm', handle: '200cm', price: '$0.00' },
-                    { product_id: 'width-240', product_title: '240cm', handle: '240cm', price: '$0.00' },
-                ]
-            },
-            'length': {
-                frontend_name: 'Länge',
-                type: 'pills',
-                products: [
-                    { product_id: 'length-180', product_title: '180cm', handle: '180cm', price: '$0.00' },
-                    { product_id: 'length-190', product_title: '190cm', handle: '190cm', price: '$0.00' },
-                    { product_id: 'length-200', product_title: '200cm', handle: '200cm', price: '$0.00' },
-                    { product_id: 'length-210', product_title: '210cm', handle: '210cm', price: '$0.00' },
-                ]
-            }
-        }
-    },
-    headrest: {
-        frontend_name: 'Kopfteil',
-        orientation: 'vertical',
-        next_button: 'Weiter zum Stauraum',
-        tabs: {
-            'model': {
-                frontend_name: 'Modell',
-                type: 'single-select',
-                products: [
-                    {
-                        product_id: 'versailles',
-                        product_title: 'Versailles',
-                        product_description: 'Versailles Kopfteil',
-                        handle: 'versailles',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'matisse',
-                        product_title: 'Matisse',
-                        product_description: 'Matisse Kopfteil',
-                        handle: 'matisse',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'bijou',
-                        product_title: 'Bijou',
-                        product_description: 'Bijou Kopfteil',
-                        handle: 'bijou',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'louvre',
-                        product_title: 'Louvre',
-                        product_description: 'Louvre Kopfteil',
-                        handle: 'louvre',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'belleville',
-                        product_title: 'Belleville',
-                        product_description: 'Belleville Kopfteil',
-                        handle: 'belleville',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'maison',
-                        product_title: 'Maison',
-                        product_description: 'Maison Kopfteil',
-                        handle: 'maison',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'palais',
-                        product_title: 'Palais',
-                        product_description: 'Palais Kopfteil',
-                        handle: 'palais',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'chateau',
-                        product_title: 'Château',
-                        product_description: 'Château Kopfteil',
-                        handle: 'chateau',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'monet',
-                        product_title: 'Monet',
-                        product_description: 'Monet Kopfteil',
-                        handle: 'monet',
-                        price: '$0.00'
-                    }
-                ]
-            },
-            'height': {
-                frontend_name: 'Höhe',
-                type: 'pills',
-                products: [
-                    {
-                        product_id: 'height-115',
-                        product_title: '115cm',
-                        product_description: '115cm Höhe',
-                        handle: '115cm',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'height-120',
-                        product_title: '120cm',
-                        product_description: '120cm Höhe',
-                        handle: '120cm',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'height-125',
-                        product_title: '125cm',
-                        product_description: '125cm Höhe',
-                        handle: '125cm',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'height-130',
-                        product_title: '130cm',
-                        product_description: '130cm Höhe',
-                        handle: '130cm',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'height-135',
-                        product_title: '135cm',
-                        product_description: '135cm Höhe',
-                        handle: '135cm',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'height-140',
-                        product_title: '140cm',
-                        product_description: '140cm Höhe',
-                        handle: '140cm',
-                        price: '$0.00'
+                        "product_id": 8953975374059,
+                        "product_title": "Kollektion: First Class",
+                        "handle": "kollektion-first-class",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     }
                 ]
             }
         }
     },
-    storage: {
-        frontend_name: 'Stauraum',
-        orientation: 'normal',
-        next_button: 'Weiter zum Fußteil',
-        tabs: {
-            default: {
-                frontend_name: '',
-                type: 'single-select',
-                products: [
+    "size": {
+        "frontend_name": "Größe",
+        "orientation": "vertical",
+        "next_button": "Weiter zum Kopfteil",
+        "tabs": {
+            "length": {
+                "frontend_name": "Länge",
+                "type": "pills",
+                "products": [
                     {
-                        product_id: 'kein-stauraum',
-                        product_title: 'Kein Stauraum',
-                        product_description: 'Ohne Stauraum',
-                        handle: 'kein-stauraum',
-                        price: '$0.00'
+                        "product_id": 8953977635051,
+                        "product_title": "Länge: 180 cm",
+                        "handle": "lange-180-cm",
+                        "price": "€139,00",
+                        "price_without_currency": "139,00"
                     },
                     {
-                        product_id: 'durchgaengige-schubladen',
-                        product_title: 'Durchgängige Schubladen',
-                        product_description: 'Durchgängige Schubladen',
-                        handle: 'durchgaengige-schubladen',
-                        price: '$0.00'
+                        "product_id": 8953977667819,
+                        "product_title": "Länge: 190 cm",
+                        "handle": "lange-190-cm",
+                        "price": "€129,00",
+                        "price_without_currency": "129,00"
                     },
                     {
-                        product_id: 'geteilte-schubladen',
-                        product_title: 'Geteilte Schubladen',
-                        product_description: 'Geteilte Schubladen',
-                        handle: 'geteilte-schubladen',
-                        price: '$0.00'
+                        "product_id": 8953977733355,
+                        "product_title": "Länge: 200 cm",
+                        "handle": "lange-200-cm",
+                        "price": "€119,00",
+                        "price_without_currency": "119,00"
                     },
                     {
-                        product_id: 'hochklappbarer-bettkasten',
-                        product_title: 'Hochklappbarer Bettkasten',
-                        product_description: 'Hochklappbarer Bettkasten',
-                        handle: 'hochklappbarer-bettkasten',
-                        price: '$0.00'
+                        "product_id": 8953977766123,
+                        "product_title": "Länge: 210 cm",
+                        "handle": "lange-210-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            },
+            "width": {
+                "frontend_name": "Breite",
+                "type": "pills",
+                "products": [
+                    {
+                        "product_id": 8953975439595,
+                        "product_title": "Breite: 100 cm",
+                        "handle": "breite-100-cm",
+                        "price": "€179,99",
+                        "price_without_currency": "179,99"
+                    },
+                    {
+                        "product_id": 8953975505131,
+                        "product_title": "Breite: 120 cm",
+                        "handle": "breite-120-cm",
+                        "price": "€169,99",
+                        "price_without_currency": "169,99"
+                    },
+                    {
+                        "product_id": 8953975537899,
+                        "product_title": "Breite: 140 cm",
+                        "handle": "breite-140-cm",
+                        "price": "€159,99",
+                        "price_without_currency": "159,99"
+                    },
+                    {
+                        "product_id": 8953975406827,
+                        "product_title": "Breite: 90 cm",
+                        "handle": "breite-90-cm",
+                        "price": "€189,99",
+                        "price_without_currency": "189,99"
+                    },
+                    {
+                        "product_id": 8953975668971,
+                        "product_title": "Breite: 240 cm",
+                        "handle": "breite-240-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953975636203,
+                        "product_title": "Breite: 200 cm",
+                        "handle": "breite-200-cm",
+                        "price": "€129,99",
+                        "price_without_currency": "129,99"
+                    },
+                    {
+                        "product_id": 8953975603435,
+                        "product_title": "Breite: 180 cm",
+                        "handle": "breite-180-cm",
+                        "price": "€139,99",
+                        "price_without_currency": "139,99"
+                    },
+                    {
+                        "product_id": 8953975570667,
+                        "product_title": "Breite: 160 cm",
+                        "handle": "breite-160-cm",
+                        "price": "€149,99",
+                        "price_without_currency": "149,99"
                     }
                 ]
             }
         }
     },
-    foot_style: {
-        frontend_name: 'Fußteil',
-        orientation: 'normal',
-        next_button: 'Weiter zu den Füßen',
-        tabs: {
-            default: {
-                frontend_name: '',
-                type: 'single-select',
-                products: [
+    "headrest": {
+        "frontend_name": "Kopfteil",
+        "orientation": "vertical",
+        "next_button": "Weiter zum Stauraum",
+        "tabs": {
+            "height": {
+                "frontend_name": "Höhe",
+                "type": "pills",
+                "products": [
                     {
-                        product_id: 'kein-fussteil',
-                        product_title: 'Kein Fußteil',
-                        product_description: 'Ohne Fußteil',
-                        handle: 'kein-fussteil',
-                        price: '$0.00'
+                        "product_id": 8953978323179,
+                        "product_title": "Kopfteil Höhe: 115 cm",
+                        "handle": "kopfteil-hohe-115-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'opera',
-                        product_title: 'Opéra',
-                        product_description: 'Opéra Fußteil',
-                        handle: 'opera',
-                        price: '$0.00'
+                        "product_id": 8953978355947,
+                        "product_title": "Kopfteil Höhe: 120 cm",
+                        "handle": "kopfteil-hohe-120-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'louvre-fussteil',
-                        product_title: 'Louvre',
-                        product_description: 'Louvre Fußteil',
-                        handle: 'louvre-fussteil',
-                        price: '$0.00'
+                        "product_id": 8953978781931,
+                        "product_title": "Kopfteil Höhe: 140 cm",
+                        "handle": "kopfteil-hohe-140-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'tv-lift-salon',
-                        product_title: 'TV Lift Salon',
-                        product_description: 'TV Lift Salon',
-                        handle: 'tv-lift-salon',
-                        price: '$0.00'
+                        "product_id": 8953978650859,
+                        "product_title": "Kopfteil Höhe: 135 cm",
+                        "handle": "kopfteil-hohe-135-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'tv-lift-versailles',
-                        product_title: 'TV Lift Versailles',
-                        product_description: 'TV Lift Versailles',
-                        handle: 'tv-lift-versailles',
-                        price: '$0.00'
+                        "product_id": 8953978585323,
+                        "product_title": "Kopfteil Höhe: 130 cm",
+                        "handle": "kopfteil-hohe-130-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953978487019,
+                        "product_title": "Kopfteil Höhe: 125 cm",
+                        "handle": "kopfteil-hohe-125-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            },
+            "model": {
+                "frontend_name": null,
+                "type": "single-select",
+                "products": [
+                    {
+                        "product_id": 8953977962731,
+                        "product_title": "Kopfteil Modell:  Louvre",
+                        "handle": "kopfteil-modell-louvre",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953978061035,
+                        "product_title": "Kopfteil Modell: Belleville",
+                        "handle": "kopfteil-modell-belleville",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953977929963,
+                        "product_title": "Kopfteil Modell: Bijou",
+                        "handle": "kopfteil-modell-bijou",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953977831659,
+                        "product_title": "Kopfteil Modell: Versailles",
+                        "handle": "kopfteil-modell-versailles",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953978192107,
+                        "product_title": "Kopfteil Modell: Palais",
+                        "handle": "kopfteil-modell-palais",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953978290411,
+                        "product_title": "Kopfteil Modell: Monet",
+                        "handle": "kopfteil-modell-monet",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953977864427,
+                        "product_title": "Kopfteil Modell: Matisse",
+                        "handle": "kopfteil-modell-matisse",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953978093803,
+                        "product_title": "Kopfteil Modell: Maison",
+                        "handle": "kopfteil-modell-maison",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953978224875,
+                        "product_title": "Kopfteil Modell: Château",
+                        "handle": "kopfteil-modell-chateau",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     }
                 ]
             }
         }
     },
-    feet: {
-        frontend_name: 'Füße',
-        orientation: 'horizontal',
-        next_button: 'Weiter zum Material',
-        tabs: {
-            'model': {
-                frontend_name: 'Modelle',
-                type: 'single-select',
-                products: [
+    "storage": {
+        "frontend_name": "Stauraum",
+        "orientation": "normal",
+        "next_button": "Weiter zum Fußteil",
+        "tabs": {
+            "default": {
+                "frontend_name": null,
+                "type": "single-select",
+                "products": [
                     {
-                        product_id: 'schwebend',
-                        product_title: 'Schwebend',
-                        product_description: 'Schwebend Modell',
-                        handle: 'schwebend',
-                        price: '$0.00'
+                        "product_id": 8953978978539,
+                        "product_title": "Stauraum: Durchgängige Schubladen",
+                        "handle": "stauraum-durchgangige-schubladen",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'tbd-1',
-                        product_title: 'tbd',
-                        product_description: 'To be determined',
-                        handle: 'tbd-1',
-                        price: '$0.00'
+                        "product_id": 8953978913003,
+                        "product_title": "Stauraum: Kein Stauraum",
+                        "handle": "stauraum-kein-stauraum",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'tbd-2',
-                        product_title: 'tbd',
-                        product_description: 'To be determined',
-                        handle: 'tbd-2',
-                        price: '$0.00'
+                        "product_id": 8953979175147,
+                        "product_title": "Stauraum: Hochklappbarer Bettkasten",
+                        "handle": "stauraum-hochklappbarer-bettkasten",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'tbd-3',
-                        product_title: 'tbd',
-                        product_description: 'To be determined',
-                        handle: 'tbd-3',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'tbd-4',
-                        product_title: 'tbd',
-                        product_description: 'To be determined',
-                        handle: 'tbd-4',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'tbd-5',
-                        product_title: 'tbd',
-                        product_description: 'To be determined',
-                        handle: 'tbd-5',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'tbd-6',
-                        product_title: 'tbd',
-                        product_description: 'To be determined',
-                        handle: 'tbd-6',
-                        price: '$0.00'
-                    }
-                ]
-            },
-            'height': {
-                frontend_name: 'Fußhöhe',
-                type: 'single-select',
-                products: [
-                    {
-                        product_id: 'fusshoehe-10',
-                        product_title: '10cm',
-                        product_description: '10cm Fußhöhe',
-                        handle: '10cm',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'fusshoehe-15',
-                        product_title: '15cm',
-                        product_description: '15cm Fußhöhe',
-                        handle: '15cm',
-                        price: '$0.00'
+                        "product_id": 8953979109611,
+                        "product_title": "Stauraum: Geteilte Schubladen",
+                        "handle": "stauraum-geteilte-schubladen",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     }
                 ]
             }
         }
     },
-    material: {
-        frontend_name: 'Material',
-        orientation: 'horizontal',
-        next_button: 'Weiter zur Matratze',
-        tabs: {
-            'feiner-stoff': {
-                frontend_name: 'Feiner Stoff',
-                type: 'single-select',
-                products: [
+    "foot_style": {
+        "frontend_name": "Fußteil",
+        "orientation": "normal",
+        "next_button": "Weiter zu den Füßen",
+        "tabs": {
+            "default": {
+                "frontend_name": null,
+                "type": "single-select",
+                "products": [
                     {
-                        product_id: 'feiner-stoff-farbe-1',
-                        product_title: 'Farbe 1',
-                        product_description: 'Feiner Stoff Farbe 1',
-
-                        handle: 'feiner-stoff-farbe-1',
-                        price: '$0.00'
+                        "product_id": 8953979306219,
+                        "product_title": "Fußteil: Kein Fußteil",
+                        "handle": "fussteil-kein-fussteil",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'feiner-stoff-farbe-2',
-                        product_title: 'Farbe 2',
-                        product_description: 'Feiner Stoff Farbe 2',
-                        handle: 'feiner-stoff-farbe-2',
-                        price: '$0.00'
-                    }
-                    // Add more colors as needed (11 total)
-                ]
-            },
-            'samt': {
-                frontend_name: 'Samt',
-                type: 'single-select',
-                products: [
-                    {
-                        product_id: 'samt-farbe-1',
-                        product_title: 'Farbe 1',
-                        product_description: 'Samt Farbe 1',
-                        handle: 'samt-farbe-1',
-                        price: '$0.00'
-                    }
-                    // Add more colors as needed (9 total)
-                ]
-            },
-            'cord': {
-                frontend_name: 'Cord',
-                type: 'single-select',
-                products: [
-                    {
-                        product_id: 'cord-farbe-1',
-                        product_title: 'Farbe 1',
-                        product_description: 'Cord Farbe 1',
-                        handle: 'cord-farbe-1',
-                        price: '$0.00'
-                    }
-                    // Add more colors as needed (8 total)
-                ]
-            },
-            'boucle': {
-                frontend_name: 'Bouclé',
-                type: 'single-select',
-                products: [
-                    {
-                        product_id: 'boucle-farbe-1',
-                        product_title: 'Farbe 1',
-                        product_description: 'Bouclé Farbe 1',
-                        handle: 'boucle-farbe-1',
-                        price: '$0.00'
-                    }
-                    // Add more colors as needed (9 total)
-                ]
-            },
-            'grober-stoff': {
-                frontend_name: 'Grober Stoff',
-                type: 'single-select',
-                products: [
-                    {
-                        product_id: 'grober-stoff-farbe-1',
-                        product_title: 'Farbe 1',
-                        product_description: 'Grober Stoff Farbe 1',
-                        handle: 'grober-stoff-farbe-1',
-                        price: '$0.00'
-                    }
-                    // Add more colors as needed (7 total)
-                ]
-            },
-            'kunstleder': {
-                frontend_name: 'Kunstleder',
-                type: 'single-select',
-                products: [
-                    {
-                        product_id: 'kunstleder-farbe-1',
-                        product_title: 'Farbe 1',
-                        product_description: 'Kunstleder Farbe 1',
-                        handle: 'kunstleder-farbe-1',
-                        price: '$0.00'
-                    }
-                    // Add more colors as needed (8 total)
-                ]
-            }
-        }
-    },
-    mattress: {
-        frontend_name: 'Matratze',
-        orientation: 'horizontal',
-        next_button: 'Weiter zum Topper',
-        tabs: {
-            'zwei-separate-matratzen': {
-                frontend_name: 'Zwei separate Matratzen',
-                type: 'dropdown',
-                // TODO: OPTIONAL: 'split' property for two dropdowns on single tab
-                products: [
-                    {
-                        product_id: 'h2-zwei',
-                        product_title: 'H2',
-                        product_description: 'Härtegrad H2',
-                        handle: 'h2-zwei',
-                        price: '$0.00'
+                        "product_id": 8953979470059,
+                        "product_title": "Fußteil: Louvre",
+                        "handle": "fussteil-louvre",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'h3-zwei',
-                        product_title: 'H3',
-                        product_description: 'Härtegrad H3',
-                        handle: 'h3-zwei',
-                        price: '$0.00'
+                        "product_id": 8953979666667,
+                        "product_title": "Fußteil: TV Lift Versailles",
+                        "handle": "fussteil-tv-lift-versailles",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'h4-zwei',
-                        product_title: 'H4',
-                        product_description: 'Härtegrad H4',
-                        handle: 'h4-zwei',
-                        price: '$0.00'
+                        "product_id": 8953979568363,
+                        "product_title": "Fußteil: TV Lift Salon",
+                        "handle": "fussteil-tv-lift-salon",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'h2-durchgaengig',
-                        product_title: 'H2',
-                        product_description: 'Härtegrad H2',
-                        handle: 'h2-durchgaengig',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'h3-durchgaengig',
-                        product_title: 'H3',
-                        product_description: 'Härtegrad H3',
-                        handle: 'h3-durchgaengig',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'h4-durchgaengig',
-                        product_title: 'H4',
-                        product_description: 'Härtegrad H4',
-                        handle: 'h4-durchgaengig',
-                        price: '$0.00'
-                    },
-                ]
-            },
-            'durchgaengig': {
-                frontend_name: 'Durchgängig',
-                type: 'dropdown',
-                products: [
-                    {
-                        product_id: 'h2-durchgaengig',
-                        product_title: 'H2',
-                        product_description: 'Härtegrad H2',
-                        handle: 'h2-durchgaengig',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'h3-durchgaengig',
-                        product_title: 'H3',
-                        product_description: 'Härtegrad H3',
-                        handle: 'h3-durchgaengig',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'h4-durchgaengig',
-                        product_title: 'H4',
-                        product_description: 'Härtegrad H4',
-                        handle: 'h4-durchgaengig',
-                        price: '$0.00'
+                        "product_id": 8953979371755,
+                        "product_title": "Fußteil: Opéra",
+                        "handle": "fussteil-opera",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     }
                 ]
             }
         }
     },
-    topper: {
-        frontend_name: 'Topper',
-        orientation: 'normal',
-        next_button: 'Weiter zu den Extras',
-        tabs: {
-            default: {
-                frontend_name: '',
-                type: 'single-select',
-                products: [
+    "material": {
+        "frontend_name": "Material",
+        "orientation": "horizontal",
+        "next_button": "Weiter zur Matratze",
+        "tabs": {
+            "feiner-stoff": {
+                "frontend_name": "Feiner Stoff",
+                "type": "single-select",
+                "products": [
                     {
-                        product_id: 'komfortschaum-topper',
-                        product_title: 'Komfortschaum-Topper (6 cm)',
-                        product_description: 'Komfortschaum-Topper 6cm',
-                        handle: 'komfortschaum-topper',
-                        price: '$0.00'
+                        "product_id": 8953980027115,
+                        "product_title": "Farbe: Feiner Stoff - Blossom",
+                        "handle": "farbe-feiner-stoff-blossom",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'kaltschaum-topper',
-                        product_title: 'Kaltschaum-Topper (8 cm)',
-                        product_description: 'Kaltschaum-Topper 8cm',
-                        handle: 'kaltschaum-topper',
-                        price: '$0.00'
+                        "product_id": 8953980518635,
+                        "product_title": "Farbe: Feiner Stoff - Cotton",
+                        "handle": "farbe-feiner-stoff-cotton",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'visco-schaum-topper',
-                        product_title: 'Visco-Schaum-Topper (8 cm)',
-                        product_description: 'Visco-Schaum-Topper 8cm',
-                        handle: 'visco-schaum-topper',
-                        price: '$0.00'
+                        "product_id": 8953980125419,
+                        "product_title": "Farbe: Feiner Stoff - Frostblau",
+                        "handle": "farbe-feiner-stoff-frostblau",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953979863275,
+                        "product_title": "Farbe: Feiner Stoff - Greige",
+                        "handle": "farbe-feiner-stoff-greige",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953980223723,
+                        "product_title": "Farbe: Feiner Stoff - Moosgrün",
+                        "handle": "farbe-feiner-stoff-moosgrun",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953979764971,
+                        "product_title": "Farbe: Feiner Stoff - Natur",
+                        "handle": "farbe-feiner-stoff-natur",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953980322027,
+                        "product_title": "Farbe: Feiner Stoff - Schwarz",
+                        "handle": "farbe-feiner-stoff-schwarz",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953979896043,
+                        "product_title": "Farbe: Feiner Stoff - Platingrau",
+                        "handle": "farbe-feiner-stoff-platingrau",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953980649707,
+                        "product_title": "Farbe: Feiner Stoff - Navy",
+                        "handle": "farbe-feiner-stoff-navy",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953980420331,
+                        "product_title": "Farbe: Feiner Stoff - Steinblau",
+                        "handle": "farbe-feiner-stoff-steinblau",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            },
+            "samt": {
+                "frontend_name": "Samt",
+                "type": "single-select",
+                "products": [
+                    {
+                        "product_id": 8953980911851,
+                        "product_title": "Farbe: Samt - Altrosa",
+                        "handle": "farbe-samt-altrosa",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953980846315,
+                        "product_title": "Farbe: Samt - Brilliantblau",
+                        "handle": "farbe-samt-brilliantblau",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953981436139,
+                        "product_title": "Farbe: Samt - Champagner",
+                        "handle": "farbe-samt-champagner",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953981042923,
+                        "product_title": "Farbe: Samt - Taupe",
+                        "handle": "farbe-samt-taupe",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953981108459,
+                        "product_title": "Farbe: Samt - Tannengrün",
+                        "handle": "farbe-samt-tannengrun",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953981239531,
+                        "product_title": "Farbe: Samt - Schwarz",
+                        "handle": "farbe-samt-schwarz",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953981305067,
+                        "product_title": "Farbe: Samt - Nachtblau",
+                        "handle": "farbe-samt-nachtblau",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953980715243,
+                        "product_title": "Farbe: Samt - Cookie",
+                        "handle": "farbe-samt-cookie",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            },
+            "cord": {
+                "frontend_name": "Cord",
+                "type": "single-select",
+                "products": [
+                    {
+                        "product_id": 8953982681323,
+                        "product_title": "Farbe: Cord  - Silbergrau",
+                        "handle": "farbe-cord-silbergrau",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953982550251,
+                        "product_title": "Farbe: Cord  - Korallenrosa",
+                        "handle": "farbe-cord-korallenrosa",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953982419179,
+                        "product_title": "Farbe: Cord  - Hazel",
+                        "handle": "farbe-cord-hazel",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953982877931,
+                        "product_title": "Farbe: Cord  - Erdbraun",
+                        "handle": "farbe-cord-erdbraun",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953982288107,
+                        "product_title": "Farbe: Cord  - Elfenbein",
+                        "handle": "farbe-cord-elfenbein",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953982189803,
+                        "product_title": "Farbe: Cord  - Cremeweiß",
+                        "handle": "farbe-cord-cremeweiss",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953982943467,
+                        "product_title": "Farbe: Cord  - Blütenrosa",
+                        "handle": "farbe-cord-blutenrosa",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953982779627,
+                        "product_title": "Farbe: Cord  - Anthrazit",
+                        "handle": "farbe-cord-anthrazit",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            },
+            "boucle": {
+                "frontend_name": "Bouclé",
+                "type": "single-select",
+                "products": [
+                    {
+                        "product_id": 8953983828203,
+                        "product_title": "Farbe: Bouclé - Apricot",
+                        "handle": "farbe-boucle-apricot",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953984057579,
+                        "product_title": "Farbe: Bouclé - Aqua",
+                        "handle": "farbe-boucle-aqua",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953983598827,
+                        "product_title": "Farbe: Bouclé - Blütenweiß",
+                        "handle": "farbe-boucle-blutenweiss",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953983926507,
+                        "product_title": "Farbe: Bouclé - Piniengrün",
+                        "handle": "farbe-boucle-piniengrun",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953983664363,
+                        "product_title": "Farbe: Bouclé - Pearl",
+                        "handle": "farbe-boucle-pearl",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953983762667,
+                        "product_title": "Farbe: Bouclé - Rosenquarz",
+                        "handle": "farbe-boucle-rosenquarz",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953984221419,
+                        "product_title": "Farbe: Bouclé - Schwarz",
+                        "handle": "farbe-boucle-schwarz",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953984155883,
+                        "product_title": "Farbe: Bouclé - Taubengrau",
+                        "handle": "farbe-boucle-taubengrau",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953983992043,
+                        "product_title": "Farbe: Bouclé - Mint",
+                        "handle": "farbe-boucle-mint",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            },
+            "grober-stoff": {
+                "frontend_name": "Grober Stoff",
+                "type": "single-select",
+                "products": [
+                    {
+                        "product_id": 8953981698283,
+                        "product_title": "Farbe: Grober Stoff - Waldgrün",
+                        "handle": "farbe-grober-stoff-waldgrun",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953981632747,
+                        "product_title": "Farbe: Grober Stoff - Vulkangrau",
+                        "handle": "farbe-grober-stoff-vulkangrau",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953981829355,
+                        "product_title": "Farbe: Grober Stoff - Tintenblau",
+                        "handle": "farbe-grober-stoff-tintenblau",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953981796587,
+                        "product_title": "Farbe: Grober Stoff - Stahlgrau",
+                        "handle": "farbe-grober-stoff-stahlgrau",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953982058731,
+                        "product_title": "Farbe: Grober Stoff - Safrangold",
+                        "handle": "farbe-grober-stoff-safrangold",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953981501675,
+                        "product_title": "Farbe: Grober Stoff - Natur",
+                        "handle": "farbe-grober-stoff-natur",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953981960427,
+                        "product_title": "Farbe: Grober Stoff - Cashmere",
+                        "handle": "farbe-grober-stoff-cashmere",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            },
+            "kunstleder": {
+                "frontend_name": "Kunstleder",
+                "type": "single-select",
+                "products": [
+                    {
+                        "product_id": 8953983500523,
+                        "product_title": "Farbe: Kunstleder - Schiefer",
+                        "handle": "farbe-kunstleder-schiefer",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953983041771,
+                        "product_title": "Farbe: Kunstleder - Sand",
+                        "handle": "farbe-kunstleder-sand",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953983140075,
+                        "product_title": "Farbe: Kunstleder - Industrial",
+                        "handle": "farbe-kunstleder-industrial",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953983402219,
+                        "product_title": "Farbe: Kunstleder - Graubraun",
+                        "handle": "farbe-kunstleder-graubraun",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953983238379,
+                        "product_title": "Farbe: Kunstleder - Camel",
+                        "handle": "farbe-kunstleder-camel",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953983336683,
+                        "product_title": "Farbe: Kunstleder - Beton",
+                        "handle": "farbe-kunstleder-beton",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     }
                 ]
             }
         }
     },
-    upgrades: {
-        frontend_name: 'Upgrades',
-        orientation: 'vertical',
-        next_button: 'Weiter zu den Extras',
-        tabs: {
-            'beleuchtung-kopfteil': {
-                frontend_name: 'Beleuchtung Kopfteil',
-                type: 'multiselect-with-none',
-                products: [
+    "topper": {
+        "frontend_name": "Topper",
+        "orientation": "normal",
+        "next_button": "Weiter zu den Extras",
+        "tabs": {
+            "default": {
+                "frontend_name": null,
+                "type": "single-select",
+                "products": [
                     {
-                        product_id: 'hinten',
-                        product_title: 'Hinten',
-                        product_description: 'Beleuchtung hinten',
-                        handle: 'hinten',
-                        price: '$0.00'
+                        "product_id": 8953985106155,
+                        "product_title": "Topper: Kaltschaum-Topper (8 cm)",
+                        "handle": "topper-kaltschaum-topper-8-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'vorne',
-                        product_title: 'Vorne',
-                        product_description: 'Beleuchtung vorne',
-                        handle: 'vorne',
-                        price: '$0.00'
-                    }
-                ]
-            },
-            'beleuchtung-box': {
-                frontend_name: 'Beleuchtung Box',
-                type: 'multiselect-with-none',
-                products: [
-                    {
-                        product_id: 'led-front',
-                        product_title: 'LED Front',
-                        product_description: 'LED Front Beleuchtung',
-                        handle: 'led-front',
-                        price: '$0.00'
+                        "product_id": 8953985040619,
+                        "product_title": "Topper: Komfortschaum-Topper (6 cm)",
+                        "handle": "topper-komfortschaum-topper-6-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     },
                     {
-                        product_id: 'led-seite',
-                        product_title: 'LED Seite',
-                        product_description: 'LED Seiten Beleuchtung',
-                        handle: 'led-seite',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'led-unterboden',
-                        product_title: 'LED Unterboden',
-                        product_description: 'LED Unterboden Beleuchtung',
-                        handle: 'led-unterboden',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'led-fussteil',
-                        product_title: 'LED Fußteil',
-                        product_description: 'LED Fußteil Beleuchtung',
-                        handle: 'led-fussteil',
-                        price: '$0.00'
-                    }
-                ]
-            },
-        }
-    },
-    extras: {
-        frontend_name: 'Extras',
-        orientation: 'vertical',
-        next_button: 'Weiter zur Lieferung',
-        tabs: {
-            'rueckseite-stofffarbe': {
-                frontend_name: 'Rückseite mit Stofffarbe bezogen',
-                type: 'checkbox',
-                products: [
-                    {
-                        product_id: 'rueckseite-stofffarbe',
-                        product_title: 'Rückseite mit Stofffarbe bezogen',
-                        product_description: 'Rückseite mit Stofffarbe bezogen',
-                        handle: 'rueckseite-stofffarbe',
-                        price: '$0.00'
-                    }
-                ]
-            },
-            'usb-anschluesse': {
-                frontend_name: 'USB-Anschlüsse',
-                type: 'checkbox',
-                products: [
-                    {
-                        product_id: 'usb-anschluesse',
-                        product_title: 'USB-Anschlüsse',
-                        product_description: 'USB-Anschlüsse',
-                        handle: 'usb-anschluesse',
-                        price: '$0.00'
-                    }
-                ]
-            },
-            'beleuchtungs-farbe': {
-                frontend_name: 'Beleuchtungs-Farbe',
-                type: 'single-select',
-                products: [
-                    {
-                        product_id: 'led-weiss',
-                        product_title: 'LED weiß',
-                        product_description: 'LED weiß Beleuchtung',
-                        handle: 'led-weiss',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'led-blau',
-                        product_title: 'LED blau',
-                        product_description: 'LED blau Beleuchtung',
-                        handle: 'led-blau',
-                        price: '$0.00'
-                    },
-                    {
-                        product_id: 'rgb-fernbedienung',
-                        product_title: 'RGB mit Fernbedienung',
-                        product_description: 'RGB Beleuchtung mit Fernbedienung',
-                        handle: 'rgb-fernbedienung',
-                        price: '$0.00'
+                        "product_id": 8953985204459,
+                        "product_title": "Topper: Visco-Schaum-Topper (8 cm)",
+                        "handle": "topper-visco-schaum-topper-8-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
                     }
                 ]
             }
         }
     },
-};
+    "upgrades": {
+        "frontend_name": "Upgrades",
+        "orientation": "vertical",
+        "next_button": "Weiter zu den Extras",
+        "tabs": {
+            "beleuchtung-kopfteil": {
+                "frontend_name": "Beleuchtung Kopfteil",
+                "type": "multiselect-with-none",
+                "products": [
+                    {
+                        "product_id": 8953985401067,
+                        "product_title": "Beleuchtung Kopfteil: Hinten",
+                        "handle": "beleuchtung-kopfteil-hinten",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953985302763,
+                        "product_title": "Beleuchtung Kopfteil: Keine",
+                        "handle": "beleuchtung-kopfteil-keine",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953985499371,
+                        "product_title": "Beleuchtung Kopfteil: Vorne",
+                        "handle": "beleuchtung-kopfteil-vorne",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            },
+            "beleuchtung-box": {
+                "frontend_name": "Beleuchtung Box",
+                "type": "multiselect-with-none",
+                "products": [
+                    {
+                        "product_id": 8953985564907,
+                        "product_title": "Beleuchtung Box: Keine",
+                        "handle": "beleuchtung-box-keine",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953985663211,
+                        "product_title": "Beleuchtung Box: LED Front",
+                        "handle": "beleuchtung-box-led-front",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953985925355,
+                        "product_title": "Beleuchtung Box: LED Fußteil",
+                        "handle": "beleuchtung-box-led-fussteil",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953985761515,
+                        "product_title": "Beleuchtung Box: LED Seite",
+                        "handle": "beleuchtung-box-led-seite",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953985827051,
+                        "product_title": "Beleuchtung Box: LED Unterboden",
+                        "handle": "beleuchtung-box-led-unterboden",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            }
+        }
+    },
+    "extras": {
+        "frontend_name": "Extras",
+        "orientation": "vertical",
+        "next_button": "Weiter zur Übersicht",
+        "tabs": {
+            "rueckseite-stofffarbe": {
+                "frontend_name": "Rückseite mit Möbelstoff bezogen",
+                "type": "checkbox",
+                "products": [
+                    {
+                        "product_id": 8953986023659,
+                        "product_title": "Upgrades: Rückseite mit Möbelstoff bezogen",
+                        "handle": "upgrades-ruckseite-mit-mobelstoff-bezogen",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            },
+            "usb-anschluesse": {
+                "frontend_name": "USB-Anschlüsse am Kopfteil",
+                "type": "checkbox",
+                "products": [
+                    {
+                        "product_id": 8953986089195,
+                        "product_title": "Upgrades: USB-Anschlüsse am Kopfteil",
+                        "handle": "upgrades-usb-anschlusse-am-kopfteil",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            },
+            "beleuchtungs-farbe": {
+                "frontend_name": "Beleuchtungs-Farbe",
+                "type": "single-select",
+                "products": [
+                    {
+                        "product_id": 8953986187499,
+                        "product_title": "Beleuchtungs-Farbe: LED weiß",
+                        "handle": "beleuchtungs-farbe-led-weiss",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953986384107,
+                        "product_title": "Beleuchtungs-Farbe: RGB mit Fernbedienung",
+                        "handle": "beleuchtungs-farbe-rgb-mit-fernbedienung",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            }
+        }
+    },
+    "feet": {
+        "frontend_name": "Füße",
+        "orientation": "vertical",
+        "next_button": "Weiter zur Matratze",
+        "tabs": {
+            "height": {
+                "frontend_name": "Fußhöhe (cm)",
+                "type": "pills",
+                "products": [
+                    {
+                        "product_id": 8978315247851,
+                        "product_title": "Fußhöhe: 10 cm",
+                        "handle": "fusshohe-10-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8978315280619,
+                        "product_title": "Fußhöhe: 15 cm",
+                        "handle": "fusshohe-15-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            },
+            "type": {
+                "frontend_name": "Auswahl",
+                "type": "single-select",
+                "products": [
+                    {
+                        "product_id": 8978315542763,
+                        "product_title": "Füße: Industrial – Massivholz Schwarz",
+                        "handle": "fusse-industrial-massivholz-schwarz",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8978315411691,
+                        "product_title": "Füße: Klassisch – Holz Natur eckig",
+                        "handle": "fusse-klassisch-holz-natur-eckig",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8978315378923,
+                        "product_title": "Füße: Modern – Metall Chrom",
+                        "handle": "fusse-modern-metall-chrom",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8978315444459,
+                        "product_title": "Füße: Skandinavisch – Rundholz Natur",
+                        "handle": "fusse-skandinavisch-rundholz-natur",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8978315346155,
+                        "product_title": "Füße: Schwebend (nur 10cm)",
+                        "handle": "fusse-schwebend-nur-10cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8978315313387,
+                        "product_title": "Füße: Ohne Füße",
+                        "handle": "fusse-ohne-fusse",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            }
+        }
+    }
+}
 
 /*
 Types:
@@ -711,4 +980,5 @@ cart-property           -> added to cart as a property (used in size)
 
 */
 
-module.exports = matrix;
+export { matrix };
+export default matrix;

@@ -1,256 +1,279 @@
-// if a query param is present -> show a loader and initialise with the query param values
-// if not, initialise with the default values for each series.
+// Import the matrix data
+import matrix from './matrix.js';
 
-/* Uses:
-1. ATC
-2. Checkout Info Last tab
-3. Save your design -> Customer Metafield
-4. Adding products through URL
-5. Exclusion
+// Transform matrix data to current_state format
+const transformMatrixToCurrentState = () => {
+    const transformed = {};
 
-6. Default Current State for each series.
-*/
+    Object.keys(matrix).forEach(category => {
+        const categoryData = matrix[category];
+        transformed[category] = {
+            products: [],
+            selection: {}
+        };
 
-
-/*
-Types:
-
-product     -> product list that will be added to cart
-property    -> propery that will be added to cart
-placeholder -> shows the selection in the frontend, only for representation purposes
-*/
-
-// The current state is used to add the products to the cart
-// AND
-// Show the current selection in the frontend
-
-
-export const current_state = {
-    series: {
-        products: [
-            {
-                id: 'komfort',
-                handle: 'komfort',
-                title: 'Komfort',
+        // Set default selections based on first available product in each tab
+        Object.keys(categoryData.tabs).forEach(tab => {
+            const tabData = categoryData.tabs[tab];
+            if (tabData.products.length > 0) {
+                const firstProduct = tabData.products[0];
+                transformed[category].selection[tab] = [firstProduct.handle];
             }
-        ],
-        selection: {
-            // tab : product-handle
-            default: ['deluxe'],
-        }
-    },
-    size: {
-        products: [
-            {
-                id: 'width-120',
-                handle: '120cm',
-                title: '120cm',
-            },
-            {
-                id: 'length-200',
-                handle: '200cm',
-                title: '200cm',
-            }
-        ],
-        selection: {
-            // tab : selected
-            width: ['140cm'],
-            length: ['200cm']
-        }
-    },
-    headrest: {
-        products: [
-            {
-                id: 'matisse',
-                handle: 'matisse',
-                title: 'Matisse',
-            },
-            {
-                id: 'height-120',
-                handle: '120cm',
-                title: '120cm',
-            }
-        ],
-        selection: {
-            // tab : product-handle
-            model: ['matisse'],
-            height: ['120cm'],
-        }
-    },
-    storage: {
-        products: [
-            {
-                id: 'kein-stauraum',
-                handle: 'kein-stauraum',
-                title: 'Kein Stauraum',
-            }
-        ],
-        selection: {
-            // tab : product-handle
-            default: ['kein-stauraum'],
-        }
-    },
-    foot_style: {
-        products: [
-            {
-                id: 'opera',
-                handle: 'opera',
-                title: 'Opéra',
-            }
-        ],
-        selection: {
-            // tab : product-handle
-            default: ['opera'],
-        }
-    },
-    feet: {
-        products: [
-            {
-                id: 'mit-fuesse',
-                handle: 'mit-fuesse',
-                title: 'Mit Füßen',
-            },
-            {
-                id: 'schwebend',
-                handle: 'schwebend',
-                title: 'Schwebend',
-            },
-            {
-                id: 'fusshoehe-15',
-                handle: '15cm',
-                title: '15cm',
-            }
-        ],
-        selection: {
-            // tab : product-handle
-            type: ['mit-fuesse'],
-            model: ['schwebend'],
-            height: ['15cm'],
-        }
-    },
-    material: {
-        products: [
-            {
-                id: 'cord-farbe-1',
-                handle: 'cord-farbe-1',
-                title: 'Cord Farbe 1',
-            }
-        ],
-        selection: {
-            // tab : product-handle
-            cord: ['cord-farbe-1'],
-        }
-    },
-    mattress: {
-        products: [
-            {
-                id: 'h3-zwei',
-                handle: 'h3-zwei',
-                title: 'H3',
-            }
-        ],
-        selection: {
-            // tab : product-handle
-            'zwei-separate-matratzen': ['h3-zwei'],
-        }
-    },
-    topper: {
-        products: [
-            {
-                id: 'komfortschaum-topper',
-                handle: 'komfortschaum-topper',
-                title: 'Komfortschaum-Topper (6 cm)',
-            }
-        ],
-        selection: {
-            // tab : product-handle
-            default: ['komfortschaum-topper'],
-        }
-    },
-    upgrades: {
-        products: [
-            {
-                id: 'hinten',
-                handle: 'hinten',
-                title: 'Hinten',
-            },
-            {
-                id: 'led-front',
-                handle: 'led-front',
-                title: 'LED Front',
-            }
-        ],
-        selection: {
-            // tab : product-handle
-            'beleuchtung-kopfteil': ['hinten'],
-            'beleuchtung-box': ['led-front', 'led-seite'],
-        }
-    },
-    extras: {
-        products: [
-            {
-                id: 'rueckseite-stofffarbe',
-                handle: 'rueckseite-stofffarbe',
-                title: 'Rückseite mit Stofffarbe bezogen',
-            },
-            {
-                id: 'led-weiss',
-                handle: 'led-weiss',
-                title: 'LED weiß',
-            }
-        ],
-        selection: {
-            // tab : product-handle
-            'rueckseite-stofffarbe': [],
-            'beleuchtungs-farbe': ['led-weiss'],
-        }
-    },
-}
+        });
 
-/*
-URL to be used in:
-- changing url with every selection in the frontend (change in current state)
-- Loading default selection from each series
-- loading predefined selections
-- saving the state somewhere (cusomter saves the design) or linking it in the website
-- passing to checkout for the team to understand the selections visually
-*/
-
-
-// MAKING URL:
-
-function makeUrl(currentState) {
-    const url = new URL('https://example.com/');
-    Object.keys(currentState).forEach(key => {
-        const selection = currentState[key].selection;
-    Object.entries(selection).forEach(([tab, items]) => {
-            if (items.length === 0) return; // not adding empty selection
-            const selectedItems = items.join(',');
-            url.searchParams.append(`${key}[${tab}]`, selectedItems);
+        // Now populate products array with ONLY the selected products
+        Object.keys(transformed[category].selection).forEach(tab => {
+            const selectedHandles = transformed[category].selection[tab];
+            selectedHandles.forEach(handle => {
+                // Find the product details from the matrix
+                Object.keys(categoryData.tabs).forEach(matrixTab => {
+                    const tabData = categoryData.tabs[matrixTab];
+                    const product = tabData.products.find(p => p.handle === handle);
+                    if (product) {
+                        transformed[category].products.push({
+                            id: product.handle,
+                            handle: product.handle,
+                            title: product.product_title.split(': ').pop() || product.product_title,
+                            product_id: product.product_id,
+                            price: product.price
+                        });
+                    }
+                });
+            });
         });
     });
-    return url.toString();
-}
 
-// PARSING URL:
+    return transformed;
+};
 
-function parseUrlToState(url) {
-    const urlObj = new URL(url);
-    const newState = {};
+export const current_state = transformMatrixToCurrentState();
 
-    urlObj.searchParams.forEach((value, key) => {
-        const [option, tab] = key.split('[');
-        const cleanTab = tab.slice(0, -1); // Remove the trailing ']'
-        if (!newState[option]) {
-            newState[option] = { selection: {} };
+// Exampl current_state:
+const example_current_state = {
+    series: {
+      products: [
+        {
+          id: 'bettboutique-kollektion-komfort',
+          handle: 'bettboutique-kollektion-komfort',
+          title: 'Komfort',
+          product_id: 8953654575339,
+          price: '€99,99'
         }
-        newState[option].selection[cleanTab] = value.split(',');
-    });
+      ],
+      selection: { default: [ 'bettboutique-kollektion-komfort' ] }
+    },
+    size: {
+      products: [
+        {
+          id: 'lange-180-cm',
+          handle: 'lange-180-cm',
+          title: '180 cm',
+          product_id: 8953977635051,
+          price: '€139,00'
+        },
+        {
+          id: 'breite-100-cm',
+          handle: 'breite-100-cm',
+          title: '100 cm',
+          product_id: 8953975439595,
+          price: '€179,99'
+        }
+      ],
+      selection: { length: [ 'lange-180-cm' ], width: [ 'breite-100-cm' ] }
+    },
+    headrest: {
+      products: [
+        {
+          id: 'kopfteil-hohe-115-cm',
+          handle: 'kopfteil-hohe-115-cm',
+          title: '115 cm',
+          product_id: 8953978323179,
+          price: '€99,99'
+        },
+        {
+          id: 'kopfteil-modell-louvre',
+          handle: 'kopfteil-modell-louvre',
+          title: ' Louvre',
+          product_id: 8953977962731,
+          price: '€99,99'
+        }
+      ],
+      selection: {
+        height: [ 'kopfteil-hohe-115-cm' ],
+        model: [ 'kopfteil-modell-louvre' ]
+      }
+    },
+    storage: {
+      products: [
+        {
+          id: 'stauraum-durchgangige-schubladen',
+          handle: 'stauraum-durchgangige-schubladen',
+          title: 'Durchgängige Schubladen',
+          product_id: 8953978978539,
+          price: '€99,99'
+        }
+      ],
+      selection: { default: [ 'stauraum-durchgangige-schubladen' ] }
+    },
+    foot_style: {
+      products: [
+        {
+          id: 'fussteil-kein-fussteil',
+          handle: 'fussteil-kein-fussteil',
+          title: 'Kein Fußteil',
+          product_id: 8953979306219,
+          price: '€99,99'
+        }
+      ],
+      selection: { default: [ 'fussteil-kein-fussteil' ] }
+    },
+    material: {
+      products: [
+        {
+          id: 'farbe-feiner-stoff-blossom',
+          handle: 'farbe-feiner-stoff-blossom',
+          title: 'Feiner Stoff - Blossom',
+          product_id: 8953980027115,
+          price: '€99,99'
+        },
+        {
+          id: 'farbe-samt-altrosa',
+          handle: 'farbe-samt-altrosa',
+          title: 'Samt - Altrosa',
+          product_id: 8953980911851,
+          price: '€99,99'
+        },
+        {
+          id: 'farbe-cord-silbergrau',
+          handle: 'farbe-cord-silbergrau',
+          title: 'Cord  - Silbergrau',
+          product_id: 8953982681323,
+          price: '€99,99'
+        },
+        {
+          id: 'farbe-boucle-apricot',
+          handle: 'farbe-boucle-apricot',
+          title: 'Bouclé - Apricot',
+          product_id: 8953983828203,
+          price: '€99,99'
+        },
+        {
+          id: 'farbe-grober-stoff-waldgrun',
+          handle: 'farbe-grober-stoff-waldgrun',
+          title: 'Grober Stoff - Waldgrün',
+          product_id: 8953981698283,
+          price: '€99,99'
+        },
+        {
+          id: 'farbe-kunstleder-schiefer',
+          handle: 'farbe-kunstleder-schiefer',
+          title: 'Kunstleder - Schiefer',
+          product_id: 8953983500523,
+          price: '€99,99'
+        }
+      ],
+      selection: {
+        'feiner-stoff': [ 'farbe-feiner-stoff-blossom' ],
+        samt: [ 'farbe-samt-altrosa' ],
+        cord: [ 'farbe-cord-silbergrau' ],
+        boucle: [ 'farbe-boucle-apricot' ],
+        'grober-stoff': [ 'farbe-grober-stoff-waldgrun' ],
+        kunstleder: [ 'farbe-kunstleder-schiefer' ]
+      }
+    },
+    topper: {
+      products: [
+        {
+          id: 'topper-kaltschaum-topper-8-cm',
+          handle: 'topper-kaltschaum-topper-8-cm',
+          title: 'Kaltschaum-Topper (8 cm)',
+          product_id: 8953985106155,
+          price: '€99,99'
+        }
+      ],
+      selection: { default: [ 'topper-kaltschaum-topper-8-cm' ] }
+    },
+    upgrades: {
+      products: [
+        {
+          id: 'beleuchtung-kopfteil-hinten',
+          handle: 'beleuchtung-kopfteil-hinten',
+          title: 'Hinten',
+          product_id: 8953985401067,
+          price: '€99,99'
+        },
+        {
+          id: 'beleuchtung-box-keine',
+          handle: 'beleuchtung-box-keine',
+          title: 'Keine',
+          product_id: 8953985564907,
+          price: '€99,99'
+        }
+      ],
+      selection: {
+        'beleuchtung-kopfteil': [ 'beleuchtung-kopfteil-hinten' ],
+        'beleuchtung-box': [ 'beleuchtung-box-keine' ]
+      }
+    },
+    extras: {
+      products: [
+        {
+          id: 'upgrades-ruckseite-mit-mobelstoff-bezogen',
+          handle: 'upgrades-ruckseite-mit-mobelstoff-bezogen',
+          title: 'Rückseite mit Möbelstoff bezogen',
+          product_id: 8953986023659,
+          price: '€99,99'
+        },
+        {
+          id: 'upgrades-usb-anschlusse-am-kopfteil',
+          handle: 'upgrades-usb-anschlusse-am-kopfteil',
+          title: 'USB-Anschlüsse am Kopfteil',
+          product_id: 8953986089195,
+          price: '€99,99'
+        },
+        {
+          id: 'beleuchtungs-farbe-led-weiss',
+          handle: 'beleuchtungs-farbe-led-weiss',
+          title: 'LED weiß',
+          product_id: 8953986187499,
+          price: '€99,99'
+        }
+      ],
+      selection: {
+        'rueckseite-stofffarbe': [ 'upgrades-ruckseite-mit-mobelstoff-bezogen' ],
+        'usb-anschluesse': [ 'upgrades-usb-anschlusse-am-kopfteil' ],
+        'beleuchtungs-farbe': [ 'beleuchtungs-farbe-led-weiss' ]
+      }
+    },
+    feet: {
+      products: [
+        {
+          id: 'fusshohe-10-cm',
+          handle: 'fusshohe-10-cm',
+          title: '10 cm',
+          product_id: 8978315247851,
+          price: '€99,99'
+        },
+        {
+          id: 'fusse-industrial-massivholz-schwarz',
+          handle: 'fusse-industrial-massivholz-schwarz',
+          title: 'Industrial – Massivholz Schwarz',
+          product_id: 8978315542763,
+          price: '€99,99'
+        }
+      ],
+      selection: {
+        height: [ 'fusshohe-10-cm' ],
+        type: [ 'fusse-industrial-massivholz-schwarz' ]
+      }
+    }
+  }
 
-    return newState;
-}
-
-
-// const url = makeUrl(current_state);
-// console.log(url);
-// console.log(JSON.stringify(parseUrlToState(url), null, 2));
+/*
+URL utilities have been moved to url_utils.js
+Import and use the functions from there:
+- makeUrl(currentState) - creates URL from state
+- parseUrlToState(url) - parses URL back to state
+- getCurrentStateUrl() - gets URL for current state
+- updateStateFromUrl(url) - updates state from URL
+*/
