@@ -349,6 +349,81 @@ const matrix = {
             }
         }
     },
+    "feet": {
+        "frontend_name": "Füße",
+        "orientation": "vertical",
+        "next_button": "Weiter zur Matratze",
+        "tabs": {
+            "height": {
+                "frontend_name": "Fußhöhe (cm)",
+                "type": "pills",
+                "products": [
+                    {
+                        "product_id": 8978315247851,
+                        "product_title": "Fußhöhe: 10 cm",
+                        "handle": "fusshohe-10-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8978315280619,
+                        "product_title": "Fußhöhe: 15 cm",
+                        "handle": "fusshohe-15-cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            },
+            "type": {
+                "frontend_name": "Auswahl",
+                "type": "single-select",
+                "products": [
+                    {
+                        "product_id": 8978315542763,
+                        "product_title": "Füße: Industrial – Massivholz Schwarz",
+                        "handle": "fusse-industrial-massivholz-schwarz",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8978315411691,
+                        "product_title": "Füße: Klassisch – Holz Natur eckig",
+                        "handle": "fusse-klassisch-holz-natur-eckig",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8978315378923,
+                        "product_title": "Füße: Modern – Metall Chrom",
+                        "handle": "fusse-modern-metall-chrom",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8978315444459,
+                        "product_title": "Füße: Skandinavisch – Rundholz Natur",
+                        "handle": "fusse-skandinavisch-rundholz-natur",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8978315346155,
+                        "product_title": "Füße: Schwebend (nur 10cm)",
+                        "handle": "fusse-schwebend-nur-10cm",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8978315313387,
+                        "product_title": "Füße: Ohne Füße",
+                        "handle": "fusse-ohne-fusse",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            }
+        }
+    },
     "material": {
         "frontend_name": "Material",
         "orientation": "horizontal",
@@ -890,81 +965,6 @@ const matrix = {
             }
         }
     },
-    "feet": {
-        "frontend_name": "Füße",
-        "orientation": "vertical",
-        "next_button": "Weiter zur Matratze",
-        "tabs": {
-            "height": {
-                "frontend_name": "Fußhöhe (cm)",
-                "type": "pills",
-                "products": [
-                    {
-                        "product_id": 8978315247851,
-                        "product_title": "Fußhöhe: 10 cm",
-                        "handle": "fusshohe-10-cm",
-                        "price": "€99,99",
-                        "price_without_currency": "99,99"
-                    },
-                    {
-                        "product_id": 8978315280619,
-                        "product_title": "Fußhöhe: 15 cm",
-                        "handle": "fusshohe-15-cm",
-                        "price": "€99,99",
-                        "price_without_currency": "99,99"
-                    }
-                ]
-            },
-            "type": {
-                "frontend_name": "Auswahl",
-                "type": "single-select",
-                "products": [
-                    {
-                        "product_id": 8978315542763,
-                        "product_title": "Füße: Industrial – Massivholz Schwarz",
-                        "handle": "fusse-industrial-massivholz-schwarz",
-                        "price": "€99,99",
-                        "price_without_currency": "99,99"
-                    },
-                    {
-                        "product_id": 8978315411691,
-                        "product_title": "Füße: Klassisch – Holz Natur eckig",
-                        "handle": "fusse-klassisch-holz-natur-eckig",
-                        "price": "€99,99",
-                        "price_without_currency": "99,99"
-                    },
-                    {
-                        "product_id": 8978315378923,
-                        "product_title": "Füße: Modern – Metall Chrom",
-                        "handle": "fusse-modern-metall-chrom",
-                        "price": "€99,99",
-                        "price_without_currency": "99,99"
-                    },
-                    {
-                        "product_id": 8978315444459,
-                        "product_title": "Füße: Skandinavisch – Rundholz Natur",
-                        "handle": "fusse-skandinavisch-rundholz-natur",
-                        "price": "€99,99",
-                        "price_without_currency": "99,99"
-                    },
-                    {
-                        "product_id": 8978315346155,
-                        "product_title": "Füße: Schwebend (nur 10cm)",
-                        "handle": "fusse-schwebend-nur-10cm",
-                        "price": "€99,99",
-                        "price_without_currency": "99,99"
-                    },
-                    {
-                        "product_id": 8978315313387,
-                        "product_title": "Füße: Ohne Füße",
-                        "handle": "fusse-ohne-fusse",
-                        "price": "€99,99",
-                        "price_without_currency": "99,99"
-                    }
-                ]
-            }
-        }
-    }
 }
 
 /*

@@ -60,39 +60,3 @@ export function getCurrentStateUrl() {
 export function updateStateFromUrl(url) {
     return parseUrlToState(url);
 }
-
-// Example usage and testing
-if (import.meta.url === `file://${process.argv[1]}`) {
-    console.log('=== URL Utils Testing ===\n');
-
-    // Test 1: Create URL from current state
-    const url = getCurrentStateUrl();
-    console.log('1. Generated URL from current state:');
-    console.log(url);
-    console.log('\n');
-
-    // Test 2: Parse URL back to state
-    const parsedState = parseUrlToState(url);
-    console.log('2. Parsed state from URL:');
-    console.log(JSON.stringify(parsedState, null, 2));
-    console.log('\n');
-
-    // Test 3: Test with a custom state
-    const customState = {
-        series: {
-            selection: { default: ['komfort'] }
-        },
-        size: {
-            selection: { width: ['120cm'], length: ['200cm'] }
-        }
-    };
-
-    const customUrl = makeUrl(customState);
-    console.log('3. Custom state URL:');
-    console.log(customUrl);
-    console.log('\n');
-
-    const parsedCustomState = parseUrlToState(customUrl);
-    console.log('4. Parsed custom state:');
-    console.log(JSON.stringify(parsedCustomState, null, 2));
-}

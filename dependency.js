@@ -2,91 +2,116 @@ import { current_state } from "./current_selection.js";
 
 // Background
 // Background - Scene ID
-// Kopfteil
+// Kopfteil (headrest)
 // Kopfteil Model - Breite - Höhe des Kopfteil - Material
-// Fußteil
+// Fußteil (foot_style)
 // Fußteil Model - Breite - Füßenhöhe - Material
-// Boxen (Seitenteile)
-// Boxen Model (Ob mit Stauraum oder nicht) - Breite - Füßenhöhe - Material
-// Füße
+// Boxen (storage) - Ob mit Stauraum oder nicht
+// Boxen Model - Breite - Füßenhöhe - Material
+// Füße (feet)
 // Füße Model - Breite - Füßenhöhe
-// Matratze
+// Matratze (mattress) - Not in current matrix
 // Matratze Model - Stauraum Model - Breite
 // Topper
 // Breite
-// Beleuchtung
-// Belechtungsposition (auf welchem Teil liegt das Licht) - Teil Model - Breite
+// Beleuchtung (upgrades)
+// Beleuchtungsposition (auf welchem Teil liegt das Licht) - Teil Model - Breite
 // Hier kann auch ein einfacher Variante von IDs verwendet, z.B Licht unter Bett ist nur abhängig von Breite, aber Licht auf dem Kopfteil ist abhängig von Breite und Kopfteil Model.
-// USB Anschluss
+// USB Anschluss (extras)
 // Kopfteil Model - Breite
 // ------------------------------------------------------------
 
-
-// IMAGE NAME:
-// headrest~headrest_model__matisse~size_width__120cm~material_cord__grober-stoff_natur.jpeg
+// IMAGE NAME FORMAT:
+// headrest__headrest_model__matisse~size_width__120cm~material_cord__grober-stoff_natur.jpeg
 // from the dependency list, we get the following:
 // <part>~<topic>_<tab>__<value>~<topic>_<tab>__<value>~...
-
 
 const image_parts = [
     'headrest',
     'foot_style',
-    'boxes',
+    'storage', // Changed from 'boxes' to match matrix
     'feet',
-    'mattress',
+    'mattress', // TODO: What to do about mattresses?
     'topper',
-    'lighting-headboard',
-    'lighting-box',
+    'lighting-headboard', // Changed from 'lighting-headboard' to match upgrades
+    'lighting-box', // Changed from 'lighting-box' to match upgrades
 ]
 // + background
 
-
-
-// Eg: headrest___size__width_120cm___headrest__model_matisse___headrest__height_120cm___material__cord_cord-farbe-1.png-farbe-1.png
+// Eg: headrest___size__width_120cm___headrest__model_matisse___headrest__height_120cm___material__cord_cord-farbe-1.png
 // ORDER IS VERY IMPORTANT IN DEPENDENCY LIST
 
 const image_dependencies = {
     "headrest": [
-        "size:width", "headrest:model", "headrest:height", "material:cord,feiner-stoff,samt,boucle,grober-stoff,kunstleder"
+        "size:width",
+        "headrest:model",
+        "headrest:height",
+        "material:feiner-stoff,samt,cord,boucle,grober-stoff,kunstleder"
     ],
     "foot_style": [
-        "foot_style:default", "size:width", "feet:height", "material:cord,feiner-stoff,samt,boucle,grober-stoff,kunstleder"
+        "size:width",
+        "foot_style:default",
+        "feet:height",
+        "material:feiner-stoff,samt,cord,boucle,grober-stoff,kunstleder"
     ],
-    "boxes": [
-        "storage:default", "size:width", "feet:height", "material:cord,feiner-stoff,samt,boucle,grober-stoff,kunstleder"
+    "storage": [
+        "size:width",
+        "storage:default",
+        "feet:height",
+        "material:feiner-stoff,samt,cord,boucle,grober-stoff,kunstleder"
     ],
     "feet": [
-        "feet:type", "size:width", "feet:height"
+        "size:width",
+        "feet:height",
+        "feet:type"
     ],
     // TODO: What to do about mattresses?
-    // "mattress": [
-    //     "mattress:zwei-separate-matratzen,durchgaengig", "storage:default", "size:width"
-    // ],
+    "mattress": [
+        // No mattress data in current matrix, keeping placeholder
+    ],
     "topper": [
         "size:width"
     ],
     "lighting-headboard": [
-        "headrest:model", "size:width", "extras:beleuchtungs-farbe"
+        "size:width",
+        "upgrades:beleuchtung-kopfteil",
+        "extras:beleuchtungs-farbe"
     ],
     "lighting-box": [
-        "storage:default", "size:width", "extras:beleuchtungs-farbe"
+        "size:width",
+        "upgrades:beleuchtung-box",
+        "extras:beleuchtungs-farbe"
     ],
 }
 
+/**
+ * Creates a map of image file names based on the current_state.
+ * @param {Object} currentState - The current state object (as in example_current_state)
+ * @returns {Object} Map of image file names (strings)
+ */
 function createImageName(currentState) {
     const map = {};
+
     image_parts.forEach(part => {
         const dependencies = image_dependencies[part];
+        // Skip if no dependencies (like mattress)
+        if (!dependencies || dependencies.length === 0) {
+            map[part] = `${part}___.png`;
+            return;
+        }
         const image_name = `${part}___`;
         const dependencyStrings = dependencies.map(dependency => {
             const [topic, tabs] = dependency.split(':');
             const tabList = tabs.split(',');
+
             for (const tab of tabList) {
                 if (currentState[topic] && currentState[topic].selection[tab]) {
                     // TODO: How to handle multiselect for lighting?
                     const value = currentState[topic].selection[tab][0];
                     if (value) {
-                        return `${topic}__${tab}_${value}`;
+                        // Clean up the value for better readability in filename
+                        const cleanValue = value.replace(/[^a-zA-Z0-9-]/g, '-');
+                        return `${topic}__${tab}_${cleanValue}`;
                     }
                 }
             }
@@ -97,7 +122,63 @@ function createImageName(currentState) {
     return map;
 }
 
-const images = createImageName(current_state);
-image_parts.forEach(part => {
-    console.log(images[part]);
-});
+// Helper function to validate dependencies against current state
+// function validateDependencies(currentState) {
+//     const validation = {};
+
+//     image_parts.forEach(part => {
+//         const dependencies = image_dependencies[part];
+//         validation[part] = {
+//             valid: true,
+//             missing: [],
+//             warnings: []
+//         };
+
+//         if (!dependencies || dependencies.length === 0) {
+//             validation[part].warnings.push('No dependencies defined');
+//             return;
+//         }
+
+//         dependencies.forEach(dependency => {
+//             const [topic, tabs] = dependency.split(':');
+//             const tabList = tabs.split(',');
+
+//             if (!currentState[topic]) {
+//                 validation[part].valid = false;
+//                 validation[part].missing.push(`Topic '${topic}' not found in current state`);
+//                 return;
+//             }
+
+//             tabList.forEach(tab => {
+//                 if (!currentState[topic].selection || !currentState[topic].selection[tab]) {
+//                     validation[part].valid = false;
+//                     validation[part].missing.push(`Tab '${tab}' not found in topic '${topic}'`);
+//                 } else if (currentState[topic].selection[tab].length === 0) {
+//                     validation[part].warnings.push(`Tab '${tab}' in topic '${topic}' has no selection`);
+//                 }
+//             });
+//         });
+//     });
+
+//     return validation;
+// }
+
+/**
+ * Returns an array of image file names based on the current_state.
+ * Each image corresponds to an image part, with its dependencies resolved from current_state.
+ * @param {Object} current_state - The current state object (as in example_current_state)
+ * @returns {Array} Array of image file names (strings)]
+ */
+function getImagesFromCurrentState(current_state) {
+    const imageMap = createImageName(current_state);
+    return image_parts.map(part => imageMap[part]);
+}
+
+console.log(getImagesFromCurrentState(current_state));
+// Export functions and data for use in other modules
+export {
+    image_parts,
+    image_dependencies,
+    createImageName,
+    getImagesFromCurrentState,
+};

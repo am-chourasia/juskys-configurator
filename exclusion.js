@@ -1,50 +1,6 @@
-const { headrest, material } = require("./matrix");
-
-// this is updated as the selections are changed in the current state
-const exclusion_matrix = {
-    headrest: {
-        model: ['versailles', 'palais', 'chateau'],
-        height: ['115cm', '140cm']
-    },
-    storage: {
-        default: ['durchgaengige-schubladen', 'geteilte-schubladen']
-    },
-    foot_style: {
-        default: ['tv-lift-salon', 'tv-lift-versailles', 'louvre-fussteil']
-    },
-    feet: {
-        model: ['tbd-1', 'tbd-2', 'tbd-3', 'tbd-4', 'tbd-5', 'tbd-6'],
-        height: ['10cm']
-    },
-    material: {
-        'feiner-stoff': ['feiner-stoff-farbe-1', 'feiner-stoff-farbe-2'],
-        'samt': ['samt-farbe-1'],
-        'cord': ['cord-farbe-1'],
-        'boucle': ['boucle-farbe-1'],
-        'grober-stoff': ['grober-stoff-farbe-1'],
-        'kunstleder': ['kunstleder-farbe-1']
-    },
-    mattress: {
-        'zwei-separate-matratzen': ['h2-zwei', 'h4-zwei'],
-        'durchgaengig': ['h2-durchgaengig', 'h4-durchgaengig']
-    },
-    topper: {
-        default: ['kaltschaum-topper', 'visco-schaum-topper']
-    },
-    upgrades: {
-        'beleuchtung-kopfteil': ['vorne'],
-        'beleuchtung-box': ['led-seite', 'led-unterboden', 'led-fussteil']
-    },
-    extras: {
-        'rueckseite-stofffarbe': ['rueckseite-stofffarbe'],
-        'usb-anschluesse': ['usb-anschluesse'],
-        'beleuchtungs-farbe': ['led-blau', 'rgb-fernbedienung']
-    }
-}
-
-// Structured exclusion principles - can be passed anywhere
+// Structured exclusion principles
 // exclusion_principles = {
-//     section: [
+//     topic: [
 //         {
 //             condition: {
 //                 /* what triggers this rule */
@@ -60,206 +16,330 @@ const exclusion_matrix = {
 //     ]
 // }
 
-// OPERATIONS: in, not_in, less_than, greater_than, empty
+// Example exclusion_matrix formed at each step:
+// const exclusion_matrix = {
+//     series: { default: [ 'kollektion-deluxe', 'kollektion-first-class' ] },
+//     storage: {
+//       default: [
+//         'stauraum-durchgangige-schubladen',
+//         'stauraum-geteilte-schubladen',
+//         'stauraum-hochklappbarer-bettkasten'
+//       ]
+//     },
+//     material: {
+//       'feiner-stoff': [],
+//       samt: [],
+//       cord: [],
+//       boucle: [],
+//       'grober-stoff': [],
+//       kunstleder: []
+//     },
+//     headrest: {
+//       height: [],
+//       model: [
+//         'kopfteil-modell-versailles',
+//         'kopfteil-modell-palais',
+//         'kopfteil-modell-chateau'
+//       ]
+//     },
+//     foot_style: {
+//       default: [ 'fussteil-tv-lift-salon', 'fussteil-tv-lift-versailles' ]
+//     },
+//     feet: { height: [], type: [] },
+//     upgrades: {
+//       'beleuchtung-kopfteil': [ 'beleuchtung-kopfteil-vorne' ],
+//       'beleuchtung-box': [
+//         'beleuchtung-box-led-seite',
+//         'beleuchtung-box-led-unterboden',
+//         'beleuchtung-box-led-fussteil'
+//       ]
+//     },
+//     extras: {
+//       'rueckseite-stofffarbe': [],
+//       'usb-anschluesse': [],
+//       'beleuchtungs-farbe': []
+//     }
+//   }
 
-// LOGIC:
-/*
-checkArray = ['A', 'B', 'C']
-selectionArray = ['D'];
-operation = 'in';
+// OPERATIONS: in, not_in, less_than, greater_than, isEmpty
+// CONDITIONS: Always combined with OR operator
 
-function isIn() {
-    let found = false;
-    for (const selection of selectionArray) {
-        if (checkArray.includes(selection)) {
-            found = true;
-            break;
-        }
-    }
-    return found;
-}
-
-let result = '';
-if (operation == 'in') {
-    result = isIn();
-} 
-else if (operation == 'not_in') {
-    result = !isIn();
-}
-
-console.log(result);
-*/
-
-
-const exclusion_principles = {
+export const exclusion_principles = {
     series: [
         {
             condition: {
-                storage: { default: { in: ['durchgaengige-schubladen', 'geteilte-schubladen'] } }
+                storage: { default: { in: ['stauraum-durchgangige-schubladen', 'stauraum-geteilte-schubladen'] } }
             },
             disable: {
-                default: ['deluxe', 'first-class']
+                default: ['kollektion-deluxe', 'kollektion-first-class']
             },
-            reason: "Nicht verfügbar mit Durchgängige/Geteilte Schubladen"
+            reason: "Not available with continuous/divided drawers"
         }
     ],
     storage: [
         {
             condition: {
-                series: { default: { not_in: ['komfort'] } }
+                series: { default: { not_in: ['bettboutique-kollektion-komfort'] } }
             },
             disable: {
-                default: ['durchgaengige-schubladen', 'geteilte-schubladen']
+                default: ['stauraum-durchgangige-schubladen', 'stauraum-geteilte-schubladen']
             },
-            reason: "Nur verfügbar in der Komfort Serie"
+            reason: "Only available in the Komfort series"
         },
         {
             condition: {
-                feet: { model: { empty: false } },
-                size: { width: { less_than: 120 } }
+                feet: { type: { isEmpty: false } },
+                size: { width: { less_than: 'breite-120-cm' } }
             },
             disable: {
-                default: ['durchgaengige-schubladen', 'geteilte-schubladen', 'hochklappbarer-bettkasten']
+                default: ['stauraum-durchgangige-schubladen', 'stauraum-geteilte-schubladen', 'stauraum-hochklappbarer-bettkasten']
             },
-            reason: "Nicht verfügbar mit Füßen oder kleiner Breite"
+            reason: "Not available with feet or small width"
         }
     ],
     material: [
         {
             condition: {
-                // Combine with OR operation
-                headrest: { model: { in: ['versailles', 'palais', 'chateau'] } },
-                foot_style: { default: { in: ['tv-lift-versailles', 'louvre-fussteil'] } }
+                headrest: { model: { in: ['kopfteil-modell-versailles', 'kopfteil-modell-palais', 'kopfteil-modell-chateau'] } },
+                foot_style: { default: { in: ['fussteil-tv-lift-versailles', 'fussteil-louvre'] } }
             },
             disable: {
-                cord: ['cord-farbe-1', 'cord-farbe-2', 'cord-farbe-3', 'cord-farbe-4', 'cord-farbe-5', 'cord-farbe-6']
+                cord: ['farbe-cord-silbergrau', 'farbe-cord-korallenrosa', 'farbe-cord-hazel', 'farbe-cord-erdbraun', 'farbe-cord-elfenbein', 'farbe-cord-cremeweiss', 'farbe-cord-blutenrosa', 'farbe-cord-anthrazit']
             },
-            reason: "Nicht verfügbar mit Versailles/Palais/Chateau Kopfteil oder Versailles Lift/Louvre Fussteil"
+            reason: "Not available with Versailles/Palais/Chateau headrest or Versailles Lift/Louvre foot style"
         }
     ],
     headrest: [
         {
             condition: {
-                material: { cord: { in: ['cord-farbe-1', 'cord-farbe-2', 'cord-farbe-3', 'cord-farbe-4', 'cord-farbe-5', 'cord-farbe-6'] } }
+                material: { cord: { in: ['farbe-cord-silbergrau', 'farbe-cord-korallenrosa', 'farbe-cord-hazel', 'farbe-cord-erdbraun', 'farbe-cord-elfenbein', 'farbe-cord-cremeweiss', 'farbe-cord-blutenrosa', 'farbe-cord-anthrazit'] } }
             },
             disable: {
-                model: ['versailles', 'palais', 'chateau']
+                model: ['kopfteil-modell-versailles', 'kopfteil-modell-palais', 'kopfteil-modell-chateau']
             },
-            reason: "Nicht verfügbar mit Cord"
+            reason: "Not available with Cord"
         }
     ],
     foot_style: [
         {
             condition: {
-                feet: { model: { empty: false } }
+                feet: { type: { isEmpty: false } }
             },
             disable: {
-                default: ['tv-lift-salon', 'tv-lift-versailles']
+                default: ['fussteil-tv-lift-salon', 'fussteil-tv-lift-versailles']
             },
-            reason: "Nicht verfügbar mit Ohne-Füssen"
-        }
-    ],
-    mattress: [
-        {
-            condition: {
-                size: { width: { less_than: 120 } }
-            },
-            disable: {
-                'zwei-separate-matratzen': ['h2-zwei', 'h4-zwei']
-            },
-            reason: "Nicht verfügbar mit kleiner Breite"
-        },
-        {
-            condition: {
-                size: { width: { greater_than: 200 } }
-            },
-            disable: {
-                'durchgaengig': ['*']
-            },
-            reason: "Nicht verfügbar mit großer Breite"
+            reason: "Not available with feet"
         }
     ],
     feet: [
         {
             condition: {
-                feet: { height: { not_in: ['10cm'] } }
+                feet: { height: { not_in: ['fusshohe-10-cm'] } }
             },
             disable: {
-                model: ['schwebend']
+                type: ['fusse-schwebend-nur-10cm']
             },
-            reason: "Nicht verfügbar mit anderer Höhe"
+            reason: "Not available with other heights"
         }
     ],
     upgrades: [
         {
             condition: {
-                headrest: { model: { not_in: ['versailles', 'palais', 'maison'] } }
+                headrest: { model: { not_in: ['kopfteil-modell-versailles', 'kopfteil-modell-palais', 'kopfteil-modell-maison'] } }
             },
             disable: {
-                'beleuchtung-kopfteil': ['vorne']
+                'beleuchtung-kopfteil': ['beleuchtung-kopfteil-vorne']
             },
-            reason: "Nicht verfügbar mit Versailles, Palais oder Maison"
+            reason: "Not available with Versailles, Palais or Maison"
         },
         {
             condition: {
-                foot_style: { default: { not_in: ['kein-fussteil'] } }
+                foot_style: { default: { not_in: ['fussteil-kein-fussteil'] } }
             },
             disable: {
-                'beleuchtung-box': ['led-front']
+                'beleuchtung-box': ['beleuchtung-box-led-front']
             },
-            reason: "Nicht verfügbar mit keinem Fussteil"
+            reason: "Not available without foot style"
         },
         {
             condition: {
-                storage: { default: { in: ['durchgaengige-schubladen', 'geteilte-schubladen'] } }
+                storage: { default: { in: ['stauraum-durchgangige-schubladen', 'stauraum-geteilte-schubladen'] } }
             },
             disable: {
-                'beleuchtung-box': ['led-seite']
+                'beleuchtung-box': ['beleuchtung-box-led-seite']
             },
-            reason: "Nicht verfügbar mit Durchgängige/Geteilte Schubladen"
+            reason: "Not available with continuous/divided drawers"
         },
         {
             condition: {
-                feet: { model: { empty: false } }
+                feet: { type: { isEmpty: false } }
             },
             disable: {
-                'beleuchtung-box': ['led-unterboden']
+                'beleuchtung-box': ['beleuchtung-box-led-unterboden']
             },
-            reason: "Nicht verfügbar mit Ohne-Füssen"
+            reason: "Not available with feet"
         },
         {
             condition: {
-                foot_style: { default: { not_in: ['tv-lift-salon'] } }
+                foot_style: { default: { not_in: ['fussteil-tv-lift-salon'] } }
             },
             disable: {
-                'beleuchtung-box': ['led-fussteil']
+                'beleuchtung-box': ['beleuchtung-box-led-fussteil']
             },
-            reason: "Nicht verfügbar mit Salon Lift"
+            reason: "Not available with Salon Lift"
         }
     ],
     extras: [
         {
             condition: {
-                headrest: { model: { in: ['monet'] } }
+                headrest: { model: { in: ['kopfteil-modell-monet'] } }
             },
             disable: {
-                'usb-anschluesse': ['usb-anschluesse']
+                'usb-anschluesse': ['upgrades-usb-anschlusse-am-kopfteil']
             },
-            reason: "Nicht verfügbar mit Monet"
+            reason: "Not available with Monet"
         },
         {
             condition: {
                 upgrades: {
-                    'beleuchtung-kopfteil': { empty: true },
-                    'beleuchtung-box': { empty: true }
+                    'beleuchtung-kopfteil': { isEmpty: true },
+                    'beleuchtung-box': { isEmpty: true }
                 }
             },
             disable: {
-                'beleuchtungs-farbe': ['led-blau', 'rgb-fernbedienung']
+                'beleuchtungs-farbe': ['beleuchtungs-farbe-rgb-mit-fernbedienung']
             },
-            reason: "Nicht verfügbar mit keiner Beleuchtung"
+            reason: "Not available without lighting"
         }
     ]
 }
 
-module.exports = { exclusion_matrix, exclusion_principles };
+/**
+ * Checks all exclusion logic from current_state and generates an exclusion matrix
+ * @param {Object} currentState - The current state object
+ * @returns {Object} - Exclusion matrix showing which options should be disabled
+ */
+export function generateExclusionMatrix(currentState) {
+    const exclusionMatrix = {};
+
+    // Initialize exclusion matrix for all topics
+    Object.keys(exclusion_principles).forEach(topic => {
+        exclusionMatrix[topic] = {};
+
+        // Initialize all tabs in the topic
+        if (currentState[topic] && currentState[topic].selection) {
+            Object.keys(currentState[topic].selection).forEach(tab => {
+                exclusionMatrix[topic][tab] = [];
+            });
+        }
+    });
+
+    // Check each exclusion rule
+    Object.keys(exclusion_principles).forEach(topic => {
+        const rules = exclusion_principles[topic];
+
+        rules.forEach(rule => {
+            // Check if the condition is met
+            if (isConditionMet(rule.condition, currentState)) {
+                // Apply the disable rule
+                Object.keys(rule.disable).forEach(tab => {
+                    if (!exclusionMatrix[topic]) {
+                        exclusionMatrix[topic] = {};
+                    }
+                    if (!exclusionMatrix[topic][tab]) {
+                        exclusionMatrix[topic][tab] = [];
+                    }
+
+                    // Add disabled options to the matrix
+                    rule.disable[tab].forEach(option => {
+                        if (!exclusionMatrix[topic][tab].includes(option)) {
+                            exclusionMatrix[topic][tab].push(option);
+                        }
+                    });
+                });
+            }
+        });
+    });
+
+    return exclusionMatrix;
+}
+
+/**
+ * Checks if a condition is met based on the current state
+ * @param {Object} condition - The condition object
+ * @param {Object} currentState - The current state object
+ * @returns {boolean} - True if condition is met
+ */
+function isConditionMet(condition, currentState) {
+    // Multiple conditions are combined with OR logic
+    return Object.keys(condition).some(topic => {
+        const topicCondition = condition[topic];
+        return Object.keys(topicCondition).some(tab => {
+            const tabCondition = topicCondition[tab];
+            return Object.keys(tabCondition).some(operation => {
+                const operationValue = tabCondition[operation];
+                const selection = currentState[topic]?.selection?.[tab] || [];
+
+                return checkOperation(operation, selection, operationValue);
+            });
+        });
+    });
+}
+
+/**
+ * Checks if an operation condition is met
+ * @param {string} operation - The operation type
+ * @param {Array} selection - The current selection array
+ * @param {*} operationValue - The value to check against
+ * @returns {boolean} - True if operation condition is met
+ */
+function checkOperation(operation, selection, operationValue) {
+    switch (operation) {
+        case 'in':
+            return selection.some(item => operationValue.includes(item));
+        case 'not_in':
+            return !selection.some(item => operationValue.includes(item));
+        case 'isEmpty':
+            return operationValue ? selection.length === 0 : selection.length > 0;
+        case 'less_than':
+            // For numeric comparisons, assume the selection contains numeric values
+            // TODO: Implement this assumption
+            return selection.some(item => {
+                const numValue = parseFloat(item.replace(/[^\d.]/g, ''));
+                return !isNaN(numValue) && numValue < operationValue;
+            });
+        case 'greater_than':
+            return selection.some(item => {
+                const numValue = parseFloat(item.replace(/[^\d.]/g, ''));
+                return !isNaN(numValue) && numValue > operationValue;
+            });
+        default:
+            return false;
+    }
+}
+
+/**
+ * Gets all exclusion reasons for a specific topic and tab
+ * @param {string} topic - The topic name
+ * @param {string} tab - The tab name
+ * @param {Object} currentState - The current state object
+ * @returns {Array} - Array of exclusion reason objects
+ */
+export function getExclusionReasons(topic, tab, currentState) {
+    const reasons = [];
+
+    if (!exclusion_principles[topic]) return reasons;
+
+    exclusion_principles[topic].forEach(rule => {
+        if (isConditionMet(rule.condition, currentState)) {
+            if (rule.disable[tab]) {
+                reasons.push({
+                    reason: rule.reason,
+                    disabledOptions: rule.disable[tab]
+                });
+            }
+        }
+    });
+
+    return reasons;
+}
