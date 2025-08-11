@@ -1,4 +1,15 @@
-const matrix = {
+/*
+ * Types:
+ * descriptive             -> used in "Series", shows as tabs with description and title
+ * pills                   -> shows as pills with title, single select
+ * single-select           -> only allowed to choose one option
+ * dropdown                -> allows to choose one option from a dropdown
+ * multiselect-with-none   -> allows to choose multiple options, except in none
+ * checkbox                -> allows to choose multiple options as checkbox
+ * cart-property           -> added to cart as a property (used in size)
+*/
+
+export const matrix = {
     "series": {
         "frontend_name": "Kollektion",
         "orientation": "normal",
@@ -966,19 +977,3 @@ const matrix = {
         }
     },
 }
-
-/*
-Types:
-
-descriptive             -> used in "Series", shows as tabs with description and title
-pills                   -> shows as pills with title, single select
-single-select           -> only allowed to choose one option
-dropdown                -> allows to choose one option from a dropdown
-multiselect-with-none   -> allows to choose multiple options, except in none
-checkbox                -> allows to choose multiple options as checkbox
-cart-property           -> added to cart as a property (used in size)
-
-*/
-
-export { matrix };
-export default matrix;

@@ -1,5 +1,5 @@
 // Import the matrix data
-import matrix from './matrix.js';
+import { matrix } from './matrix.js';
 
 // Transform matrix data to current_state format
 const transformMatrixToCurrentState = () => {

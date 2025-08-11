@@ -24,7 +24,7 @@ import { current_state } from "./current_selection.js";
 // IMAGE NAME FORMAT:
 // headrest__headrest_model__matisse~size_width__120cm~material_cord__grober-stoff_natur.jpeg
 // from the dependency list, we get the following:
-// <part>~<topic>_<tab>__<value>~<topic>_<tab>__<value>~...
+// <part>___<topic>_<tab>__<value>___<topic>_<tab>__<value>___...
 
 const image_parts = [
     'headrest',
@@ -174,7 +174,6 @@ function getImagesFromCurrentState(current_state) {
     return image_parts.map(part => imageMap[part]);
 }
 
-console.log(getImagesFromCurrentState(current_state));
 // Export functions and data for use in other modules
 export {
     image_parts,
