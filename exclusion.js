@@ -1,5 +1,5 @@
 // Structured exclusion principles
-// exclusion_principles = {
+// exclusion_rules = {
 //     topic: [
 //         {
 //             condition: {
@@ -64,7 +64,7 @@
 // OPERATIONS: in, not_in, less_than, greater_than, isEmpty
 // CONDITIONS: Always combined with OR operator
 
-export const exclusion_principles = {
+export const exclusion_rules = {
     series: [
         {
             condition: {
@@ -223,7 +223,7 @@ export function generateExclusionMatrix(currentState) {
     const exclusionMatrix = {};
 
     // Initialize exclusion matrix for all topics
-    Object.keys(exclusion_principles).forEach(topic => {
+    Object.keys(exclusion_rules).forEach(topic => {
         exclusionMatrix[topic] = {};
 
         // Initialize all tabs in the topic
@@ -235,8 +235,8 @@ export function generateExclusionMatrix(currentState) {
     });
 
     // Check each exclusion rule
-    Object.keys(exclusion_principles).forEach(topic => {
-        const rules = exclusion_principles[topic];
+    Object.keys(exclusion_rules).forEach(topic => {
+        const rules = exclusion_rules[topic];
 
         rules.forEach(rule => {
             // Check if the condition is met
@@ -328,9 +328,9 @@ function checkOperation(operation, selection, operationValue) {
 export function getExclusionReasons(topic, tab, currentState) {
     const reasons = [];
 
-    if (!exclusion_principles[topic]) return reasons;
+    if (!exclusion_rules[topic]) return reasons;
 
-    exclusion_principles[topic].forEach(rule => {
+    exclusion_rules[topic].forEach(rule => {
         if (isConditionMet(rule.condition, currentState)) {
             if (rule.disable[tab]) {
                 reasons.push({
@@ -343,3 +343,4 @@ export function getExclusionReasons(topic, tab, currentState) {
 
     return reasons;
 }
+
