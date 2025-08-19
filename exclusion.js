@@ -333,9 +333,10 @@ export function getExclusionReasons(topic, tab, currentState) {
     exclusion_rules[topic].forEach(rule => {
         if (isConditionMet(rule.condition, currentState)) {
             if (rule.disable[tab]) {
+                const tabsList = Object.keys(rule.disable).join(',');
                 reasons.push({
                     reason: rule.reason,
-                    disabledOptions: rule.disable[tab]
+                    affected: `${topic}:${tabsList}`
                 });
             }
         }
@@ -343,4 +344,3 @@ export function getExclusionReasons(topic, tab, currentState) {
 
     return reasons;
 }
-

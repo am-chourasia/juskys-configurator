@@ -7,6 +7,10 @@
   "scripts": {
     "dependency": "node dependency.js",
     "current_state": "node current_selection.js",
-    "dev": "node index.js"
+    "dev": "node index.js",
+    "generate": "node generate_images.js"
+  },
+  "dependencies": {
+    "sharp": "^0.33.4"
   }
 }

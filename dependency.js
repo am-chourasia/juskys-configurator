@@ -31,7 +31,7 @@ const image_parts = [
     'foot_style',
     'storage', // Changed from 'boxes' to match matrix
     'feet',
-    'mattress', // TODO: What to do about mattresses?
+    'mattress',
     'topper',
     'lighting-headboard', // Changed from 'lighting-headboard' to match upgrades
     'lighting-box', // Changed from 'lighting-box' to match upgrades
@@ -67,7 +67,9 @@ const image_dependencies = {
     ],
     // TODO: What to do about mattresses?
     "mattress": [
-        // No mattress data in current matrix, keeping placeholder
+        "mattress:eine-matratze,zwei-separate-matratzen",
+        "storage:default",
+        "size:width"
     ],
     "topper": [
         "size:width"
