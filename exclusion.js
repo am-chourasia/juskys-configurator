@@ -20,6 +20,9 @@
 // CONDITIONS:
 //   - Within a topic: different tab conditions are combined with AND
 //   - Across topics: topic-level conditions are combined with OR
+// Disable:
+//   - '*' means all options in the matrix for this topic/tab
+//   - [option1, option2] means the options with the given handles
 
 
 export const exclusion_rules = {
@@ -142,14 +145,7 @@ export const exclusion_rules = {
                 size: { width: { less_than: 'breite-120-cm' } }
             },
             disable: {
-                'zwei-separate-matratzen': [
-                    'hartegrad-matratze-1-h2',
-                    'hartegrad-matratze-1-h3',
-                    'hartegrad-matratze-1-h4',
-                    'hartegrad-matratze-2-h2',
-                    'hartegrad-matratze-2-h3',
-                    'hartegrad-matratze-2-h4'
-                ]
+                'zwei-separate-matratzen': ['*']
             },
             reason: "Two separate mattresses are only possible from 120 cm width"
         },
@@ -159,11 +155,7 @@ export const exclusion_rules = {
                 size: { width: { greater_than: 'breite-200-cm' } }
             },
             disable: {
-                'eine-matratze': [
-                    'hartegrad-matratze-1-h2',
-                    'hartegrad-matratze-1-h3',
-                    'hartegrad-matratze-1-h4'
-                ]
+                'eine-matratze': ['*']
             },
             reason: "A continuous mattress is only possible up to 200 cm width"
         }
@@ -176,7 +168,7 @@ export const exclusion_rules = {
                 foot_style: { default: { in: ['fussteil-tv-lift-versailles', 'fussteil-louvre'] } }
             },
             disable: {
-                cord: ['farbe-cord-silbergrau', 'farbe-cord-korallenrosa', 'farbe-cord-hazel', 'farbe-cord-erdbraun', 'farbe-cord-elfenbein', 'farbe-cord-cremeweiss', 'farbe-cord-blutenrosa', 'farbe-cord-anthrazit']
+                cord: ['*']
             },
             reason: "Not available with Versailles/Palais/Louvre headrest or Versailles Lift/Louvre foot style"
         }
@@ -198,14 +190,7 @@ export const exclusion_rules = {
                 upgrades: { 'beleuchtung-kopfteil': { in: ['beleuchtung-kopfteil-vorne'] } }
             },
             disable: {
-                model: [
-                    'kopfteil-modell-palais',
-                    'kopfteil-modell-belleville',
-                    'kopfteil-modell-bijou',
-                    'kopfteil-modell-monet',
-                    'kopfteil-modell-matisse',
-                    'kopfteil-modell-chateau'
-                ]
+                model: [ "kopfteil-modell-matisse", "kopfteil-modell-bijou", "kopfteil-modell-belleville", "kopfteil-modell-palais", "kopfteil-modell-chateau", "kopfteil-modell-monet"]
             },
             reason: "Headboard front lighting only with Versailles, Palais, Maison"
         },
@@ -234,7 +219,7 @@ export const exclusion_rules = {
         // Footboard: reciprocal for Material Cord (Cord excludes Versailles/Louvre footboards)
         {
             condition: {
-                material: { cord: { in: ['farbe-cord-silbergrau', 'farbe-cord-korallenrosa', 'farbe-cord-hazel', 'farbe-cord-erdbraun', 'farbe-cord-elfenbein', 'farbe-cord-cremeweiss', 'farbe-cord-blutenrosa', 'farbe-cord-anthrazit'] } }
+                material: { cord: { in: ['*'] } }
             },
             disable: {
                 default: ['fussteil-tv-lift-versailles', 'fussteil-louvre']
@@ -378,7 +363,6 @@ export const exclusion_rules = {
             reason: "Not available with Monet"
         },
         // Lighting color: only selectable if at least one lighting option has been selected
-        // TODO: AND/OR in conditions
         {
             condition: {
                 upgrades: {
