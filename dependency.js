@@ -29,7 +29,7 @@ import { current_state } from "./current_selection.js";
 const image_parts = [
     'headrest',
     'foot_style',
-    'storage', // Changed from 'boxes' to match matrix
+    'storage',
     'feet',
     'mattress',
     'topper',
@@ -62,14 +62,13 @@ const image_dependencies = {
     ],
     "feet": [
         "size:width",
+        "feet:type",
         "feet:height",
-        "feet:type"
     ],
-    // TODO: What to do about mattresses?
     "mattress": [
-        "mattress:eine-matratze,zwei-separate-matratzen",
+        "size:width",
         "storage:default",
-        "size:width"
+        "mattress:eine-matratze,zwei-separate-matratzen",
     ],
     "topper": [
         "size:width"
@@ -124,47 +123,6 @@ function createImageName(currentState) {
     return map;
 }
 
-// Helper function to validate dependencies against current state
-// function validateDependencies(currentState) {
-//     const validation = {};
-
-//     image_parts.forEach(part => {
-//         const dependencies = image_dependencies[part];
-//         validation[part] = {
-//             valid: true,
-//             missing: [],
-//             warnings: []
-//         };
-
-//         if (!dependencies || dependencies.length === 0) {
-//             validation[part].warnings.push('No dependencies defined');
-//             return;
-//         }
-
-//         dependencies.forEach(dependency => {
-//             const [topic, tabs] = dependency.split(':');
-//             const tabList = tabs.split(',');
-
-//             if (!currentState[topic]) {
-//                 validation[part].valid = false;
-//                 validation[part].missing.push(`Topic '${topic}' not found in current state`);
-//                 return;
-//             }
-
-//             tabList.forEach(tab => {
-//                 if (!currentState[topic].selection || !currentState[topic].selection[tab]) {
-//                     validation[part].valid = false;
-//                     validation[part].missing.push(`Tab '${tab}' not found in topic '${topic}'`);
-//                 } else if (currentState[topic].selection[tab].length === 0) {
-//                     validation[part].warnings.push(`Tab '${tab}' in topic '${topic}' has no selection`);
-//                 }
-//             });
-//         });
-//     });
-
-//     return validation;
-// }
-
 /**
  * Returns an array of image file names based on the current_state.
  * Each image corresponds to an image part, with its dependencies resolved from current_state.
@@ -176,7 +134,6 @@ function getImagesFromCurrentState(current_state) {
     return image_parts.map(part => imageMap[part]);
 }
 
-// Export functions and data for use in other modules
 export {
     image_parts,
     image_dependencies,

@@ -205,6 +205,34 @@ export const matrix = {
                 "type": "single-select",
                 "products": [
                     {
+                        "product_id": 8998683541739,
+                        "product_title": "Kopfteil Modell: Ohne Kopfteil",
+                        "handle": "kopfteil-modell-ohne-kopfteil",
+                        "price": "€0,00",
+                        "price_without_currency": "0,00"
+                    },
+                    {
+                        "product_id": 8953977831659,
+                        "product_title": "Kopfteil Modell: Versailles",
+                        "handle": "kopfteil-modell-versailles",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953977864427,
+                        "product_title": "Kopfteil Modell: Matisse",
+                        "handle": "kopfteil-modell-matisse",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953977929963,
+                        "product_title": "Kopfteil Modell: Bijou",
+                        "handle": "kopfteil-modell-bijou",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
                         "product_id": 8953977962731,
                         "product_title": "Kopfteil Modell:  Louvre",
                         "handle": "kopfteil-modell-louvre",
@@ -219,16 +247,9 @@ export const matrix = {
                         "price_without_currency": "99,99"
                     },
                     {
-                        "product_id": 8953977929963,
-                        "product_title": "Kopfteil Modell: Bijou",
-                        "handle": "kopfteil-modell-bijou",
-                        "price": "€99,99",
-                        "price_without_currency": "99,99"
-                    },
-                    {
-                        "product_id": 8953977831659,
-                        "product_title": "Kopfteil Modell: Versailles",
-                        "handle": "kopfteil-modell-versailles",
+                        "product_id": 8953978093803,
+                        "product_title": "Kopfteil Modell: Maison",
+                        "handle": "kopfteil-modell-maison",
                         "price": "€99,99",
                         "price_without_currency": "99,99"
                     },
@@ -240,30 +261,16 @@ export const matrix = {
                         "price_without_currency": "99,99"
                     },
                     {
-                        "product_id": 8953978290411,
-                        "product_title": "Kopfteil Modell: Monet",
-                        "handle": "kopfteil-modell-monet",
-                        "price": "€99,99",
-                        "price_without_currency": "99,99"
-                    },
-                    {
-                        "product_id": 8953977864427,
-                        "product_title": "Kopfteil Modell: Matisse",
-                        "handle": "kopfteil-modell-matisse",
-                        "price": "€99,99",
-                        "price_without_currency": "99,99"
-                    },
-                    {
-                        "product_id": 8953978093803,
-                        "product_title": "Kopfteil Modell: Maison",
-                        "handle": "kopfteil-modell-maison",
-                        "price": "€99,99",
-                        "price_without_currency": "99,99"
-                    },
-                    {
                         "product_id": 8953978224875,
                         "product_title": "Kopfteil Modell: Château",
                         "handle": "kopfteil-modell-chateau",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953978290411,
+                        "product_title": "Kopfteil Modell: Monet",
+                        "handle": "kopfteil-modell-monet",
                         "price": "€99,99",
                         "price_without_currency": "99,99"
                     }
@@ -281,16 +288,16 @@ export const matrix = {
                 "type": "single-select",
                 "products": [
                     {
-                        "product_id": 8953978978539,
-                        "product_title": "Stauraum: Durchgängige Schubladen",
-                        "handle": "stauraum-durchgangige-schubladen",
+                        "product_id": 8953978913003,
+                        "product_title": "Stauraum: Kein Stauraum",
+                        "handle": "stauraum-kein-stauraum",
                         "price": "€99,99",
                         "price_without_currency": "99,99"
                     },
                     {
-                        "product_id": 8953978913003,
-                        "product_title": "Stauraum: Kein Stauraum",
-                        "handle": "stauraum-kein-stauraum",
+                        "product_id": 8953978978539,
+                        "product_title": "Stauraum: Durchgängige Schubladen",
+                        "handle": "stauraum-durchgangige-schubladen",
                         "price": "€99,99",
                         "price_without_currency": "99,99"
                     },
@@ -390,6 +397,13 @@ export const matrix = {
                 "type": "single-select",
                 "products": [
                     {
+                        "product_id": 8978315313387,
+                        "product_title": "Füße: Ohne Füße",
+                        "handle": "fusse-ohne-fusse",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
                         "product_id": 8978315542763,
                         "product_title": "Füße: Industrial – Massivholz Schwarz",
                         "handle": "fusse-industrial-massivholz-schwarz",
@@ -424,13 +438,6 @@ export const matrix = {
                         "price": "€99,99",
                         "price_without_currency": "99,99"
                     },
-                    {
-                        "product_id": 8978315313387,
-                        "product_title": "Füße: Ohne Füße",
-                        "handle": "fusse-ohne-fusse",
-                        "price": "€99,99",
-                        "price_without_currency": "99,99"
-                    }
                 ]
             }
         }
@@ -814,6 +821,88 @@ export const matrix = {
             }
         }
     },
+    "mattress": {
+        "frontend_name": "Matratze",
+        "orientation": "horizontal",
+        "next_button": "Weiter zu Topper",
+        "tabs": {
+            "zwei-separate-matratzen": {
+                "frontend_name": "2 getrennte Matratze",
+                "type": "dropdown",
+                "products": [
+                    {
+                        "product_id": 8953984483563,
+                        "product_title": "Härtegrad Matratze 1: H2",
+                        "handle": "hartegrad-matratze-1-h2",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953984614635,
+                        "product_title": "Härtegrad Matratze 1: H3",
+                        "handle": "hartegrad-matratze-1-h3",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953984680171,
+                        "product_title": "Härtegrad Matratze 1: H4",
+                        "handle": "hartegrad-matratze-1-h4",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953984778475,
+                        "product_title": "Härtegrad Matratze 2: H2",
+                        "handle": "hartegrad-matratze-2-h2",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953984844011,
+                        "product_title": "Härtegrad Matratze 2: H3",
+                        "handle": "hartegrad-matratze-2-h3",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953984942315,
+                        "product_title": "Härtegrad Matratze 2: H4",
+                        "handle": "hartegrad-matratze-2-h4",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            },
+            "eine-matratze": {
+                "frontend_name": "Eine durchgehende  Matratzen",
+                "type": "dropdown",
+                "products": [
+                    {
+                        "product_id": 8953984483563,
+                        "product_title": "Härtegrad Matratze 1: H2",
+                        "handle": "hartegrad-matratze-1-h2",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953984614635,
+                        "product_title": "Härtegrad Matratze 1: H3",
+                        "handle": "hartegrad-matratze-1-h3",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    },
+                    {
+                        "product_id": 8953984680171,
+                        "product_title": "Härtegrad Matratze 1: H4",
+                        "handle": "hartegrad-matratze-1-h4",
+                        "price": "€99,99",
+                        "price_without_currency": "99,99"
+                    }
+                ]
+            }
+        }
+    },
     "topper": {
         "frontend_name": "Topper",
         "orientation": "normal",
@@ -858,16 +947,16 @@ export const matrix = {
                 "type": "multiselect-with-none",
                 "products": [
                     {
-                        "product_id": 8953985401067,
-                        "product_title": "Beleuchtung Kopfteil: Hinten",
-                        "handle": "beleuchtung-kopfteil-hinten",
+                        "product_id": 8953985302763,
+                        "product_title": "Beleuchtung Kopfteil: Keine",
+                        "handle": "beleuchtung-kopfteil-keine",
                         "price": "€99,99",
                         "price_without_currency": "99,99"
                     },
                     {
-                        "product_id": 8953985302763,
-                        "product_title": "Beleuchtung Kopfteil: Keine",
-                        "handle": "beleuchtung-kopfteil-keine",
+                        "product_id": 8953985401067,
+                        "product_title": "Beleuchtung Kopfteil: Hinten",
+                        "handle": "beleuchtung-kopfteil-hinten",
                         "price": "€99,99",
                         "price_without_currency": "99,99"
                     },

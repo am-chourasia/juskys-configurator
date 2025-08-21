@@ -14,7 +14,8 @@ const __dirname = path.dirname(__filename);
 // -----------------------------
 
 function parseCliArgs(argv) {
-  const args = { parts: image_parts.slice(), outDir: 'output', filters: {}, limit: null, dry: false };
+  // Default limit to 100 so running without flags creates 100 images per part
+  const args = { parts: image_parts.slice(), outDir: 'output', filters: {}, limit: 100, dry: false };
 
   for (const token of argv.slice(2)) {
     if (token.startsWith('--parts=')) {
