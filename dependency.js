@@ -110,9 +110,7 @@ function createImageName(currentState) {
                     // TODO: How to handle multiselect for lighting?
                     const value = currentState[topic].selection[tab][0];
                     if (value) {
-                        // Clean up the value for better readability in filename
-                        const cleanValue = value.replace(/[^a-zA-Z0-9-]/g, '-');
-                        return `${topic}__${tab}_${cleanValue}`;
+                        return `${topic}__${tab}_${value}`;
                     }
                 }
             }

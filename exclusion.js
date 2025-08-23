@@ -528,15 +528,8 @@ export function getExclusionReasons(topic, tab, currentState) {
 
     const uniqueAffected = Array.from(new Set(allCauses));
 
-    if (matchedReasons.length > 1) {
-        return [{
-            reason: "Unfortunately, some of the options above cannot be combined with the option below. If you prefer, deselect the option below:",
-            affected: uniqueAffected
-        }];
-    }
-
-    return [{
-        reason: matchedReasons[0],
+    return {
+        reasons: matchedReasons,
         affected: uniqueAffected
-    }];
+    };
 }

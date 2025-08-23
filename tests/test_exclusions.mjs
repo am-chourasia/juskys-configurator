@@ -99,7 +99,7 @@ function state(partial) {
   log('T6 reasons for foot_style:default', t6Reasons);
 
   // Assert: reasons exist for disabled footboards
-  assert(t6Reasons.length > 0);
+  assert(t6Reasons && t6Reasons.reasons && t6Reasons.reasons.length > 0);
 
   // Assert: TV Lift Salon and Versailles footboards are disabled when feet are present
   assert(matrix.foot_style.default.includes('fussteil-tv-lift-salon'));
@@ -119,7 +119,7 @@ function state(partial) {
   // Assert: Lighting color RGB is disabled when any lighting selection is 'none'
   assert(matrix.extras['beleuchtungs-farbe'].includes('beleuchtungs-farbe-rgb-mit-fernbedienung'));
   // Assert: reasons exist for disabled lighting color
-  assert(t7Reasons.length > 0);
+  assert(t7Reasons && t7Reasons.reasons && t7Reasons.reasons.length > 0);
 }
 
 
