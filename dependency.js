@@ -25,6 +25,7 @@ import { current_state } from "./current_selection.js";
 // headrest__headrest_model__matisse~size_width__120cm~material_cord__grober-stoff_natur.jpeg
 // from the dependency list, we get the following:
 // <part>___<topic>_<tab>__<value>___<topic>_<tab>__<value>___...
+// <part>___<value>___<value>___...
 
 const image_parts = [
     'headrest',
@@ -38,8 +39,10 @@ const image_parts = [
 ]
 // + background
 
-// Eg: headrest___size__width_120cm___headrest__model_matisse___headrest__height_120cm___material__cord_cord-farbe-1.png
+// Eg: headrest___width_120cm___headrest_matisse___headrest__120cm___material_cord-farbe-1.png
 // ORDER IS VERY IMPORTANT IN DEPENDENCY LIST
+
+// headrest___120cm___kopftiel___120cm___farbe2.png
 
 const image_dependencies = {
     "headrest": [
@@ -107,8 +110,7 @@ function createImageName(currentState) {
 
             for (const tab of tabList) {
                 if (currentState[topic] && currentState[topic].selection[tab]) {
-                    // TODO: How to handle multiselect for lighting?
-                    const value = currentState[topic].selection[tab][0];
+                    const value = currentState[topic].selection[tab].sort().join('_');
                     if (value) {
                         return `${topic}__${tab}_${value}`;
                     }
