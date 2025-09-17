@@ -100,11 +100,11 @@ function createImageName(currentState) {
         const dependencies = image_dependencies[part];
         // Skip if no dependencies (like mattress)
         if (!dependencies || dependencies.length === 0) {
-            map[part] = `${part}___.png`;
+            map[part] = `${part}__.png`;
             return;
         }
-        const image_name = `${part}___`;
-        const dependencyStrings = dependencies.map(dependency => {
+        const image_name = `${part}__`;
+        const dependencyValues = dependencies.map(dependency => {
             const [topic, tabs] = dependency.split(':');
             const tabList = tabs.split(',');
 
@@ -112,12 +112,13 @@ function createImageName(currentState) {
                 if (currentState[topic] && currentState[topic].selection[tab]) {
                     const value = currentState[topic].selection[tab].sort().join('_');
                     if (value) {
-                        return `${topic}__${tab}_${value}`;
+                        return value;
                     }
                 }
             }
             return null;
-        }).filter(Boolean).join('___');
+        }).filter(Boolean);
+        const dependencyStrings = dependencyValues.join('__');
         map[part] = `${image_name}${dependencyStrings}.png`;
     });
     return map;
