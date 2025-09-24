@@ -119,9 +119,22 @@ function createImageName(currentState) {
             return null;
         }).filter(Boolean);
         const dependencyStrings = dependencyValues.join('__');
-        map[part] = `${image_name}${dependencyStrings}.png`;
+        const image_nmae = `${image_name}${dependencyStrings}.png`;
+        map[part] = transformImageName(image_name);;
     });
     return map;
+}
+
+// This function transforms the raw image name according to the specified rules:
+// - Replace 'bettboutique-kollektion-komfort' with 'collection_deluxe'
+// - Replace 'kollektion-first-class' or 'kollektion-deluxe' with 'collection_premium'
+function transformImageName(raw_image_name) {
+    let name = raw_image_name.trimEnd(); // Remove trailing whitespace
+    // Replace 'bettboutique-kollektion-komfort' with 'collection_deluxe'
+    name = name.replace(/bettboutique-kollektion-komfort/g, 'collection_deluxe');
+    // Replace 'kollektion-first-class' or 'kollektion-deluxe' with 'collection_premium'
+    name = name.replace(/kollektion-(first-class|deluxe)/g, 'collection_premium');
+    return name;
 }
 
 /**
