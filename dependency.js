@@ -125,13 +125,11 @@ function createImageName(currentState) {
     return map;
 }
 
-// This function transforms the raw image name according to the specified rules:
-// - Replace 'bettboutique-kollektion-komfort' with 'collection_deluxe'
-// - Replace 'kollektion-first-class' or 'kollektion-deluxe' with 'collection_premium'
+// This function transforms the raw image name according to the specified rules/groups
 function transformImageName(raw_image_name) {
     let name = raw_image_name.trimEnd(); // Remove trailing whitespace
     // Replace 'bettboutique-kollektion-komfort' with 'collection_deluxe'
-    name = name.replace(/bettboutique-kollektion-komfort/g, 'collection_deluxe');
+    name = name.replace(/bettboutique-kollektion-komfort/g, 'collection_komfort');
     // Replace 'kollektion-first-class' or 'kollektion-deluxe' with 'collection_premium'
     name = name.replace(/kollektion-(first-class|deluxe)/g, 'collection_premium');
     return name;

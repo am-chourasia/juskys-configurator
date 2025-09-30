@@ -30,7 +30,7 @@ export const exclusion_rules = {
         // Series: disable non-Comfort when drawers are selected (reciprocal of storage rule)
         {
             condition: {
-                storage: { default: { in: ['stauraum-durchgangige-schubladen', 'stauraum-geteilte-schubladen'] } }
+                storage: { default: { in: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup'] } }
             },
             disable: {
                 default: ['kollektion-deluxe', 'kollektion-first-class']
@@ -45,28 +45,28 @@ export const exclusion_rules = {
                 series: { default: { not_in: ['bettboutique-kollektion-komfort'] } }
             },
             disable: {
-                default: ['stauraum-durchgangige-schubladen', 'stauraum-geteilte-schubladen']
+                default: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup']
             },
-            reason: "Only available in the Komfort series"
+            reason: "Nur in der Komfort-Serie verfügbar"
         },
         // Storage: drawers and fold-up base only with "without feet" and width from 120 cm
         {
             condition: {
-                feet: { type: { not_in: ['fusse-ohne-fusse'] } },
-                size: { width: { less_than: 'breite-120-cm' } }
+                feet: { type: { not_in: ['feet-hight_00'] } },
+                size: { width: { less_than: 'width_120' } }
             },
             disable: {
-                default: ['stauraum-durchgangige-schubladen', 'stauraum-geteilte-schubladen', 'stauraum-hochklappbarer-bettkasten']
+                default: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup', 'storage-model_liftup']
             },
-            reason: "Not available with feet or width < 120 cm"
+            reason: "Only available without feet and width > 120 cm"
         },
         // Storage: reciprocal for Box side lighting (side lighting not with drawers)
         {
             condition: {
-                upgrades: { 'beleuchtung-box': { in: ['beleuchtung-box-led-seite'] } }
+                beleuchtung: { 'beleuchtung-box': { in: ['light-position_sidelighting'] } }
             },
             disable: {
-                default: ['stauraum-durchgangige-schubladen', 'stauraum-geteilte-schubladen']
+                default: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup']
             },
             reason: "Not available with box side lighting"
         }
@@ -89,9 +89,9 @@ export const exclusion_rules = {
             },
             disable: {
                 width: [
-                    'breite-80-cm',
-                    'breite-90-cm',
-                    'breite-100-cm'
+                    'width_80',
+                    'width_90',
+                    'width_100'
                 ]
             },
             reason: "Widths less than 120 cm are not available with two separate mattresses"
@@ -107,8 +107,8 @@ export const exclusion_rules = {
             },
             disable: {
                 width: [
-                    'breite-210-cm',
-                    'breite-220-cm'
+                    'width_210',
+                    'width_220'
                 ]
             },
             reason: "Widths greater than 200 cm are not available with a continuous mattress"
@@ -116,24 +116,23 @@ export const exclusion_rules = {
         // Size: reciprocal for storage min width (drawers/fold-up require width >= 120)
         {
             condition: {
-                storage: { default: { in: ['stauraum-durchgangige-schubladen', 'stauraum-geteilte-schubladen', 'stauraum-hochklappbarer-bettkasten'] } }
+                storage: { default: { in: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup', 'storage-model_liftup'] } }
             },
             disable: {
                 width: [
-                    'breite-80-cm',
-                    'breite-90-cm',
-                    'breite-100-cm'
+                    'width_90',
+                    'width_100'
                 ]
             },
-            reason: "These storage options require width from 120 cm"
+            reason: "These storage options starts from width 120 cm"
         },
         // Size: reciprocal for USB ports width restriction (USB not possible with width 90–120 cm)
         {
             condition: {
-                extras: { 'usb-anschluesse': { in: ['upgrades-usb-anschlusse-am-kopfteil'] } }
+                upgrades: { 'usb-anschluesse': { in: ['upgrades-usb-anschlusse-am-kopfteil'] } }
             },
             disable: {
-                width: ['breite-90-cm', 'breite-100-cm', 'breite-120-cm']
+                width: ['width_90', 'width_100', 'width_120']
             },
             reason: "USB ports are not available with width 90–120 cm"
         }
@@ -142,7 +141,7 @@ export const exclusion_rules = {
         // Mattress: two separate mattresses only possible from 120 cm width
         {
             condition: {
-                size: { width: { less_than: 'breite-120-cm' } }
+                size: { width: { less_than: 'width_120' } }
             },
             disable: {
                 'zwei-separate-matratzen': ['*']
@@ -152,7 +151,7 @@ export const exclusion_rules = {
         // Mattress: a continuous mattress is only possible up to 200 cm width
         {
             condition: {
-                size: { width: { greater_than: 'breite-200-cm' } }
+                size: { width: { greater_than: 'width_200' } }
             },
             disable: {
                 'eine-matratze': ['*']
@@ -164,8 +163,8 @@ export const exclusion_rules = {
         // Material: Cord not possible with headboards 1,4,7 or with footboards TV Lift Versailles/Louvre
         {
             condition: {
-                headrest: { model: { in: ['kopfteil-modell-versailles', 'kopfteil-modell-palais', 'kopfteil-modell-louvre'] } },
-                foot_style: { default: { in: ['fussteil-tv-lift-versailles', 'fussteil-louvre'] } }
+                headrest: { model: { in: ['headboard-model_versailles', 'headboard-model_palais', 'headboard-model_louvre'] } },
+                foot_style: { default: { in: ['footboard-model_tv-lift-versailles', 'footboard-model_louvre'] } }
             },
             disable: {
                 cord: ['*']
@@ -177,30 +176,30 @@ export const exclusion_rules = {
         // Headboard: not possible with Cord (cord excludes models 1,4,7)
         {
             condition: {
-                material: { cord: { in: ['farbe-cord-silbergrau', 'farbe-cord-korallenrosa', 'farbe-cord-hazel', 'farbe-cord-erdbraun', 'farbe-cord-elfenbein', 'farbe-cord-cremeweiss', 'farbe-cord-blutenrosa', 'farbe-cord-anthrazit'] } }
+                material: { cord: { in: ['material_cord__color_silbergrau', 'material_cord__color_levendel', 'material_cord__color_taupe', 'material_cord__color_kaffe', 'material_cord__color_beige', 'material_cord__color_creme', 'material_cord__color_rose', 'material_cord__color_athrazit'] } }
             },
             disable: {
-                model: ['kopfteil-modell-versailles', 'kopfteil-modell-palais', 'kopfteil-modell-louvre']
+                model: ['headboard-model_versailles', 'headboard-model_palais', 'headboard-model_louvre']
             },
             reason: "Not available with Cord"
         },
         // Headboard: reciprocal for headboard front lighting (only with 1,4,6)
         {
             condition: {
-                upgrades: { 'beleuchtung-kopfteil': { in: ['beleuchtung-kopfteil-vorne'] } }
+                beleuchtung: { 'beleuchtung-kopfteil-vorne': { in: ['light-position_headboardfrontlighting'] } }
             },
             disable: {
-                model: [ "kopfteil-modell-matisse", "kopfteil-modell-bijou", "kopfteil-modell-belleville", "kopfteil-modell-palais", "kopfteil-modell-chateau", "kopfteil-modell-monet"]
+                model: [ "headboard-model_matisse", "headboard-model_bijou", "headboard-model_belleville", "headboard-model_palais", "headboard-model_chateau", "headboard-model_monet"]
             },
             reason: "Headboard front lighting only with Versailles, Palais, Maison"
         },
         // Headboard: reciprocal for USB ports (USB not possible with headboard 9 Monet)
         {
             condition: {
-                extras: { 'usb-anschluesse': { in: ['upgrades-usb-anschlusse-am-kopfteil'] } }
+                upgrades: { 'usb-anschluesse': { in: ['upgrades-usb-anschlusse-am-kopfteil'] } }
             },
             disable: {
-                model: ['kopfteil-modell-monet']
+                model: ['headboard-model_monet']
             },
             reason: "USB ports are not available with Monet"
         }
@@ -209,12 +208,12 @@ export const exclusion_rules = {
         // Footboard: “TV Lift Salon” & “TV Lift Versailles” only with the “without feet” option
         {
             condition: {
-                feet: { type: { not_in: ['fusse-ohne-fusse'] } }
+                feet: { type: { not_in: ['feet-hight_00'] } }
             },
             disable: {
-                default: ['fussteil-tv-lift-salon', 'fussteil-tv-lift-versailles']
+                default: ['footboard-model_tv-lift-salon', 'footboard-model_tv-lift-versailles']
             },
-            reason: "Not available with feet"
+            reason: "Only available without feet"
         },
         // Footboard: reciprocal for Material Cord (Cord excludes Versailles/Louvre footboards)
         {
@@ -222,27 +221,27 @@ export const exclusion_rules = {
                 material: { cord: { in: ['*'] } }
             },
             disable: {
-                default: ['fussteil-tv-lift-versailles', 'fussteil-louvre']
+                default: ['footboard-model_tv-lift-versailles', 'footboard-model_louvre']
             },
             reason: "Cord not possible with Versailles/Louvre footboards"
         },
         // Footboard: reciprocal for Box front lighting (only possible without footboard)
         {
             condition: {
-                upgrades: { 'beleuchtung-box': { in: ['beleuchtung-box-led-front'] } }
+                beleuchtung: { 'beleuchtung-box-led-front': { in: ['light-position_frontlighting'] } }
             },
             disable: {
-                default: ['fussteil-louvre', 'fussteil-tv-lift-versailles', 'fussteil-tv-lift-salon', 'fussteil-opera']
+                default: ['footboard-model_louvre', 'footboard-model_tv-lift-versailles', 'footboard-model_tv-lift-salon', 'footboard-model_opera']
             },
             reason: "Box front lighting only possible without footboard"
         },
         // Footboard: reciprocal for Foot section lighting (only TV Lift Salon can be illuminated)
         {
             condition: {
-                upgrades: { 'beleuchtung-box': { in: ['beleuchtung-box-led-fussteil'] } }
+                beleuchtung: { 'beleuchtung-box-led-fussteil': { in: ['light-position_footboardlighting'] } }
             },
             disable: {
-                default: ['fussteil-kein-fussteil', 'fussteil-louvre', 'fussteil-tv-lift-versailles', 'fussteil-opera']
+                default: ['footboard-model_none', 'footboard-model_louvre', 'footboard-model_tv-lift-versailles', 'footboard-model_opera']
             },
             reason: "Foot section lighting only with TV Lift Salon"
         }
@@ -251,111 +250,124 @@ export const exclusion_rules = {
         // Feet: the “floating” model is only available with a foot height of 10 cm
         {
             condition: {
-                feet: { height: { not_in: ['fusshohe-10-cm'] } }
+                feet: { height: { not_in: ['feet-hight_10'] } }
             },
             disable: {
-                type: ['fusse-schwebend-nur-10cm']
+                type: ['feet-model_none']
             },
             reason: "Not available with other heights"
         },
         // Feet: reciprocal of the “floating” model is only available with a foot height of 10 cm
         {
             condition: {
-                feet: { type: { in: ['fusse-schwebend-nur-10cm'] } }
+                feet: { type: { in: ['feet-model_none'] } }
             },
             disable: {
-                height: ['fusshohe-15-cm']
+                height: ['feet-hight_15']
             },
             reason: "Not available with other heights"
         },
         // Feet: reciprocal for Storage (drawers/fold-up require “without feet”)
         {
             condition: {
-                storage: { default: { in: ['stauraum-durchgangige-schubladen', 'stauraum-geteilte-schubladen', 'stauraum-hochklappbarer-bettkasten'] } }
+                storage: { default: { in: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup', 'storage-model_liftup'] } }
             },
             disable: {
-                type: ['fusse-industrial-massivholz-schwarz', 'fusse-klassisch-holz-natur-eckig', 'fusse-modern-metall-chrom', 'fusse-skandinavisch-rundholz-natur', 'fusse-schwebend-nur-10cm']
+                type: ['feet-model_02', ' feet-model_03', 'feet-model_01', 'feet-model_04', 'feet-model_none']
             },
             reason: "These storage options are only available without feet"
         },
         // Feet: reciprocal for Footboard (Salon/Versailles require “without feet”)
         {
             condition: {
-                foot_style: { default: { in: ['fussteil-tv-lift-salon', 'fussteil-tv-lift-versailles'] } }
+                foot_style: { default: { in: ['footboard-model_tv-lift-salon', 'footboard-model_tv-lift-versailles'] } }
             },
             disable: {
-                type: ['fusse-industrial-massivholz-schwarz', 'fusse-klassisch-holz-natur-eckig', 'fusse-modern-metall-chrom', 'fusse-skandinavisch-rundholz-natur', 'fusse-schwebend-nur-10cm']
+                type: ['feet-model_02', ' feet-model_03', 'feet-model_01', 'feet-model_04', 'feet-model_none']
             },
             reason: "These footboards are only available without feet"
         },
         // Feet: reciprocal for Underbody lighting (underbody lighting requires feet)
         {
             condition: {
-                upgrades: { 'beleuchtung-box': { in: ['beleuchtung-box-led-unterboden'] } }
+                beleuchtung: { 'beleuchtung-box-led-unterboden': { in: ['light-position_bottomlighting'] } }
             },
             disable: {
-                type: ['fusse-ohne-fusse']
+                type: ['feet-hight_00']
             },
             reason: "Underbody lighting requires feet"
         }
     ],
-    upgrades: [
+    beleuchtung: [
         // Lighting Headboard front: only with headboards 1, 4, and 6 (Versailles, Louvre, Maison)
         {
             condition: {
-                headrest: { model: { not_in: ['kopfteil-modell-versailles', 'kopfteil-modell-louvre', 'kopfteil-modell-maison'] } }
+                headrest: { model: { not_in: ['headboard-model_versailles', 'headboard-model_louvre', 'headboard-model_maison'] } }
             },
             disable: {
-                'beleuchtung-kopfteil': ['beleuchtung-kopfteil-vorne']
+                'beleuchtung-kopfteil-vorne': ['light-position_headboardfrontlighting']
             },
             reason: "Not available with headboards other than Versailles, Louvre or Maison"
         },
         // Lighting Box front: not possible when footboards are selected (only with “kein Fußteil”)
         {
             condition: {
-                foot_style: { default: { not_in: ['fussteil-kein-fussteil'] } }
+                foot_style: { default: { not_in: ['footboard-model_none'] } }
             },
             disable: {
-                'beleuchtung-box': ['beleuchtung-box-led-front']
+                'beleuchtung-box-led-front': ['light-position_frontlighting']
             },
             reason: "Not available when a footboard is selected"
         },
         // Box side lighting: not available for Continuous/Split drawers
         {
             condition: {
-                storage: { default: { in: ['stauraum-durchgangige-schubladen', 'stauraum-geteilte-schubladen'] } }
+                storage: { default: { in: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup'] } }
             },
             disable: {
-                'beleuchtung-box': ['beleuchtung-box-led-seite']
+                'beleuchtung-box-seite': ['light-position_sidelighting']
             },
             reason: "Not available with continuous/divided drawers"
         },
         // Box underbody lighting: only available when feet are selected (i.e., not with "without feet")
         {
             condition: {
-                feet: { type: { in: ['fusse-ohne-fusse'] } }
+                feet: { type: { in: ['feet-hight_00'] } }
             },
             disable: {
-                'beleuchtung-box': ['beleuchtung-box-led-unterboden']
+                'beleuchtung-box-led-unterboden': ['light-position_bottomlighting']
             },
             reason: "Not available without feet"
         },
         // Foot section lighting: only the “TV Lift Salon” foot section can be illuminated
         {
             condition: {
-                foot_style: { default: { not_in: ['fussteil-tv-lift-salon'] } }
+                foot_style: { default: { not_in: ['footboard-model_tv-lift-salon'] } }
             },
             disable: {
-                'beleuchtung-box': ['beleuchtung-box-led-fussteil']
+                'beleuchtung-box-led-fussteil': ['light-position_footboardlighting']
             },
             reason: "Not available with footboards other than TV Lift Salon"
+        },
+        // Lighting: reciprocal for lighting color (color requires at least one lighting option)
+        {
+            condition: {
+                upgrades: { 
+                    'beleuchtungs-farbe': { in: ['beleuchtungs-farbe-rgb-mit-fernbedienung'] },
+                }
+            },
+            disable: {
+                'beleuchtung-kopfteil-keine': ['beleuchtung-kopfteil-keine'],
+                'beleuchtung-box-keine': ['beleuchtung-box-keine']
+            },
+            reason: "Lighting color requires at least one lighting option"
         }
     ],
-    extras: [
+    upgrades: [
         // USB ports: not possible with headboard 9 (Monet)
         {
             condition: {
-                headrest: { model: { in: ['kopfteil-modell-monet'] } }
+                headrest: { model: { in: ['headboard-model_monet'] } }
             },
             disable: {
                 'usb-anschluesse': ['upgrades-usb-anschlusse-am-kopfteil']
@@ -365,9 +377,15 @@ export const exclusion_rules = {
         // Lighting color: only selectable if at least one lighting option has been selected
         {
             condition: {
-                upgrades: {
-                    'beleuchtung-kopfteil': { in: ['beleuchtung-kopfteil-keine'] },
-                    'beleuchtung-box': { in: ['beleuchtung-box-keine'] }
+                beleuchtung: {
+                    'beleuchtung-kopfteil-keine': { in: ['beleuchtung-kopfteil-keine'] },
+                    'beleuchtung-kopfteil-hinten': { isEmpty: true },
+                    'beleuchtung-kopfteil-vorne': { isEmpty: true },
+                    'beleuchtung-box-keine': { in: ['beleuchtung-box-keine'] },
+                    'beleuchtung-box-led-front': { isEmpty: true },
+                    'beleuchtung-box-seite': { isEmpty: true },
+                    'beleuchtung-box-led-unterboden': { isEmpty: true },
+                    'beleuchtung-box-led-fussteil': { isEmpty: true },
                 }
             },
             disable: {
@@ -378,7 +396,7 @@ export const exclusion_rules = {
         // USB ports: not possible with a width of 90–120 cm
         {
             condition: {
-                size: { width: { in: ['breite-90-cm', 'breite-100-cm', 'breite-120-cm'] } }
+                size: { width: { in: ['width_90', 'width_100', 'width_120'] } }
             },
             disable: {
                 'usb-anschluesse': ['upgrades-usb-anschlusse-am-kopfteil']
@@ -387,6 +405,7 @@ export const exclusion_rules = {
         }
     ]
 }
+
 
 /**
  * Checks all exclusion logic from current_state and generates an exclusion matrix
@@ -478,7 +497,7 @@ function checkOperation(operation, selection, operationValue) {
         case 'isEmpty':
             return operationValue ? selection.length === 0 : selection.length > 0;
         case 'less_than':
-            // Compare numeric values parsed from selection and operationValue (handles strings like 'breite-120-cm')
+            // Compare numeric values parsed from selection and operationValue (handles strings like 'width_120')
             return selection.some(item => {
                 const numValue = parseFloat(String(item).replace(/[^\d.]/g, ''));
                 const opValue = parseFloat(String(operationValue).replace(/[^\d.]/g, ''));
