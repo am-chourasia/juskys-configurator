@@ -56,7 +56,7 @@ export const exclusion_rules = {
                 size: { width: { less_than: 'width_120' } }
             },
             disable: {
-                default: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup', 'storage-model_liftup']
+                default: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup', 'stauraum-hochklappbarer-bettkasten']
             },
             reason: "Nur ohne Füße und einer Breite ab 120 cm verfügbar"
         },
@@ -116,7 +116,7 @@ export const exclusion_rules = {
         // Size: reciprocal for storage min width (drawers/fold-up require width >= 120)
         {
             condition: {
-                storage: { default: { in: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup', 'storage-model_liftup'] } }
+                storage: { default: { in: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup', 'stauraum-hochklappbarer-bettkasten'] } }
             },
             disable: {
                 width: [
@@ -135,6 +135,16 @@ export const exclusion_rules = {
                 width: ['width_90', 'width_100', 'width_120']
             },
             reason: "USB-Anschlüsse sind für die Breiten 90–120 cm nicht verfügbar"
+        },
+        // Size: reciprocal for TV Lift footboards (TV Lift Salon/Versailles only from width 140 cm)
+        {
+            condition: {
+                foot_style: { default: { in: ['footboard-model_tv-lift-salon', 'footboard-model_tv-lift-versailles'] } }
+            },
+            disable: {
+                width: ['width_90', 'width_100', 'width_120']
+            },
+            reason: "Fußteile 'TV Lift Salon' und 'TV Lift Versailles' sind erst ab 140 cm Breite verfügbar"
         }
     ],
     mattress: [
@@ -245,12 +255,23 @@ export const exclusion_rules = {
             },
             reason: "Die Beleuchtungs Box LED Fußteil ist nur mit dem Fußteil TV Lift Salon kombinierbar"
         }
+        ,
+        // Footboard: TV Lift Salon/Versailles not configurable at 90–120 cm width (from 140 cm)
+        {
+            condition: {
+                size: { width: { in: ['width_90', 'width_100', 'width_120'] } }
+            },
+            disable: {
+                default: ['footboard-model_tv-lift-salon', 'footboard-model_tv-lift-versailles']
+            },
+            reason: "Fußteile 'TV Lift Salon' und 'TV Lift Versailles' sind bei 90–120 cm nicht konfigurierbar (erst ab 140 cm)"
+        }
     ],
     feet: [
         // Feet: the “floating” model is only available with a foot height of 10 cm
         {
             condition: {
-                feet: { height: { not_in: ['feet-hight_10'] } }
+                feet: { height: { in: ['fusshohe-15-cm'] } }
             },
             disable: {
                 type: ['feet-model_none']
@@ -263,14 +284,14 @@ export const exclusion_rules = {
                 feet: { type: { in: ['feet-model_none'] } }
             },
             disable: {
-                height: ['feet-hight_15']
+                height: ['fusshohe-15-cm']
             },
             reason: "Die Option schwebend ist nur mit der Option Fußhöhe 15cm kombinierbar"
         },
         // Feet: reciprocal for Storage (drawers/fold-up require “without feet”)
         {
             condition: {
-                storage: { default: { in: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup', 'storage-model_liftup'] } }
+                storage: { default: { in: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup', 'stauraum-hochklappbarer-bettkasten'] } }
             },
             disable: {
                 type: ['feet-model_02', ' feet-model_03', 'feet-model_01', 'feet-model_04', 'feet-model_none']
@@ -491,8 +512,16 @@ function isConditionMet(condition, currentState) {
 function checkOperation(operation, selection, operationValue) {
     switch (operation) {
         case 'in':
+            // Support wildcard: ['*'] means any selection
+            if (Array.isArray(operationValue) && operationValue.length === 1 && operationValue[0] === '*') {
+                return selection.length > 0;
+            }
             return selection.some(item => operationValue.includes(item));
         case 'not_in':
+            // Support wildcard: ['*'] means no selection
+            if (Array.isArray(operationValue) && operationValue.length === 1 && operationValue[0] === '*') {
+                return selection.length === 0;
+            }
             return !selection.some(item => operationValue.includes(item));
         case 'isEmpty':
             return operationValue ? selection.length === 0 : selection.length > 0;
