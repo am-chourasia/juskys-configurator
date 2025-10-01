@@ -251,7 +251,7 @@ export const exclusion_rules = {
                 beleuchtung: { 'beleuchtung-box-led-fussteil': { in: ['light-position_footboardlighting'] } }
             },
             disable: {
-                default: ['footboard-model_none', 'footboard-model_louvre', 'footboard-model_tv-lift-versailles', 'footboard-model_opera']
+                default: ['footboard-model_louvre', 'footboard-model_tv-lift-versailles', 'footboard-model_opera']
             },
             reason: "Die Beleuchtungs Box LED Fußteil ist nur mit dem Fußteil TV Lift Salon kombinierbar"
         }
@@ -333,7 +333,7 @@ export const exclusion_rules = {
         // Lighting Box front: not possible when footboards are selected (only with “kein Fußteil”)
         {
             condition: {
-                foot_style: { default: { not_in: ['footboard-model_none'] } }
+                foot_style: { default: { not_in: ['fussteil-kein-fussteil'] } }
             },
             disable: {
                 'beleuchtung-box-led-front': ['light-position_frontlighting']
