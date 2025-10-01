@@ -35,7 +35,7 @@ export const exclusion_rules = {
             disable: {
                 default: ['kollektion-deluxe', 'kollektion-first-class']
             },
-            reason: "Not available with continuous/divided drawers"
+            reason: "Nicht verfügbar mit den Optionen Durchgängige oder Geteilte Schubladen"
         }
     ],
     storage: [
@@ -58,7 +58,7 @@ export const exclusion_rules = {
             disable: {
                 default: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup', 'storage-model_liftup']
             },
-            reason: "Only available without feet and width > 120 cm"
+            reason: "Nur ohne Füße und einer Breite ab 120 cm verfügbar"
         },
         // Storage: reciprocal for Box side lighting (side lighting not with drawers)
         {
@@ -68,7 +68,7 @@ export const exclusion_rules = {
             disable: {
                 default: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup']
             },
-            reason: "Not available with box side lighting"
+            reason: "Nicht kombinierbar mit: Beleuchtungs Box - LED Seite"
         }
     ],
     // Size (Width) reciprocals
@@ -94,7 +94,7 @@ export const exclusion_rules = {
                     'width_100'
                 ]
             },
-            reason: "Widths less than 120 cm are not available with two separate mattresses"
+            reason: "Zwei separate Matratzen sind nur ab einer Breite von 120cm möglich"
         },
         // Size: disable widths > 200 when a continuous mattress is chosen
         {
@@ -111,7 +111,7 @@ export const exclusion_rules = {
                     'width_220'
                 ]
             },
-            reason: "Widths greater than 200 cm are not available with a continuous mattress"
+            reason: "Durchgehende Matratze sind nur bis eine Breite von 200cm verfügbar"
         },
         // Size: reciprocal for storage min width (drawers/fold-up require width >= 120)
         {
@@ -124,7 +124,7 @@ export const exclusion_rules = {
                     'width_100'
                 ]
             },
-            reason: "These storage options starts from width 120 cm"
+            reason: "Die Option Stauraum ist erst ab einer Breite von 120cm verfügbar"
         },
         // Size: reciprocal for USB ports width restriction (USB not possible with width 90–120 cm)
         {
@@ -134,7 +134,7 @@ export const exclusion_rules = {
             disable: {
                 width: ['width_90', 'width_100', 'width_120']
             },
-            reason: "USB ports are not available with width 90–120 cm"
+            reason: "USB-Anschlüsse sind für die Breiten 90–120 cm nicht verfügbar"
         }
     ],
     mattress: [
@@ -146,7 +146,7 @@ export const exclusion_rules = {
             disable: {
                 'zwei-separate-matratzen': ['*']
             },
-            reason: "Two separate mattresses are only possible from 120 cm width"
+            reason: "Zwei separate Matratzen sind nur ab einer Breite von 120cm verfügbar"
         },
         // Mattress: a continuous mattress is only possible up to 200 cm width
         {
@@ -156,7 +156,7 @@ export const exclusion_rules = {
             disable: {
                 'eine-matratze': ['*']
             },
-            reason: "A continuous mattress is only possible up to 200 cm width"
+            reason: "Durchgehende Matratzen sind nur bis zu einer Breite von 200cm verfügbar"
         }
     ],
     material: [
@@ -169,7 +169,7 @@ export const exclusion_rules = {
             disable: {
                 cord: ['*']
             },
-            reason: "Not available with Versailles/Palais/Louvre headrest or Versailles Lift/Louvre foot style"
+            reason: "Nicht Verfügbar mit den Kopfteilen: Versailles/Palais/Louvre oder den Fußteilen: TV Lift Versailles/Louvre"
         }
     ],
     headrest: [
@@ -181,7 +181,7 @@ export const exclusion_rules = {
             disable: {
                 model: ['headboard-model_versailles', 'headboard-model_palais', 'headboard-model_louvre']
             },
-            reason: "Not available with Cord"
+            reason: "Nicht verfügbar mit der Option: Cord"
         },
         // Headboard: reciprocal for headboard front lighting (only with 1,4,6)
         {
@@ -191,7 +191,7 @@ export const exclusion_rules = {
             disable: {
                 model: [ "headboard-model_matisse", "headboard-model_bijou", "headboard-model_belleville", "headboard-model_palais", "headboard-model_chateau", "headboard-model_monet"]
             },
-            reason: "Headboard front lighting only with Versailles, Palais, Maison"
+            reason: "Nur verfügbar mit den Kopfteilen: Versailles, Palais, Maison"
         },
         // Headboard: reciprocal for USB ports (USB not possible with headboard 9 Monet)
         {
@@ -201,7 +201,7 @@ export const exclusion_rules = {
             disable: {
                 model: ['headboard-model_monet']
             },
-            reason: "USB ports are not available with Monet"
+            reason: "Nicht verfügbar mit dem Kopfteil: Monet"
         }
     ],
     foot_style: [
@@ -213,7 +213,7 @@ export const exclusion_rules = {
             disable: {
                 default: ['footboard-model_tv-lift-salon', 'footboard-model_tv-lift-versailles']
             },
-            reason: "Only available without feet"
+            reason: "Nur verfügbar mit der Option: Ohne Füße"
         },
         // Footboard: reciprocal for Material Cord (Cord excludes Versailles/Louvre footboards)
         {
@@ -223,7 +223,7 @@ export const exclusion_rules = {
             disable: {
                 default: ['footboard-model_tv-lift-versailles', 'footboard-model_louvre']
             },
-            reason: "Cord not possible with Versailles/Louvre footboards"
+            reason: "Cord kann nicht mit den Fußteilen TV Lift Versailles oder Louvre kombiniert werden"
         },
         // Footboard: reciprocal for Box front lighting (only possible without footboard)
         {
@@ -233,7 +233,7 @@ export const exclusion_rules = {
             disable: {
                 default: ['footboard-model_louvre', 'footboard-model_tv-lift-versailles', 'footboard-model_tv-lift-salon', 'footboard-model_opera']
             },
-            reason: "Box front lighting only possible without footboard"
+            reason: "Beleuchtung Box LED Front ist nur ohne die Option Fußteil verfügbar"
         },
         // Footboard: reciprocal for Foot section lighting (only TV Lift Salon can be illuminated)
         {
@@ -243,7 +243,7 @@ export const exclusion_rules = {
             disable: {
                 default: ['footboard-model_none', 'footboard-model_louvre', 'footboard-model_tv-lift-versailles', 'footboard-model_opera']
             },
-            reason: "Foot section lighting only with TV Lift Salon"
+            reason: "Die Beleuchtungs Box LED Fußteil ist nur mit dem Fußteil TV Lift Salon kombinierbar"
         }
     ],
     feet: [
@@ -255,7 +255,7 @@ export const exclusion_rules = {
             disable: {
                 type: ['feet-model_none']
             },
-            reason: "Not available with other heights"
+            reason: "Die Option schwebend ist nur mit der Option Fußhöhe 15cm kombinierbar"
         },
         // Feet: reciprocal of the “floating” model is only available with a foot height of 10 cm
         {
@@ -265,7 +265,7 @@ export const exclusion_rules = {
             disable: {
                 height: ['feet-hight_15']
             },
-            reason: "Not available with other heights"
+            reason: "Die Option schwebend ist nur mit der Option Fußhöhe 15cm kombinierbar"
         },
         // Feet: reciprocal for Storage (drawers/fold-up require “without feet”)
         {
@@ -275,7 +275,7 @@ export const exclusion_rules = {
             disable: {
                 type: ['feet-model_02', ' feet-model_03', 'feet-model_01', 'feet-model_04', 'feet-model_none']
             },
-            reason: "These storage options are only available without feet"
+            reason: "Die Option Stauraum ist nur mit der Option Ohne Füße kombinierbar"
         },
         // Feet: reciprocal for Footboard (Salon/Versailles require “without feet”)
         {
@@ -285,7 +285,7 @@ export const exclusion_rules = {
             disable: {
                 type: ['feet-model_02', ' feet-model_03', 'feet-model_01', 'feet-model_04', 'feet-model_none']
             },
-            reason: "These footboards are only available without feet"
+            reason: "Diese Option ist nur mit der Option Ohne Füße kombinierbar"
         },
         // Feet: reciprocal for Underbody lighting (underbody lighting requires feet)
         {
@@ -295,7 +295,7 @@ export const exclusion_rules = {
             disable: {
                 type: ['feet-hight_00']
             },
-            reason: "Underbody lighting requires feet"
+            reason: "Nur möglich bei Auswahl von Füßen "
         }
     ],
     beleuchtung: [
@@ -307,7 +307,7 @@ export const exclusion_rules = {
             disable: {
                 'beleuchtung-kopfteil-vorne': ['light-position_headboardfrontlighting']
             },
-            reason: "Not available with headboards other than Versailles, Louvre or Maison"
+            reason: "Nur mit folgenden Kopfteilen verfügbar: Versailles, Louvre or Maison"
         },
         // Lighting Box front: not possible when footboards are selected (only with “kein Fußteil”)
         {
@@ -317,7 +317,7 @@ export const exclusion_rules = {
             disable: {
                 'beleuchtung-box-led-front': ['light-position_frontlighting']
             },
-            reason: "Not available when a footboard is selected"
+            reason: "Nur verfügbar ohne Fußteil"
         },
         // Box side lighting: not available for Continuous/Split drawers
         {
@@ -327,7 +327,7 @@ export const exclusion_rules = {
             disable: {
                 'beleuchtung-box-seite': ['light-position_sidelighting']
             },
-            reason: "Not available with continuous/divided drawers"
+            reason: "Nicht verfügbar mit den Optionen Durchgängige Schubladen und Geteilte Schubladen"
         },
         // Box underbody lighting: only available when feet are selected (i.e., not with "without feet")
         {
@@ -337,7 +337,7 @@ export const exclusion_rules = {
             disable: {
                 'beleuchtung-box-led-unterboden': ['light-position_bottomlighting']
             },
-            reason: "Not available without feet"
+            reason: "Nicht mit der Option: Ohne Füße kombinierbar"
         },
         // Foot section lighting: only the “TV Lift Salon” foot section can be illuminated
         {
@@ -347,7 +347,7 @@ export const exclusion_rules = {
             disable: {
                 'beleuchtung-box-led-fussteil': ['light-position_footboardlighting']
             },
-            reason: "Not available with footboards other than TV Lift Salon"
+            reason: "Nur mit dem Fußteil TV Lift Salon kombinierbar"
         },
         // Lighting: reciprocal for lighting color (color requires at least one lighting option)
         {
@@ -360,7 +360,7 @@ export const exclusion_rules = {
                 'beleuchtung-kopfteil-keine': ['beleuchtung-kopfteil-keine'],
                 'beleuchtung-box-keine': ['beleuchtung-box-keine']
             },
-            reason: "Lighting color requires at least one lighting option"
+            reason: "Beleuchtungsfarbe erfordert eine Option aus Beleuchtung"
         }
     ],
     upgrades: [
@@ -372,7 +372,7 @@ export const exclusion_rules = {
             disable: {
                 'usb-anschluesse': ['upgrades-usb-anschlusse-am-kopfteil']
             },
-            reason: "Not available with Monet"
+            reason: "Nicht verfügbar mit Kopfteil: Monet"
         },
         // Lighting color: only selectable if at least one lighting option has been selected
         {
@@ -391,7 +391,7 @@ export const exclusion_rules = {
             disable: {
                 'beleuchtungs-farbe': ['beleuchtungs-farbe-rgb-mit-fernbedienung']
             },
-            reason: "Not available without lighting"
+            reason: "Nicht verfügbar ohne die Option: Beleuchtung"
         },
         // USB ports: not possible with a width of 90–120 cm
         {
@@ -401,7 +401,7 @@ export const exclusion_rules = {
             disable: {
                 'usb-anschluesse': ['upgrades-usb-anschlusse-am-kopfteil']
             },
-            reason: "USB ports are not available with width 90–120 cm"
+            reason: "USB-Anschlüsse sind erst bei einer Breite über 120cm verfügbar"
         }
     ]
 }

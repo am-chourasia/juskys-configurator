@@ -108,6 +108,7 @@ function createImageName(currentState) {
             const [topic, tabs] = dependency.split(':');
             const tabList = tabs.split(',');
 
+            // Try to resolve a value from currentState for the given topic/tabs
             for (const tab of tabList) {
                 if (currentState[topic] && currentState[topic].selection[tab]) {
                     const value = currentState[topic].selection[tab].sort().join('_');
@@ -116,11 +117,29 @@ function createImageName(currentState) {
                     }
                 }
             }
+
+            // Special rules when no explicit selection value is found
+            // 1) feet:height defaults to feet-hight_00 if feet:type includes feet-hight_00
+            if (topic === 'feet' && tabList.includes('height')) {
+                const feetType = currentState['feet']?.selection?.['type'] || [];
+                if (Array.isArray(feetType) && feetType.includes('feet-hight_00')) {
+                    return 'feet-hight_00';
+                }
+            }
+
+            // 2) headrest:height defaults to headboard-height_none if model is kopfteil-modell-ohne-kopfteil
+            if (topic === 'headrest' && tabList.includes('height')) {
+                const headrestModel = currentState['headrest']?.selection?.['model'] || [];
+                if (Array.isArray(headrestModel) && headrestModel.includes('kopfteil-modell-ohne-kopfteil')) {
+                    return 'headboard-height_none';
+                }
+            }
+
             return null;
         }).filter(Boolean);
         const dependencyStrings = dependencyValues.join('__');
-        const image_nmae = `${image_name}${dependencyStrings}.png`;
-        map[part] = transformImageName(image_name);;
+        const finalImageName = `${image_name}${dependencyStrings}.png`;
+        map[part] = transformImageName(finalImageName);
     });
     return map;
 }
@@ -132,6 +151,8 @@ function transformImageName(raw_image_name) {
     name = name.replace(/bettboutique-kollektion-komfort/g, 'collection_komfort');
     // Replace 'kollektion-first-class' or 'kollektion-deluxe' with 'collection_premium'
     name = name.replace(/kollektion-(first-class|deluxe)/g, 'collection_premium');
+    // Normalize feet heights: treat 15 the same as 10
+    name = name.replace(/feet-hight_15/g, 'feet-hight_10');
     return name;
 }
 
