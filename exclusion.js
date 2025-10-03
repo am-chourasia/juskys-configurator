@@ -49,6 +49,16 @@ export const exclusion_rules = {
             },
             reason: "Nur in der Komfort-Serie verfügbar"
         },
+        // Storage: liftup only possible with divided mattresses
+        {
+            condition: {
+                mattress: { 'matratze': { in: ['mattress-model_divided'] } }
+            },
+            disable: {
+                default: ['storage-model_liftup']
+            },
+            reason: "Hochklappbarer Bettkasten nur mit getrennten Matratzen verfügbar"
+        },
         // Storage: drawers and fold-up base only with "without feet" and width from 120 cm
         {
             condition: {
@@ -78,14 +88,7 @@ export const exclusion_rules = {
         // Size: disable widths < 120 when two separate mattresses are chosen
         {
             condition: {
-                mattress: { 'zwei-separate-matratzen': { in: [
-                    'hartegrad-matratze-1-h2',
-                    'hartegrad-matratze-1-h3',
-                    'hartegrad-matratze-1-h4',
-                    'hartegrad-matratze-2-h2',
-                    'hartegrad-matratze-2-h3',
-                    'hartegrad-matratze-2-h4'
-                ] } }
+                mattress: { 'matratze': { in: ['mattress-model_divided'] } }
             },
             disable: {
                 width: [
@@ -99,16 +102,13 @@ export const exclusion_rules = {
         // Size: disable widths > 200 when a continuous mattress is chosen
         {
             condition: {
-                mattress: { 'eine-matratze': { in: [
-                    'hartegrad-matratze-1-h2',
-                    'hartegrad-matratze-1-h3',
-                    'hartegrad-matratze-1-h4'
-                ] } }
+                mattress: { 'matratze': { in: ['mattress-model_continuous'] } }
             },
             disable: {
                 width: [
                     'width_210',
-                    'width_220'
+                    'width_220',
+                    'width_240'
                 ]
             },
             reason: "Durchgehende Matratze sind nur bis eine Breite von 200cm verfügbar"
@@ -154,7 +154,7 @@ export const exclusion_rules = {
                 size: { width: { less_than: 'width_120' } }
             },
             disable: {
-                'zwei-separate-matratzen': ['*']
+                'matratze': ['mattress-model_divided']
             },
             reason: "Zwei separate Matratzen sind nur ab einer Breite von 120cm verfügbar"
         },
@@ -164,9 +164,19 @@ export const exclusion_rules = {
                 size: { width: { greater_than: 'width_200' } }
             },
             disable: {
-                'eine-matratze': ['*']
+                'matratze': ['mattress-model_continuous']
             },
             reason: "Durchgehende Matratzen sind nur bis zu einer Breite von 200cm verfügbar"
+        },
+        // Mattress: reciprocal for liftup storage (liftup requires divided mattresses)
+        {
+            condition: {
+                storage: { default: { in: ['storage-model_liftup'] } }
+            },
+            disable: {
+                'matratze': ['mattress-model_continuous']
+            },
+            reason: "Hochklappbarer Bettkasten nur mit getrennten Matratzen verfügbar"
         }
     ],
     material: [
@@ -373,8 +383,8 @@ export const exclusion_rules = {
         // Lighting: reciprocal for lighting color (color requires at least one lighting option)
         {
             condition: {
-                upgrades: { 
-                    'beleuchtungs-farbe': { in: ['beleuchtungs-farbe-rgb-mit-fernbedienung'] },
+                upgrades: {
+                    'beleuchtungs-farbe': { in: ['beleuchtungs-farbe-rgb-mit-fernbedienung', 'beleuchtungs-farbe-led-weiss'] },
                 }
             },
             disable: {
@@ -410,7 +420,7 @@ export const exclusion_rules = {
                 }
             },
             disable: {
-                'beleuchtungs-farbe': ['beleuchtungs-farbe-rgb-mit-fernbedienung']
+                'beleuchtungs-farbe': ['beleuchtungs-farbe-rgb-mit-fernbedienung', 'beleuchtungs-farbe-led-weiss']
             },
             reason: "Nicht verfügbar ohne die Option: Beleuchtung"
         },
