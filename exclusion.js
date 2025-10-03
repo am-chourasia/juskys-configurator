@@ -30,7 +30,7 @@ export const exclusion_rules = {
         // Series: disable non-Comfort when drawers are selected (reciprocal of storage rule)
         {
             condition: {
-                storage: { default: { in: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup'] } }
+                storage: { default: { in: ['storage-model_continuous', 'storage-model_split'] } }
             },
             disable: {
                 default: ['kollektion-deluxe', 'kollektion-first-class']
@@ -45,7 +45,7 @@ export const exclusion_rules = {
                 series: { default: { not_in: ['bettboutique-kollektion-komfort'] } }
             },
             disable: {
-                default: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup']
+                default: ['storage-model_continuous', 'storage-model_split']
             },
             reason: "Nur in der Komfort-Serie verfügbar"
         },
@@ -56,7 +56,7 @@ export const exclusion_rules = {
                 size: { width: { less_than: 'width_120' } }
             },
             disable: {
-                default: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup', 'stauraum-hochklappbarer-bettkasten']
+                default: ['storage-model_continuous', 'storage-model_split', 'storage-model_liftup']
             },
             reason: "Nur ohne Füße und einer Breite ab 120 cm verfügbar"
         },
@@ -66,7 +66,7 @@ export const exclusion_rules = {
                 beleuchtung: { 'beleuchtung-box': { in: ['light-position_sidelighting'] } }
             },
             disable: {
-                default: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup']
+                default: ['storage-model_continuous', 'storage-model_split']
             },
             reason: "Nicht kombinierbar mit: Beleuchtungs Box - LED Seite"
         }
@@ -116,7 +116,7 @@ export const exclusion_rules = {
         // Size: reciprocal for storage min width (drawers/fold-up require width >= 120)
         {
             condition: {
-                storage: { default: { in: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup', 'stauraum-hochklappbarer-bettkasten'] } }
+                storage: { default: { in: ['storage-model_continuous', 'storage-model_split', 'storage-model_liftup'] } }
             },
             disable: {
                 width: [
@@ -291,10 +291,10 @@ export const exclusion_rules = {
         // Feet: reciprocal for Storage (drawers/fold-up require “without feet”)
         {
             condition: {
-                storage: { default: { in: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup', 'stauraum-hochklappbarer-bettkasten'] } }
+                storage: { default: { in: ['storage-model_continuous', 'storage-model_split', 'storage-model_liftup'] } }
             },
             disable: {
-                type: ['feet-model_02', ' feet-model_03', 'feet-model_01', 'feet-model_04', 'feet-model_none']
+                type: ['feet-model_02', 'feet-model_03', 'feet-model_01', 'feet-model_04', 'feet-model_none']
             },
             reason: "Die Option Stauraum ist nur mit der Option Ohne Füße kombinierbar"
         },
@@ -304,7 +304,7 @@ export const exclusion_rules = {
                 foot_style: { default: { in: ['footboard-model_tv-lift-salon', 'footboard-model_tv-lift-versailles'] } }
             },
             disable: {
-                type: ['feet-model_02', ' feet-model_03', 'feet-model_01', 'feet-model_04', 'feet-model_none']
+                type: ['feet-model_02', 'feet-model_03', 'feet-model_01', 'feet-model_04', 'feet-model_none']
             },
             reason: "Diese Option ist nur mit der Option Ohne Füße kombinierbar"
         },
@@ -333,7 +333,7 @@ export const exclusion_rules = {
         // Lighting Box front: not possible when footboards are selected (only with “kein Fußteil”)
         {
             condition: {
-                foot_style: { default: { not_in: ['fussteil-kein-fussteil'] } }
+                foot_style: { default: { not_in: ['footboard-model_none'] } }
             },
             disable: {
                 'beleuchtung-box-led-front': ['light-position_frontlighting']
@@ -343,7 +343,7 @@ export const exclusion_rules = {
         // Box side lighting: not available for Continuous/Split drawers
         {
             condition: {
-                storage: { default: { in: ['storage-model_deluxe-continuous', 'storage-model_deluxe-liftup'] } }
+                storage: { default: { in: ['storage-model_continuous', 'storage-model_split'] } }
             },
             disable: {
                 'beleuchtung-box-seite': ['light-position_sidelighting']
