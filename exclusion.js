@@ -52,7 +52,7 @@ export const exclusion_rules = {
         // Storage: liftup only possible with divided mattresses
         {
             condition: {
-                mattress: { 'matratze': { in: ['mattress-model_divided'] } }
+                mattress: { 'matratze': { in: ['mattress-model_continuous'] } }
             },
             disable: {
                 default: ['storage-model_liftup']
